@@ -6,7 +6,8 @@
 char map[conVar::maxX+1][conVar::maxY+1];                               //地图
 Robot robot[conVar::maxRobot];                                          //机器人
 Goods goods[20000];                                                     //货物
-int k = 0;                                                              //货物数量
+int goodsSize = 0;                                                      //货物数量
+int k = 0;                                                              //新增货物数量
 Berth berth[conVar::maxBerth];                                          //泊点
 Ship ship[conVar::maxShip];                                             //船只
 int frameId = 0;                                                        //帧编号
