@@ -4,12 +4,12 @@
 class Robot{
 	/*     机器人     */
 public:
-	Robot(int id,const Position& pos);
-	int getId() const;
-	Position getPosition() const;
+	Robot(int id,const Position& pos);              //构造函数
+	int getId() const;                              //获取机器人id
+	Position getPosition() const;                   //获取机器人位置
 private:
-	int id_;                    //机器人id
-	Position pos_;               //机器人坐标
+	int id_;                                        //机器人id
+	Position pos_;                                  //机器人坐标
 };
 
 
