@@ -5,7 +5,6 @@
 namespace IO {
 	void init() {
 		//TODO 实现初始化地图的功能
-		scanf("%d %d",&frameId,&moeney);
 		memset(map,' ',sizeof map);//地图初始化
 		int R = 0;//Robot编号
 		for(int i = 0;i<conVar::maxX+1;i++){
@@ -31,7 +30,15 @@ namespace IO {
 			Berth[id].setTime;
 			Berth[id].setVelocity;
 		}
+		scanf("%d",&shipCapacity);
+		for(int i =0;i<10;i++){
+			ship[i].setCapacity(shipCapacity);
+		}
 		puts("OK");
+	}
+	void readFrame(){
+		scanf("%d %d",&frameId,&money);
+
 	}
 	namespace ROBOT{
 		void move(int id,int direction){
