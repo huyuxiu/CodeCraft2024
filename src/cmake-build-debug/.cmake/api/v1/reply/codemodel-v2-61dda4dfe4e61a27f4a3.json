@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.27"
+						"string" : "3.8"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "src",
+					"name" : "CodeCraftSDK",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "src::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-src-Debug-6f6fe37c72648c248e34.json",
-					"name" : "src",
+					"id" : "main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main-Debug-0ee92c44566e41c71b59.json",
+					"name" : "main",
 					"projectIndex" : 0
 				}
 			]

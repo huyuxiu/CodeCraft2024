@@ -20,3 +20,11 @@ void Robot::carryGoods(Goods &goods) {
 	goods_ = goods;
 	carry_ = true;
 }
+
+void Robot::setId(int id) {
+	id_ = id;
+}
+
+void Robot::setPosition(Position pos) {
+	pos_ = pos;
+}
