@@ -1,11 +1,12 @@
 #ifndef ROBOT_H
 #define ROBOT_H
-#include "model.h"
+#include "const.h"
 
 class Robot{
 	/*     机器人     */
 public:
 	Robot(int id,const Position& pos);              //机器人构造函数
+	Robot();                                        //机器人默认构造函数
 	int getId() const;                              //获取机器人id
 	bool hasGoods() const;                          //获取机器人是否携带货物
 	Position getPosition() const;                   //获取机器人位置
@@ -16,6 +17,5 @@ private:
 	bool carry_;                                    //是否携带货物
 	Goods goods_;                                   //货物
 };
-
 
 #endif //ROBOT_H

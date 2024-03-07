@@ -2,6 +2,8 @@
 
 Robot::Robot(int id, const Position& pos) : id_(id), pos_(pos) ,carry_(false) {}
 
+Robot::Robot() : id_(0), pos_() ,carry_(false) {}
+
 int Robot::getId() const {
 	return id_;
 }
