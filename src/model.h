@@ -8,5 +8,7 @@ Robot robot[conVar::maxRobot];                                          //机器
 Goods goods[20000];                                                     //货物
 int k = 0;                                                              //货物数量
 Berth berth[conVar::maxBerth];                                          //泊点
-
+Ship ship[conVar::maxShip];                                             //船只
+int frameId = 0;                                                        //帧编号
+int money = 0;                                                          //金钱
 #endif //MODEL_H
