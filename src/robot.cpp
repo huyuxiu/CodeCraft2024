@@ -9,3 +9,12 @@ int Robot::getId() const {
 Position Robot::getPosition() const {
 	return pos_;
 }
+
+bool Robot::hasGoods() const {
+	return carry_;
+}
+
+void Robot::carryGoods(Goods &goods) {
+	goods_ = goods;
+	return;
+}
