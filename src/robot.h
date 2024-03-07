@@ -5,7 +5,7 @@
 class Robot{
 	/*     机器人     */
 public:
-	Robot(int id,const Position& pos);              //构造函数
+	Robot(int id,const Position& pos);              //机器人构造函数
 	int getId() const;                              //获取机器人id
 	bool hasGoods() const;                          //获取机器人是否携带货物
 	Position getPosition() const;                   //获取机器人位置

@@ -1,6 +1,8 @@
 #include "iointerface.h"
 #include<iostream>
-void IO::init() {
-	//TODO 接收地图信息
-	std::cout<<"OK"<<std::endl;
+namespace IO {
+	void init() {
+		//TODO 实现初始化地图的功能
+		std::cout << "OK" << std::endl;
+	}
 }

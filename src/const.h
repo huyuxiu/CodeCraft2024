@@ -1,5 +1,6 @@
 #ifndef CONST_H
 #define CONST_H
+
 /*      题目常量       */
 namespace conVar{
 	const int minX = 0;                         //地图边界
