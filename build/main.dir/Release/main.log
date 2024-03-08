@@ -78,6 +78,9 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\ship.h(1,1): warning C481
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\berth.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/main.cpp”)
   
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“../src/main.cpp”)
+  
   model.cpp
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -130,4 +133,5 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\berth.h(1,1): warning C48
   (编译源文件“../src/util.cpp”)
   
   正在生成代码...
-  main.vcxproj -> C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\build\Release\main.exe
+main.obj : error LNK2005: "bool __cdecl moveRobort(class Robot,int)" (?moveRobort@@YA_NVRobot@@H@Z) 已经在 control.obj 中定义
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\build\Release\main.exe : fatal error LNK1169: 找到一个或多个多重定义的符号

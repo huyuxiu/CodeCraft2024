@@ -1,8 +1,5 @@
-//
-// Created by 10048 on 2024/3/8.
-//
-
-#ifndef CODECRAFTSDK_CONRTOL_H
-#define CODECRAFTSDK_CONRTOL_H
-
-#endif //CODECRAFTSDK_CONRTOL_H
+#ifndef CONRTOL_H
+#define CONRTOL_H
+#include "model.h"
+bool moveRobort(Robot robot,int i);
+#endif //CONRTOL_H
