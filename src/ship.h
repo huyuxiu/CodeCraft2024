@@ -12,7 +12,7 @@ private:
     int loaded_cap_;                    //已经装载的容量
     int money_;                         //已经拿到的货物价值  
 public:
-    Ship(int id, const Position& pos);  //船只构造函数
+    Ship(int id, int capacoty, const Position& pos);  //船只构造函数
     Ship();                             //船只默认构造函数
     int getId() const;                  //获取船只id
     int getCapacity() const;            //获取船只容量
