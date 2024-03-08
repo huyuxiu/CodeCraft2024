@@ -1,7 +1,7 @@
 #include "const.h"
 #include "iointerface.h"
+#include <iostream>
 int main(){
-	std::cout<<1<<std::endl;
 	IO::init();
 	for(frameId;frameId<15000;){
 		IO::readFrame();
