@@ -8,6 +8,8 @@ int Berth::getId() const {
     return id_;
 }
 
-int Berth::getLoading_speed() const{
-    
+int Berth::getVelocity() const {
+	return velocity_;
 }
+
+
