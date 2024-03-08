@@ -18,7 +18,8 @@ public:
     int getId() const;                      //获取泊位id
     int getTransport_time() const;          //获取泊位达到虚拟点的时间
     Position getPosition() const;           //获取泊位位置
-    int getVelocity() const;           //获取泊位装载速度
+    int getVelocity() const;                //获取泊位装载速度
+	void setVelocity(int velocity);         //设定泊位装载速度
     void uploadGoods();                     //装载货物
 
 };

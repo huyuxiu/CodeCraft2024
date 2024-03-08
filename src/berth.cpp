@@ -12,4 +12,10 @@ int Berth::getVelocity() const {
 	return velocity_;
 }
 
+void Berth::setVelocity(int velocity) {
+	velocity_ = velocity;
+}
 
+Position Berth::getPosition() const {
+	return pos_;
+}

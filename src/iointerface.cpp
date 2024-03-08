@@ -34,23 +34,21 @@ namespace IO {
 
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
-			map[x][y] = goodsId;                  //货物放到地图中
+			map[x][y] = goodsId-'0';                  //货物放到地图中
 			Position pos(x,y);
 			goods[goodsId].value = value;
 			goods[goodsId].pos = pos;
 			int minDist = 1e8;
 			int minId = 0;
-			for(int j = 0;j<10;i++){
+			for(int j = 0;j<10;j++){
 				int md = manhattanDist(berth[j].getPosition(),pos)+berth[i].getVelocity();
 				if(md<minDist){
 					minDist = md;
 					minId = j;
 				}
 			}
-
 			goods[i].berthId = minId;
 			goods[i].berthShipDist = minDist;
-
 			goodsId++;
 		}
 	}
