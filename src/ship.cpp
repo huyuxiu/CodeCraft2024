@@ -23,3 +23,23 @@ int Ship::getLoaded() const{
 void Ship::setLoaded(int &loaded){
     loaded_cap_ = loaded;
 }
+
+void Ship::setCapacity(int capacity){
+	capacity_ = capacity;
+}
+
+int Ship::getBerthId() const {
+	return berthId_;
+}
+
+void Ship::setBerthId(int berthId) {
+	berthId_ = berthId;
+}
+
+void Ship::setStatus(int status) {
+	status_ = status;
+}
+
+int Ship::getStatus() const {
+	return status_;
+}

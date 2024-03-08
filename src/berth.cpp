@@ -24,4 +24,18 @@ void Berth::uploadGoods() {
 
 }
 
+void Berth::setVelocity(int velocity) {
+	velocity_ = velocity;
+}
 
+void Berth::setTransport_time(int time){
+	transport_time_ = time;
+}
+
+void Berth::setPos(Position pos){
+	pos_ = pos;
+}
+
+void Berth::setId(int id){
+	id_ = id;
+}
