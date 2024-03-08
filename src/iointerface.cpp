@@ -7,18 +7,15 @@ namespace IO {
 		//TODO 实现初始化地图的功能
 		memset(map,' ',sizeof map);//地图初始化
 		for(int i = 0;i<conVar::maxX+1;i++){
-			for(int j = 0;j<conVar::maxY+1;j++){
-				bool flag = map[i][j]==' ';
-				scanf("%c",&map[i][j]);
-			}
+			scanf("%s",map[i]);
 		}
 		for(int i = 0;i<10;i++){
 			/*     读取泊点信息     */
 			int id, x, y, time, velocity;
 			scanf("%d %d %d %d %d",&id,&x,&y,&time,&velocity);
 			berth[id].setId;
-			berth[id].setX;
-			berth[id].setY;
+			Position pos(x,y);
+			berth[id].setPos(pos);
 			berth[id].setTime;
 			berth[id].setVelocity;
 		}
@@ -30,7 +27,21 @@ namespace IO {
 	}
 	void readFrame(){
 		scanf("%d %d",&frameId,&money);
-		scanf()
+		scanf("%d",&k);
+		int x,y,value;
+
+		for(int i =0;i<k;i++){
+			scanf("%d %d %d",&x,&y,&value);
+			map[x][y] = goodsId;                  //货物放到地图中
+			Position pos(x,y);
+			goods[goodsId].value = value;
+			goods[goodsId].pos = pos;
+			int minDist = 1e8;
+			for(int i = 0;i<10;i++){
+				minDist = abs(berth[i].getPosition().x - x)+abs(berth[i].getPosition().y-y)>minDist?
+			}
+			goodsId++;
+		}
 	}
 	namespace ROBOT{
 		void move(int id,int direction){

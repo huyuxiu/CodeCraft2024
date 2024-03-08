@@ -5,12 +5,18 @@
 #include "ship.h"
 #include "berth.h"
 
+#include <queue>
+#include <vector>
+#include <iostream>
+#include <unordered_map>
 char map[conVar::maxX+1][conVar::maxY+1];                               //地图
 Robot robot[conVar::maxRobot];                                          //机器人
-Goods goods[20000];                                                     //货物
+std::vector<Goods> goods;                                               //货物
+std::unordered_map<int,std::vector<int>> deleteGoods;                   //删除货物<frameid,货物id>
 int goodsSize = 0;                                                      //货物数量
 int k = 0;                                                              //新增货物数量
-berth berth[conVar::maxBerth];                                          //泊点
+int goodsId = 0;                                                        //新增货物id
+Berth berth[conVar::maxBerth];                                          //泊点
 Ship ship[conVar::maxShip];                                             //船只
 int frameId = 0;                                                        //帧编号
 int money = 0;                                                          //金钱

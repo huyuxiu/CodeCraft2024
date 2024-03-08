@@ -24,17 +24,22 @@ namespace Parameter{
 /*    常用结构体    */
 struct Position{
 	/*     坐标     */
-	int x;                                                             //x坐标
-	int y;                                                             //y坐标
-	Position(int x,int y) : x(x),y(y) {};                              //坐标构造函数
-	Position() : x(0),y(0) {};                                         //坐标默认构造函数
+	int x;                                                                                          //x坐标
+	int y;                                                                                          //y坐标
+	Position(int x,int y) : x(x),y(y) {};                                                           //坐标构造函数
+	Position() : x(0),y(0) {};                                                                      //坐标默认构造函数
 };
 
 struct Goods{
 	/*     货物     */
-	int value;                                                          //货物价格
-	Position pos;                                                       //货物位置
-	Goods(int value, const Position& pos) : value(value), pos(pos) {}   //货物构造函数
-	Goods() : value(0), pos() {}                                        //货物默认构造函数
+	int value;                                                                                       //货物价格
+	Position pos;                                                                                    //货物位置
+	int deathId;                                                                                     //这一帧到的时候货物消失
+	int berthShipDist;                                                                               //到泊点和虚拟点最近距离
+	int berthId;                                                                                     //泊点id
+	int protity;                                                                                     //优先级
+	Goods(int value, const Position& pos,int deathId) : value(value), pos(pos),deathId(deathId) {}   //货物构造函数
+	Goods() : value(0), pos() {}                                                                     //货物默认构造函数
 };
+
 #endif // CONST_H
