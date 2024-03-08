@@ -1,7 +1,6 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 #include "const.h"
-#include "util.h"
 
 class Robot{
 	/*     机器人     */
@@ -15,11 +14,12 @@ public:
 	void setId(int id);                             //机器人设置id
 	void setPosition(Position pos);                 //机器人设置位置
 	void setStatus(int status);                     //机器人设置状态
+	void setCarry(int carry);						//设置机器人状态
 	int getStatus() const;                          //机器人获取状态
 private:
 	int id_;                                        //机器人id
 	Position pos_;                                  //机器人坐标
-	bool carry_;                                    //是否携带货物
+	int carry_;                                     //是否携带货物
 	Goods goods_;                                   //货物
 	bool status_;                                   //货物状态
 };

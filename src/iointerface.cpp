@@ -18,7 +18,7 @@ namespace IO {
 			berth[id].setId(id);
 			Position pos(x,y);
 			berth[id].setPos(pos);
-			berth[id].setTime(time);
+			berth[id].setTransport_time(time);
 			berth[id].setVelocity(velocity);
 		}
 		scanf("%d",&shipCapacity);
@@ -57,7 +57,7 @@ namespace IO {
 			scanf("%d %d %d %d",&status,&x,&y,&carry);
                         Position pos(x,y);
                         robot[i].setStatus(status);
-                        robot[i].carryGoods(carry);
+                        robot[i].setCarry(carry);
                         robot[i].setPosition(pos);
 		}
 

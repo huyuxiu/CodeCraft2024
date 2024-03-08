@@ -8,7 +8,7 @@ int Berth::getId() const {
     return id_;
 }
 
-int Berth::getTime() const {
+int Berth::getTransport_time() const {
     return transport_time_;
 }
 
@@ -28,7 +28,7 @@ void Berth::setVelocity(int velocity) {
 	velocity_ = velocity;
 }
 
-void Berth::setTime(int time){
+void Berth::setTransport_time(int time){
 	transport_time_ = time;
 }
 
