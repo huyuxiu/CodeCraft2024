@@ -6,4 +6,5 @@
 int manhattanDist(Position pos1,Position pos2);
 
 
+
 #endif //UTIL_H

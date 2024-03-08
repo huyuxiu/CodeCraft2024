@@ -21,4 +21,6 @@ Ship ship[conVar::maxShip];                                             //船只
 int frameId = 0;                                                        //帧编号
 int money = 0;                                                          //金钱
 int shipCapacity = 0;                                                   //船的容积
+int dx[4] = {};
+int dy[4] = {};
 #endif //MODEL_H
