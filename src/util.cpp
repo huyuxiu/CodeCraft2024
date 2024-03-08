@@ -6,9 +6,9 @@ int manhattanDist(Position pos1,Position pos2){
 }
 
 bool Robort_isCollision(Position pos){
-	return map[pos.x][pos.y] == '*' && map[pos.x][pos.y] != '#' && map[pos.x][pos.y] != 'A';
+	return map[pos.x][pos.y] == '*' && map[pos.x][pos.y] == '#' && map[pos.x][pos.y] == 'A';
 }
 
 bool isCollision(Position pos){
-	return map[pos.x][pos.y] != '*' && map[pos.x][pos.y] != '#';
+	return map[pos.x][pos.y] == '*' && map[pos.x][pos.y] == '#';
 }
