@@ -28,3 +28,4 @@ void Robot::setId(int id) {
 void Robot::setPosition(Position pos) {
 	pos_ = pos;
 }
+

@@ -13,7 +13,7 @@ private:
     int transport_time_;                    //泊位到虚拟点的传送时间
     int velocity_;                          //泊位的装载速度
 public:
-    Berth(int id, const Position& pos, const int transport_time, const int loading_speed);     //泊位构造函数
+    Berth(int id, const Position& pos, const int transport_time, const int velocity);     //泊位构造函数
     Berth();                                //船只默认构造函数
     int getId() const;                      //获取泊位id
     int getTransport_time() const;          //获取泊位达到虚拟点的时间
