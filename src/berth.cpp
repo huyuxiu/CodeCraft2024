@@ -28,7 +28,7 @@ void Berth::setVelocity(int velocity) {
 	velocity_ = velocity;
 }
 
-void Berth::setTime(int time){
+void Berth::setTransport_time(int time){
 	transport_time_ = time;
 }
 

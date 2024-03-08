@@ -15,5 +15,5 @@ bool isCollision(Position pos){
 
 int priorityGoodsBerthSHip(Goods good,Berth berth){
 	/*     货物-泊点优先函数     */
-	return berth.getTime()+manhattanDist(good.pos,berth.getPosition());
+	return berth.getTransport_time()+manhattanDist(good.pos,berth.getPosition());
 }
