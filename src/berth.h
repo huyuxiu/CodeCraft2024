@@ -16,12 +16,12 @@ public:
     Berth(int id, const Position& pos, const int transport_time, const int velocity);     //泊位构造函数
     Berth();                                //船只默认构造函数
     int getId() const;                      //获取泊位id
-    int getTime() const;          //获取泊位达到虚拟点的时间
+    int getTransport_time() const;          //获取泊位达到虚拟点的时间
     Position getPosition() const;           //获取泊位位置
     int getVelocity() const;                //获取泊位装载速度
 	void setVelocity(int velocity);         //设定泊位装载速度
     void uploadGoods();                     //装载货物
-	void setTime(int time);                 //设定泊位到虚拟点传送时间
+	void setTransport_time(int time);       //设定泊位到虚拟点传送时间
 	void setPos(Position pos);              //设定泊位位置
 	void setId(int id);                     //设定id
 
