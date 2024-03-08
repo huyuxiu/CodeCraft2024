@@ -1,5 +1,7 @@
 #include "iointerface.h"
 #include "model.h"
+#include "util.h"
+
 #include<iostream>
 #include<cstring>
 namespace IO {
@@ -37,9 +39,18 @@ namespace IO {
 			goods[goodsId].value = value;
 			goods[goodsId].pos = pos;
 			int minDist = 1e8;
-			for(int i = 0;i<10;i++){
-				minDist = abs(berth[i].getPosition().x - x)+abs(berth[i].getPosition().y-y)>minDist?
+			int minId = 0;
+			for(int j = 0;j<10;i++){
+				int md = manhattanDist(berth[j].getPosition(),pos)+berth[i].getVelocity();
+				if(md<minDist){
+					minDist = md;
+					minId = j;
+				}
 			}
+
+			goods[i].berthId = minId;
+			goods[i].berthShipDist = minDist;
+
 			goodsId++;
 		}
 	}

@@ -13,7 +13,7 @@ int Berth::getTransport_time() const {
 }
 
 int Berth::getVelocity() const {
-    return Velocity_;
+    return velocity_;
 }
 
 Position Berth::getPosition() const {
