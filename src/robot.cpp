@@ -16,7 +16,8 @@ bool Robot::hasGoods() const {
 	return carry_;
 }
 
-void Robot::carryGoods(Goods &goods) {
+void Robot::carryGoods(int carry) {
+	carry_ = carry;
 }
 
 void Robot::setCarry(int carry) {

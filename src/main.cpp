@@ -7,9 +7,14 @@
 
 int main(){
 	IO::init();
-	for(frameId;frameId<15000;){
+	for(frameId;frameId<=15000;){
 
 		IO::readFrame();
-		std::cout<<frameId<<std::endl;
+		for(int i =0;i<10;i++){
+			IO::ROBOT::move(i,frameId%4);
+		}
+		puts("OK");
+		std::fflush(stdout);
+
 	}
 }

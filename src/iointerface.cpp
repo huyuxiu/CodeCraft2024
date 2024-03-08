@@ -1,6 +1,7 @@
 #include "iointerface.h"
 #include "model.h"
 #include "util.h"
+#include "const.h"
 
 #include<iostream>
 #include<cstring>
@@ -25,7 +26,10 @@ namespace IO {
 		for(int i =0;i<10;i++){
 			ship[i].setCapacity(shipCapacity);
 		}
+	    char ok[100];
+	    scanf("%s",&ok);        //读帧结束
 		puts("OK");
+		std::fflush(stdout);
 	}
 	void readFrame(){
 		scanf("%d %d",&frameId,&money);
@@ -34,10 +38,10 @@ namespace IO {
 
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
-			map[x][y] = goodsId-'0';                  //货物放到地图中
+			map[x][y] = goodsId+'0';                  //货物放到地图中
 			Position pos(x,y);
-			goods[goodsId].value = value;
-			goods[goodsId].pos = pos;
+			Goods g(value,pos,frameId+1000);
+			goods.push_back(g);
 			int minPri = 1e8;
 			int minId = 0;
 			for(int j = 0;j<10;j++){
