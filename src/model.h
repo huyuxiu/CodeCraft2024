@@ -1,5 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
+
 #include "const.h"
 #include "robot.h"
 #include "ship.h"
