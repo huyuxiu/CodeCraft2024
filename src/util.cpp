@@ -12,3 +12,8 @@ bool Robort_isCollision(Position pos){
 bool isCollision(Position pos){
 	return map[pos.x][pos.y] == '*' || map[pos.x][pos.y] == '#';
 }
+
+int priorityGoodsBerthSHip(Goods good,Berth berth){
+	/*     货物-泊点优先函数     */
+	return berth.getTime()+manhattanDist(good.pos,berth.getPosition());
+}

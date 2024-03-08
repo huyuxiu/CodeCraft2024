@@ -8,7 +8,7 @@ int Berth::getId() const {
     return id_;
 }
 
-int Berth::getTransport_time() const {
+int Berth::getTime() const {
     return transport_time_;
 }
 
@@ -24,4 +24,18 @@ void Berth::uploadGoods() {
 
 }
 
+void Berth::setVelocity(int velocity) {
+	velocity_ = velocity;
+}
 
+void Berth::setTime(int time){
+	transport_time_ = time;
+}
+
+void Berth::setPos(Position pos){
+	pos_ = pos;
+}
+
+void Berth::setId(int id){
+	id_ = id;
+}
