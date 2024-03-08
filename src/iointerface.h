@@ -4,8 +4,8 @@
 
 namespace IO{
 	/*     判题器交互接口     */
-	void init();                          //初始化地图、机器人
-	void readFrame();                     //更改场面信息
+	void init();                                //初始化地图、机器人
+	void readFrame();                           //读取、更改场面信息
 	namespace ROBOT{
 		/*     实现机器人控制     */
 		void move(int id,int direction);
