@@ -8,7 +8,7 @@ int Berth::getId() const {
     return id_;
 }
 
-int Berth::getTime() const {
+int Berth::getTransport_time() const {
     return transport_time_;
 }
 
