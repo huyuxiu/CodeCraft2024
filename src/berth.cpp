@@ -1,4 +1,4 @@
-#include "Berth.h"
+#include "berth.h"
 
 Berth::Berth(int id, const Position& pos, const int transport_time, const int loading_speed) : id_(id), pos_(pos), transport_time_(transport_time), loading_speed_(loading_speed){}
 

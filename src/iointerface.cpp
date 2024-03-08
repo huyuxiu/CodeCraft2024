@@ -16,11 +16,11 @@ namespace IO {
 			/*     读取泊点信息     */
 			int id, x, y, time, velocity;
 			scanf("%d %d %d %d %d",&id,&x,&y,&time,&velocity);
-			Berth[id].setId;
-			Berth[id].setX;
-			Berth[id].setY;
-			Berth[id].setTime;
-			Berth[id].setVelocity;
+			berth[id].setId;
+			berth[id].setX;
+			berth[id].setY;
+			berth[id].setTime;
+			berth[id].setVelocity;
 		}
 		scanf("%d",&shipCapacity);
 		for(int i =0;i<10;i++){
