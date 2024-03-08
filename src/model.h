@@ -9,6 +9,8 @@
 #include <vector>
 #include <iostream>
 #include <unordered_map>
+#include <cmath>
+#include <deque>
 char map[conVar::maxX+1][conVar::maxY+1];                               //地图
 Robot robot[conVar::maxRobot];                                          //机器人
 std::vector<Goods> goods;                                               //货物
