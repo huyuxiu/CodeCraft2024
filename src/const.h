@@ -1,6 +1,7 @@
 #ifndef CONST_H
 #define CONST_H
-
+#include <cstddef>
+#include <functional>
 /*      题目常量       */
 namespace conVar{
 	const int minX = 0;                                               //地图边界
@@ -28,8 +29,23 @@ struct Position{
 	int y;                                                                                          //y坐标
 	Position(int x,int y) : x(x),y(y) {};                                                           //坐标构造函数
 	Position() : x(0),y(0) {};                                                                      //坐标默认构造函数
+	bool operator==(const Position& other) const {
+		/* 相等性比较操作符重载 */
+		return x == other.x && y == other.y;
+	}
 };
-
+struct PositionHash {
+	size_t operator()(const Position& p) const {
+		return std::hash<int>()(p.x) ^ std::hash<int>()(p.y);
+	}
+};
+namespace std {
+	template<> struct hash<Position> {
+		size_t operator()(const Position& p) const {
+			return hash<int>()(p.x) ^ hash<int>()(p.y);
+		}
+	};
+}
 struct Goods{
 	/*     货物     */
 	int value;                                                                                       //货物价格
@@ -42,4 +58,10 @@ struct Goods{
 	Goods() : value(0), pos() {}                                                                     //货物默认构造函数
 };
 
+struct Compare {
+	/*      比较PIP        */
+	bool operator()(const std::pair<int, Position>& a, const std::pair<int, Position>& b) const {
+		return a.first < b.first;
+	}
+};
 #endif // CONST_H
