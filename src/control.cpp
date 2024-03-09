@@ -36,3 +36,39 @@ void distributeGoods(int num){
 		robotGoodsQueue[id].push(g);
 	}
 }
+
+void robortFindGood(Robot robot){
+	/*      机器人找货       */
+	auto q = robotGoodsQueue[robot.getId()];
+	Goods g;                                                                                                                                       //从机器人的货物队头拿第一个合法货物
+	bool isFind = false;                                                                                                                           //拿到合法货物没有
+	while(q.size()){
+		g = q.front(); q.pop();
+		if(g.deathId-frameId>=Parameter::goodsPermitDeathFrame || g.deathId-frameId>=manhattanDist(robot.getPosition(), g.pos)){        //存活时间>=400||存活时间>=人货曼哈顿距离
+			isFind = true;
+			break;
+		}
+	}
+	if(!isFind){
+		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
+		return;
+	}
+	auto moves = aStar(robot.getPosition(), g.pos);                                                                //加载找货指令序列
+	while(moves.size()){
+		auto m = moves.front(); moves.pop_front();
+		robotMoveQueue[robot.getId()].push_back(m.second);                                                                                       //get指令为-1
+	}
+	return;
+}
+
+void robortFindBerth(Robot robot){
+	/*      机器人送货（拿到货找泊位）          */
+	int berthId = robot.getGoods().berthId;
+	auto moves = aStar(robot.getPosition(), berth[berthId].getPosition());                                         //加载找泊位指令序列
+	while(moves.size()){
+		auto m = moves.front(); moves.pop_front();
+		robotMoveQueue[robot.getId()].push_back(m.second<0? -2: m.second);                                                                       //pull指令为-2
+	}
+	return;
+}
+

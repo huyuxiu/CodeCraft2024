@@ -48,7 +48,6 @@ std::deque<PPI> aStar(Position start, Position end) {
         res.push_front(prev[end]);
         end = prev[end].first;
     }
-	res.push_front(start);
     return res;
 }
 int priorityGoodsBerthSHip(Goods good,Berth berth){
