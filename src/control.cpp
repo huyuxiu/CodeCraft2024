@@ -40,6 +40,7 @@ void robotMove(){
 	for(int i =0;i<10;i++){
 		if(robotMoveQueue[i].empty()) continue;
 		int front = robotMoveQueue[i].front();
+		robotMoveQueue[i].pop_front();
 		if(front==-1){
 			IO::ROBOT::get(i);
 			continue;
