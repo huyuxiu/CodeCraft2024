@@ -17,6 +17,7 @@ int main(){
 		}
 		/*     判断机器人指令队列是否为空，空就A*     */
 
+
 		/*      指令序列加入队列       */
 		puts("OK");
 		std::fflush(stdout);
