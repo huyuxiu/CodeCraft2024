@@ -1,8 +1,8 @@
 #include "robot.h"
 
-Robot::Robot(int id, const Position& pos) : id_(id), pos_(pos) ,carry_(false) {}
+Robot::Robot(int id, const Position& pos,int status,int carry) : id_(id), pos_(pos) ,carry_(carry),status_(status) {}
 
-Robot::Robot() : id_(0), pos_() ,carry_(false) {}
+Robot::Robot() : id_(0), pos_() ,carry_(0) ,status_(1){}
 
 int Robot::getId() const {
 	return id_;
@@ -18,6 +18,7 @@ bool Robot::hasGoods() const {
 
 void Robot::carryGoods(Goods goods) {
 	goods_ = goods;
+	carry_ = 1;
 }
 
 void Robot::setCarry(int carry) {

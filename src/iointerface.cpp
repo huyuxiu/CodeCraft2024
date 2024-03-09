@@ -26,6 +26,7 @@ namespace IO {
 		for(int i =0;i<10;i++){
 			ship[i].setCapacity(shipCapacity);
 		}
+		scanf("%d",&shipCapacity);
 	    char ok[100];
 	    scanf("%s",&ok);        //读帧结束
 		puts("OK");
@@ -38,37 +39,36 @@ namespace IO {
 
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
-			map[x][y] = goodsId+'0';                  //货物放到地图中
 			Position pos(x,y);
 			Goods g(value,pos,frameId+1000);
-			goods.push_back(g);
+			goods[i] = g;
 			int minPri = 1e8;
 			int minId = 0;
 			for(int j = 0;j<10;j++){
-				int pri = priorityGoodsBerthSHip(goods[goodsId],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
+				int pri = priorityGoodsBerthSHip(goods[i],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
 				if(pri<minPri){
-					goods[goodsId].berthId = j;
-					goods[goodsId].protity = minPri;
+					minPri = pri;
+					minId = j;
 				}
 			}
-			goods[goodsId].berthId = minId;
-			goods[goodsId].berthShipDist = minPri;
-			goodsHeap.push(goods[goodsId]);
-			goodsId++;
+			goods[i].berthId = minId;
+			goods[i].priority = minPri;
+			goodsHeap.push(g);
 		}
 
 		for(int i = 0;i<10;i++){
 			/*       读取机器人状态       */
-			scanf("%d %d %d %d",&status,&x,&y,&carry);
-                        Position pos(x,y);
-                        robot[i].setStatus(status);
-                        robot[i].setCarry(carry);
-                        robot[i].setPosition(pos);
+			scanf("%d %d %d %d",&carry,&x,&y,&status);
+            Position pos(x,y);
+			Robot r(i,pos,status,carry);
+            robot[i] = r;
 		}
 
         for(int i = 0;i<5;i++){
 			/*     读取船只信息     */
 			scanf("%d %d",&status,&berthId);
+			Ship sp(i,status,berthId);
+			ship[i] = sp;
 			ship[i].setBerthId(berthId);
 			ship[i].setStatus(status);
         }
