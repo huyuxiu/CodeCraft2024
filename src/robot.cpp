@@ -40,6 +40,6 @@ void Robot::setStatus(int status) {
 	status_ = status;
 }
 
-Goods Robot::getGoods() {
+Goods Robot::getGoods() const{
 	return goods_;
 }
