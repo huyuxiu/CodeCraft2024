@@ -89,9 +89,10 @@ void robotFindGood(int id){
 		}
 	}
 	if(!isFind){
-		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
+		//std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
 		return;
 	}
+	robot[id].carryGoods(g);
 	auto moves = aStar(robot[id].getPosition(), g.pos);                                                                //加载找货指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();

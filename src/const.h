@@ -59,9 +59,9 @@ struct Goods{
 	int deathId;                                                                                     //这一帧到的时候货物消失
 	int berthShipDist;                                                                               //到泊点和虚拟点最近距离
 	int berthId;                                                                                     //泊点id
-	int protity;                                                                                     //优先级
-	Goods(int value, const Position& pos,int deathId) : value(value), pos(pos),deathId(deathId) {}   //货物构造函数
-	Goods() : value(0), pos() {}                                                                     //货物默认构造函数
+	int priority;                                                                                     //优先级
+	Goods(int value, const Position pos,int deathId) : value(value), pos(pos),deathId(deathId),priority(1e8) {}   //货物构造函数
+	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                                                     //货物默认构造函数
 };
 
 struct Compare {
@@ -74,7 +74,7 @@ struct Compare {
 struct CompareGoodsToBerth {
 	/*      维护货物到港口优先队列       */
 	bool operator()(const Goods& a, const Goods& b) const {
-		return a.protity > b.protity;
+		return a.priority > b.priority;
 	}
 };
 

@@ -12,7 +12,7 @@ private:
     int loaded_cap_;                                  //已经装载的容量
 	int berthId_;                                     //船只在泊位位置
 public:
-    Ship(int id, int capacoty);                       //船只构造函数
+    Ship(int id, int status,int berthId);               //船只构造函数
     Ship();                                           //船只默认构造函数
     int getId() const;                                //获取船只id
     int getCapacity() const;                          //获取船只容量

@@ -13,11 +13,12 @@ int main(){
 		robotMove();
 		
 		/*        货物进机器人优先队列       */
-		if(frameId%100==0){
-			distributeGoods(15);
+		if(frameId%200==0){
+			distributeGoods(1);
 		}
+
 		for(int i =0;i<10;i++){
-			if(!robotGoodsQueue[i].empty()) continue;
+			if(!robotMoveQueue[i].empty()) continue;
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
 			}
