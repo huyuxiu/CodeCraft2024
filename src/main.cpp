@@ -14,7 +14,7 @@ int main(){
 		puts("OK");
 		std::fflush(stdout);
 		/*        货物进机器人优先队列       */
-		if(frameId%100==0){
+		if(frameId%10==0){
 			distributeGoods(15);
 		}
 
