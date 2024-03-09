@@ -44,6 +44,7 @@ std::deque<Position> aStar(Position start, Position end) {
         res.push_front(end);
         end = prev[end];
     }
+	res.push_front(start);
     return res;
 }
 int priorityGoodsBerthSHip(Goods good,Berth berth){

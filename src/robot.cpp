@@ -16,8 +16,8 @@ bool Robot::hasGoods() const {
 	return carry_;
 }
 
-void Robot::carryGoods(int carry) {
-	carry_ = carry;
+void Robot::carryGoods(Goods goods) {
+	goods_ = goods;
 }
 
 void Robot::setCarry(int carry) {
@@ -38,4 +38,8 @@ int Robot::getStatus() const {
 
 void Robot::setStatus(int status) {
 	status_ = status;
+}
+
+Goods Robot::getGoods() {
+	return goods_;
 }
