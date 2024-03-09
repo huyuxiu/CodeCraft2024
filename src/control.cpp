@@ -37,9 +37,9 @@ void distributeGoods(int num){
 }
 
 
-void robortFindGood(Robot robot){
+void robortFindGood(Robot robot,int id){
 	/*      机器人找货       */
-	auto q = robotGoodsQueue[robot.getId()];
+	auto q = robotGoodsQueue[id];
 	Goods g;                                                                                                                                       //从机器人的货物队头拿第一个合法货物
 	bool isFind = false;                                                                                                                           //拿到合法货物没有
 	while(q.size()){
