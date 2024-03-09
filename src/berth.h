@@ -4,7 +4,7 @@
 #include <queue>
 
 class Berth{
-    /*    船只    */
+    /*    泊位    */
 private:
     int id_;                                //泊位的id
     Position pos_;                          //泊位的位置
@@ -21,7 +21,11 @@ public:
     int getVelocity() const;                //获取泊位装载速度
 	void setVelocity(int velocity);         //设定泊位装载速度
     void uploadGoods();                     //装载货物
+<<<<<<< HEAD
 	void setTransport_time(int time);       //设定泊位到虚拟点传送时间
+=======
+	void setTransport_time(int time);                 //设定泊位到虚拟点传送时间
+>>>>>>> 8d81d52e66960295446e21df61ac24af6296c20a
 	void setPos(Position pos);              //设定泊位位置
 	void setId(int id);                     //设定id
 

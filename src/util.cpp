@@ -17,9 +17,9 @@ std::deque<Position> aStar(Position start, Position end) {
     std::deque<Position> res;
     if (start.x == end.x && start.y == end.y) return res;
 
-    std::unordered_map<Position, int> dist;                                                         //某一点到起点的真实距离
+    std::unordered_map<Position, int,PositionHash> dist;                                                         //某一点到起点的真实距离
     std::unordered_map<Position, Position> prev;                                                    //某一点是从哪个点走过来的
-    std::priority_queue<PIP, std::vector<PIP>, std::greater<PIP>> heap;                             //小根堆 (估价, 坐标)
+    std::priority_queue<PIP, std::vector<PIP>, Compare> heap;                             //小根堆 (估价, 坐标)
     heap.push({manhattanDist(start, end), start});
 
     while (heap.size()) {
@@ -40,11 +40,10 @@ std::deque<Position> aStar(Position start, Position end) {
             }
         }
     }
-    while (end.x != start.x && end.y != start.y) {
+    while (end.x != start.x || end.y != start.y) {
         res.push_front(end);
         end = prev[end];
     }
-    res.push_front(start);
     return res;
 }
 int priorityGoodsBerthSHip(Goods good,Berth berth){
