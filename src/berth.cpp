@@ -1,8 +1,8 @@
 #include "berth.h"
 
-Berth::Berth(int id, const Position& pos, const int transport_time, const int velocity) : id_(id), pos_(pos), transport_time_(transport_time), velocity_(velocity){}
+Berth::Berth(int id, const Position& pos, const int transport_time, const int velocity) : id_(id), pos_(pos), transport_time_(transport_time), velocity_(velocity), status_(0), goods_num_(0) {}
 
-Berth::Berth() : id_(-1), pos_(), transport_time_(0), velocity_(0) {}
+Berth::Berth() : id_(-1), pos_(), transport_time_(0), velocity_(0), status_(0), goods_num_(0) {}
 
 int Berth::getId() const {
     return id_;

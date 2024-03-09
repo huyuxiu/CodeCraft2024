@@ -20,7 +20,7 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
-	int outGoodsHeapSurplusFrame = 200;                               //出物品队列剩余帧数
+	const int outGoodsHeapSurplusFrame = 200;                               //出物品队列剩余帧数
 	const int goodsPermitDeathFrame = 400;                            //货物消失容许误差帧数
 }
 

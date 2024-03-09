@@ -11,8 +11,7 @@ int main(){
 		IO::readFrame();
 		/*     指令序列输出     */
 		robotMove();
-		puts("OK");
-		std::fflush(stdout);
+		
 		/*        货物进机器人优先队列       */
 		if(frameId%100==0){
 			distributeGoods(15);
@@ -27,7 +26,8 @@ int main(){
 			}
 		}
 		/*      指令序列加入队列       */
-
-
+		shipToBearth();
+		puts("OK");
+		std::fflush(stdout);
 	}
 }
