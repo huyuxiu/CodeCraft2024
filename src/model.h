@@ -28,5 +28,5 @@ extern int dx[4];                                                               
 extern int dy[4];                                                                        //机器人移动
 extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap;     //物品到港口优先队列
 extern std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
-extern std::deque<Goods> robotMoveQueue[10];                                             //机器人指令队列
+extern std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 #endif //MODEL_H

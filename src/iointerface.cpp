@@ -53,6 +53,7 @@ namespace IO {
 			}
 			goods[goodsId].berthId = minId;
 			goods[goodsId].berthShipDist = minPri;
+			goodsHeap.push(goods[goodsId]);
 			goodsId++;
 		}
 

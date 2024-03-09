@@ -2,6 +2,7 @@
 #define CONST_H
 #include <cstddef>
 #include <functional>
+
 /*      题目常量       */
 namespace conVar{
 	const int minX = 0;                                               //地图边界
@@ -19,7 +20,7 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
-
+	int outGoodsHeapSurplusFrame = 200;                               //出物品队列剩余帧数
 }
 
 /*    常用结构体    */
@@ -32,6 +33,10 @@ struct Position{
 	bool operator==(const Position& other) const {
 		/* 相等性比较操作符重载 */
 		return x == other.x && y == other.y;
+	}
+	Position operator-(const Position& other) const {
+		/*     相减运算符重载     */
+		return Position(x - other.x, y - other.y);
 	}
 };
 struct PositionHash {
@@ -72,6 +77,6 @@ struct CompareGoodsToBerth {
 	}
 };
 
-struct CompareGoods
+struct CompareGoods;
 
 #endif // CONST_H

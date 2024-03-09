@@ -14,3 +14,5 @@ int money = 0;                                                  // 金钱
 int shipCapacity = 0;                                           // 船的容积
 int dx[4] = {0, 0, -1, 1};                      // 机器人移动
 int dy[4] = {1, -1, 0, 0};                      // 机器人移动
+std::unordered_map<Position,int> posToInstruction;              //相对位置到指令
+
