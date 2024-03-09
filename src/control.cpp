@@ -76,14 +76,14 @@ void distributeGoods(int num){
 }
 
 
-void robortFindGood(Robot robot,int id){
+void robotFindGood(int id){
 	/*      机器人找货       */
 	auto q = robotGoodsQueue[id];
 	Goods g;                                                                                                                                       //从机器人的货物队头拿第一个合法货物
 	bool isFind = false;                                                                                                                           //拿到合法货物没有
 	while(q.size()){
 		g = q.front(); q.pop();
-		if(g.deathId-frameId>=Parameter::goodsPermitDeathFrame || g.deathId-frameId>=manhattanDist(robot.getPosition(), g.pos)){        //存活时间>=400||存活时间>=人货曼哈顿距离
+		if(g.deathId-frameId>=Parameter::goodsPermitDeathFrame || g.deathId-frameId>=manhattanDist(robot[id].getPosition(), g.pos)){        //存活时间>=400||存活时间>=人货曼哈顿距离
 			isFind = true;
 			break;
 		}
@@ -92,21 +92,21 @@ void robortFindGood(Robot robot,int id){
 		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
 		return;
 	}
-	auto moves = aStar(robot.getPosition(), g.pos);                                                                //加载找货指令序列
+	auto moves = aStar(robot[id].getPosition(), g.pos);                                                                //加载找货指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();
-		robotMoveQueue[robot.getId()].push_back(m.second);                                                                                       //get指令为-1
+		robotMoveQueue[id].push_back(m.second);                                                                                       //get指令为-1
 	}
 	return;
 }
 
-void robortFindBerth(Robot robot){
+void robotFindBerth(int id){
 	/*      机器人送货（拿到货找泊位）          */
-	int berthId = robot.getGoods().berthId;
-	auto moves = aStar(robot.getPosition(), berth[berthId].getPosition());                                         //加载找泊位指令序列
+	int berthId = robot[id].getGoods().berthId;
+	auto moves = aStar(robot[id].getPosition(), berth[berthId].getPosition());                                         //加载找泊位指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();
-		robotMoveQueue[robot.getId()].push_back(m.second<0? -2: m.second);                                                                       //pull指令为-2
+		robotMoveQueue[id].push_back(m.second<0? -2: m.second);                                                                       //pull指令为-2
 	}
 	return;
 }

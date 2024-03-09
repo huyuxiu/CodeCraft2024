@@ -11,16 +11,23 @@ int main(){
 		IO::readFrame();
 		/*     指令序列输出     */
 		robotMove();
+		puts("OK");
+		std::fflush(stdout);
 		/*        货物进机器人优先队列       */
 		if(frameId%100==0){
 			distributeGoods(15);
 		}
-		/*     判断机器人指令队列是否为空，空就A*     */
-
-
+		for(int i =0;i<10;i++){
+			if(!robotGoodsQueue[i].empty()) continue;
+			if(robot[i].hasGoods()){
+				robotFindBerth(i);
+			}
+			else{
+				robotFindGood(i);
+			}
+		}
 		/*      指令序列加入队列       */
-		puts("OK");
-		std::fflush(stdout);
+
 
 	}
 }
