@@ -25,8 +25,8 @@ void shipToBearth(){
         if (ship[i].getBerthId() == -1 && ship[i].getStatus() == 1){            //当船达到虚拟点空闲的时候
             int temp_max = 0, target_bearth = 0;
             for (int j = 0; j < conVar::maxBerth; j++){
-                if (berth[j].getMoney() > temp_max && berth[j].getStatus() == 0){
-                    temp_max = berth[j].getMoney();
+                if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0){      //找物品多的港口
+                    temp_max = berth[j].getGoods_size();
                     target_bearth = j;
                 }
             }
@@ -55,6 +55,7 @@ void shipToBearth(){
         }
     }
 }
+
 void distributeGoods(int num){
 	/*      将货物分配给机器人队列,num为分配个数       */
 	while(num--&&!goodsHeap.empty()){

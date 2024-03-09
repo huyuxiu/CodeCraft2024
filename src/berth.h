@@ -8,7 +8,7 @@ private:
     int id_;                                //泊位的id
     Position pos_;                          //泊位的位置
     int status_;                            //泊位的状态： 0表示空闲，1表示忙碌中
-    std::queue<Goods> goods_;               //泊位上的货物队列
+    std::queue<Goods> G;               //泊位上的货物队列
     int transport_time_;                    //泊位到虚拟点的传送时间
     int velocity_;                          //泊位的装载速度
     int money_;                             //泊位货物总价格

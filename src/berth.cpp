@@ -25,7 +25,7 @@ int Berth::getStatus() const {
 }
 
 int Berth::getGoods_size() const {
-    return goods_.size();
+    return goods_num_;
 }
 
 Position Berth::getPosition() const {
@@ -57,10 +57,5 @@ void Berth::setStatus(int status){
 }
 
 void Berth::carryGoods(int num) {
-    for (int i = 0; i < num; i++){
-        if (!goods_.size())
-            break;
-        money_ -= goods_.top().value;
-        goods_.pop();
-    }
+    goods_num_ -= num;
 }
