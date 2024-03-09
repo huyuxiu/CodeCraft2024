@@ -61,7 +61,17 @@ struct Goods{
 struct Compare {
 	/*      比较PIP        */
 	bool operator()(const std::pair<int, Position>& a, const std::pair<int, Position>& b) const {
-		return a.first < b.first;
+		return a.first > b.first;
 	}
 };
+
+struct CompareGoodsToBerth {
+	/*      维护货物到港口优先队列       */
+	bool operator()(const Goods& a, const Goods& b) const {
+		return a.protity > b.protity;
+	}
+};
+
+struct CompareGoods
+
 #endif // CONST_H

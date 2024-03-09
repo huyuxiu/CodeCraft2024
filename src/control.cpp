@@ -12,3 +12,7 @@ bool moveRobort(Robot robot,int i){
     else return false;
 }
 
+void getGoodsBerthQueue(){
+	/*    初始化物品队列     */
+	std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap(goods.begin(),goods.end());     //物品到港口优先队列
+}

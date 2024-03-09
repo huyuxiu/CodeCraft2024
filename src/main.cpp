@@ -1,7 +1,6 @@
-#include "const.h"
 #include "iointerface.h"
 #include "model.h"
-#include "control.cpp"
+#include "control.h"
 
 #include<iostream>
 
@@ -10,14 +9,11 @@ int main(){
 	bool flag2 = false;
 	for(frameId;frameId<=15000;){
 		IO::readFrame();
+		/*        货物进机器人优先队列       */
 
-		if(!flag2){
-			IO::ROBOT::move(0,0);
-			IO::ROBOT::move(1,0);
-			IO::ROBOT::move(2,0);
-			IO::ROBOT::move(3,0);
-			flag2 = true;
-		}
+		/*     判断机器人指令队列是否为空，空就A*     */
+
+		/*      指令序列加入队列       */
 		puts("OK");
 		std::fflush(stdout);
 
