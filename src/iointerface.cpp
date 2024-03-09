@@ -39,6 +39,7 @@ namespace IO {
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
 			pos.x = x,pos.y = y;
+			if(isCollision(pos)) continue;
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
 			int minPri = 1e8;
 			int minId = 0;
