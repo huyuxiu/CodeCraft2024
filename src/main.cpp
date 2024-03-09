@@ -14,12 +14,12 @@ int main(){
 		puts("OK");
 		std::fflush(stdout);
 		/*        货物进机器人优先队列       */
-		if(frameId%10==0){
+		if(frameId%5==0){
 			distributeGoods(15);
 		}
 
 		for(int i =0;i<10;i++){
-			if(robotGoodsQueue[i].empty()) continue;
+			if(!robotMoveQueue[i].empty()) continue;
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
 			}

@@ -35,12 +35,11 @@ namespace IO {
 		scanf("%d %d",&frameId,&money);
 		scanf("%d",&k);
 		int x,y,value,status,carry,berthId;
-
+		Position pos(0,0);
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
-			Position pos(x,y);
-			Goods g(value,pos,frameId+1000);
-			goods[goodsId] = g;
+			pos.x = x,pos.y = y;
+			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
 			int minPri = 1e8;
 			int minId = 0;
 			for(int j = 0;j<10;j++){
@@ -59,16 +58,16 @@ namespace IO {
 		for(int i = 0;i<10;i++){
 			/*       读取机器人状态       */
 			scanf("%d %d %d %d",&carry,&x,&y,&status);
-            Position pos(x,y);
-			Robot r(i,pos,status,carry);
-            robot[i] = r;
+            pos.x = x,pos.y = y;
+			robot[i].setId(i);
+			robot[i].setPosition(pos);
+			robot[i].setStatus(status);
+			robot[i].setCarry(carry);
 		}
 
         for(int i = 0;i<5;i++){
 			/*     读取船只信息     */
 			scanf("%d %d",&status,&berthId);
-			Ship sp(i,status,berthId);
-			ship[i] = sp;
 			ship[i].setBerthId(berthId);
 			ship[i].setStatus(status);
         }
