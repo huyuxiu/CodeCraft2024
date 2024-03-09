@@ -1,5 +1,4 @@
-#include "model.h"
-#include "util.h"
+#include "control.h"
 
 bool moveRobort(Robot robot,int i){
 	int new_x = robot.getPosition().x + dx[i];
@@ -37,6 +36,7 @@ void distributeGoods(int num){
 	}
 }
 
+
 void robortFindGood(Robot robot){
 	/*      机器人找货       */
 	auto q = robotGoodsQueue[robot.getId()];
@@ -70,5 +70,22 @@ void robortFindBerth(Robot robot){
 		robotMoveQueue[robot.getId()].push_back(m.second<0? -2: m.second);                                                                       //pull指令为-2
 	}
 	return;
+}
+
+
+void robotMove(){
+	for(int i =0;i<10;i++){
+		if(robotMoveQueue[i].empty()) continue;
+		int front = robotMoveQueue[i].front();
+		if(front==-1){
+			IO::ROBOT::get(i);
+			continue;
+		}
+		else if(front==-2){
+			IO::ROBOT::pull(i);
+			continue;
+		}
+		else IO::ROBOT::move(i,front);
+	}
 }
 
