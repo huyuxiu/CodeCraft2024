@@ -2,6 +2,7 @@
 #define CONST_H
 #include <cstddef>
 #include <functional>
+
 /*      题目常量       */
 namespace conVar{
 	const int minX = 0;                                               //地图边界
@@ -76,6 +77,6 @@ struct CompareGoodsToBerth {
 	}
 };
 
-struct CompareGoods
+struct CompareGoods;
 
 #endif // CONST_H
