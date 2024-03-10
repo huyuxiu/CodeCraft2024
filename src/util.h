@@ -14,4 +14,5 @@ bool isCollision(Position pos);                                             //�
 std::deque<PPI> aStar(Position start, Position end);                        //A-star算法
 int priorityGoodsBerthSHip(Goods good,Berth berth);                         //货物-泊点优先函数
 void floodFill(Position pos,int blockid);                                   //floodfill算法
+int getBlockId(Position pos);                                               //获取blockid
 #endif //UTIL_H

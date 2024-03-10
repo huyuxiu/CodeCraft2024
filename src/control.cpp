@@ -64,7 +64,7 @@ void distributeGoods(int num){
 		if(g.deathId<Parameter::outGoodsHeapSurplusFrame+frameId) continue;
 		int robotPri = 1e8;
 		int id = 0;
-		for(int i = 0;i < 10;i++){
+		for(auto i:aliveRobotId){
 			int p = calucateRobotPri(i,g.pos);
 			if(p<robotPri){
 				id = i;
@@ -111,7 +111,7 @@ void robotFindBerth(int id){
 }
 
 void robotMove(){
-	for(int i = 0; i < 10; i++){
+	for(auto i :aliveRobotId){
 		if(robotMoveQueue[i].empty() || !robot[i].getStatus()) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
 
 		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();                                                                      //取出队头指令

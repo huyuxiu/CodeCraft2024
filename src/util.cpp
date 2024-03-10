@@ -76,3 +76,7 @@ void floodFill(Position startPos,int blockId){
 
 	}
 }
+
+int getBlockId(Position pos){
+	return block[pos.x][pos.y];
+}
