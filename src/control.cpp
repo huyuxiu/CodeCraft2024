@@ -58,7 +58,7 @@ void shipToBearth(){
 
 void distributeGoods(int num){
 	/*      将货物分配给机器人队列,num为分配个数       */
-	while(num--&&!goodsHeap.empty()){
+	while(num-- && !goodsHeap.empty()){
 		Goods g = goodsHeap.top();
 		goodsHeap.pop();
 		if(g.deathId<Parameter::outGoodsHeapSurplusFrame+frameId) continue;
@@ -71,8 +71,7 @@ void distributeGoods(int num){
 				robotPri = p;
 			}
 		}
-		if (robotGoodsQueue[id].size() <= 1)
-			robotGoodsQueue[id].push(g);
+		if (robotGoodsQueue[id].size() <= 1) robotGoodsQueue[id].push(g);
 	}
 }
 
@@ -84,7 +83,7 @@ void robotFindGood(int id){
 	bool isFind = false;                                                                                                                           //拿到合法货物没有
 	while(q.size()){
 		g = q.front(); q.pop();
-		if(g.deathId-frameId>=Parameter::goodsPermitDeathFrame || g.deathId-frameId>=manhattanDist(robot[id].getPosition(), g.pos)){        //存活时间>=400||存活时间>=人货曼哈顿距离
+		if(g.deathId-frameId>=Parameter::goodsPermitDeathFrame || g.deathId-frameId>=manhattanDist(robot[id].getPosition(), g.pos)){   //存活时间>=400||存活时间>=人货曼哈顿距离
 			isFind = true;
 			break;
 		}
@@ -94,41 +93,43 @@ void robotFindGood(int id){
 		return;
 	}
 	robot[id].carryGoods(g);
-	auto moves = aStar(robot[id].getPosition(), g.pos);                                                                //加载找货指令序列
+	auto moves = aStar(robot[id].getPosition(), g.pos);                                                           //加载找货指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();
-		robotMoveQueue[id].push_back(m.second);                                                                                       //get指令为-1
+		robotMoveQueue[id].push_back(m.second);                                                                                                 //get指令为-1
 	}
-	return;
 }
 
 void robotFindBerth(int id){
 	/*      机器人送货（拿到货找泊位）          */
 	int berthId = robot[id].getGoods().berthId;
-	auto moves = aStar(robot[id].getPosition(), berth[berthId].getPosition());                                         //加载找泊位指令序列
+	auto moves = aStar(robot[id].getPosition(), berth[berthId].getPosition());                                    //加载找泊位指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();
-		robotMoveQueue[id].push_back(m.second<0? -2: m.second);                                                                       //pull指令为-2
+		robotMoveQueue[id].push_back(m.second<0? -2: m.second);                                                                                 //pull指令为-2
 	}
-	return;
 }
 
-
 void robotMove(){
-	for(int i =0;i<10;i++){
-		if(robotMoveQueue[i].empty()) continue;
-		int front = robotMoveQueue[i].front();
-		robotMoveQueue[i].pop_front();
-		if(front==-1){
-			IO::ROBOT::get(i);
-			continue;
+	for(int i = 0; i < 10; i++){
+		if(robotMoveQueue[i].empty() || !robot[i].getStatus()) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
+
+		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();                                                                      //取出队头指令
+		IO::ROBOT::move(i,front);                                                                                                      //执行move指令
+
+		if(!robotMoveQueue[i].empty()){                                                                                                            //如果下一操作是get/pull，一起执行
+			front = robotMoveQueue[i].front();
+			if(front == -1){
+				robotMoveQueue[i].pop_front();
+				IO::ROBOT::get(i);
+				continue;
+			}else if(front == -2){
+				robotMoveQueue[i].pop_front();
+				IO::ROBOT::pull(i);
+				berth[robot[i].getGoods().berthId].pullGoods();
+				continue;
+			}
 		}
-		else if(front==-2){
-			IO::ROBOT::pull(i);
-			berth[robot[i].getGoods().berthId].pullGoods();
-			continue;
-		}
-		else IO::ROBOT::move(i,front);
 	}
 }
 
