@@ -1,0 +1,4 @@
+# 忽略 build 目录及其下所有内容
+/build/
+./src/.idea/
+./src/cmake-build-debug
