@@ -18,3 +18,4 @@ std::unordered_map<Position,int> posToInstruction;                              
 std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap;     //物品到港口优先队列
 std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
 std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
+int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达

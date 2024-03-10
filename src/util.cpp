@@ -1,5 +1,6 @@
 #include "util.h"
 
+
 int manhattanDist(Position pos1,Position pos2){
 	return abs(pos1.x-pos2.x)+abs(pos1.y-pos2.y);
 }
@@ -53,4 +54,25 @@ std::deque<PPI> aStar(Position start, Position end) {
 int priorityGoodsBerthSHip(Goods good,Berth berth){
 	/*     货物-泊点优先函数     */
 	return berth.getTransport_time()+manhattanDist(good.pos,berth.getPosition());
+}
+
+void floodFill(Position startPos,int blockId){
+	int hh = 0, tt  = 0;
+	Position q[(conVar::maxX+1)*(conVar::maxY+1)];   // 数组模拟队列
+	q[0] = {startPos.x, startPos.y};
+	block[startPos.x][startPos.y] = blockId;
+	while(hh <= tt){
+		Position t = q[hh++];    // 取下队头
+
+		for(int i = 0;i<4;i++){
+			int x = t.x+dx[i],y = t.y+dy[i];
+			if(x == t.x && y == t.y) continue;  // 起点
+			if(x < 0 || x > conVar::maxX || y < 0 || y > conVar::maxY)  continue;   // 越界
+			if(map[x][y] == '*'||map[x][y] == '#' || block[x][y]!=-1) continue;    // 不含雨水||已经遍历过
+
+			q[++tt] = {x, y};   // 入队
+			block[x][y] = blockId;
+		}
+
+	}
 }

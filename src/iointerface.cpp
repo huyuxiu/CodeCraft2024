@@ -9,6 +9,7 @@ namespace IO {
     void init() {
 		//TODO 实现初始化地图的功能
 		memset(map,' ',sizeof map);//地图初始化
+		memset(block,-1,sizeof block);
 		for(int i = 0;i<conVar::maxX+1;i++){
 			scanf("%s",map[i]);
 		}
@@ -21,13 +22,30 @@ namespace IO {
 			berth[id].setPos(pos);
 			berth[id].setTransport_time(time);
 			berth[id].setVelocity(velocity);
+
 		}
+
+		/*     floodfill     */
+		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
+	    for(int i =0;i<10;i++){
+		    Position pos = berth[i].getPosition();
+		    if(block[pos.x][pos.y]==-1){
+				floodFill(pos,i);
+		    }
+			else{
+				berth[i].setBlockId(block[pos.x][pos.y]);
+			}
+	    }
+
+
 		scanf("%d",&shipCapacity);
 		for(int i =0;i<5;i++){
 			ship[i].setCapacity(shipCapacity);
 		}
 	    char ok[100];
 	    scanf("%s",&ok);        //读帧结束
+
+
 		puts("OK");
 		std::fflush(stdout);
 	}

@@ -14,7 +14,7 @@ bool moveRobort(Robot robot,int i){
 int calucateRobotPri(int i,Position goodsPos){
 	Position pos = robot[i].hasGoods() ? berth[robot[i].getGoods().berthId].getPosition():robot[i].getPosition();
 	int dist = manhattanDist(goodsPos,pos);
-	return (robotMoveQueue[i].size()+1+robotGoodsQueue[i].size())*dist;
+	return (robotMoveQueue[i].size()/50+1+robotGoodsQueue[i].size())*dist;
 }
 
 void distributeGoods(int num){
@@ -32,7 +32,7 @@ void distributeGoods(int num){
 				robotPri = p;
 			}
 		}
-		robotGoodsQueue[id].push(g);
+		if(robotGoodsQueue[id].size()<=1)robotGoodsQueue[id].push(g);
 	}
 }
 

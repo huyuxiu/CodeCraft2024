@@ -17,7 +17,6 @@ int main(){
 		if(frameId%200==0){
 			distributeGoods(1);
 		}
-
 		for(int i =0;i<10;i++){
 			if(!robotMoveQueue[i].empty()) continue;
 			if(robot[i].hasGoods()){

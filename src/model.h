@@ -29,4 +29,6 @@ extern int dy[4];                                                               
 extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap;     //物品到港口优先队列
 extern std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
 extern std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
+extern int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
+
 #endif //MODEL_H

@@ -61,7 +61,8 @@ struct Goods{
 	int berthId;                                                                                     //泊点id
 	int priority;                                                                                     //优先级
 	Goods(int value, const Position pos,int deathId) : value(value), pos(pos),deathId(deathId),priority(1e8) {}   //货物构造函数
-	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                                                     //货物默认构造函数
+	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                              //货物默认构造函数
+
 };
 
 struct Compare {
