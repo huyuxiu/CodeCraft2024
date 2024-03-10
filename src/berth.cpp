@@ -1,8 +1,9 @@
 #include "berth.h"
 
-Berth::Berth(int id, const Position& pos, const int transport_time, const int velocity) : id_(id), pos_(pos), transport_time_(transport_time), velocity_(velocity), status_(0), goods_num_(0) {}
 
-Berth::Berth() : id_(-1), pos_(), transport_time_(0), velocity_(0), status_(0), goods_num_(0) {}
+Berth::Berth(int id, const Position& pos, const int transport_time, const int velocity,int blockId) : id_(id), pos_(pos), transport_time_(transport_time), velocity_(velocity),blockId_(blockId){}
+
+Berth::Berth() : id_(-1), pos_(), transport_time_(0), velocity_(0) ,blockId_(-1){}
 
 int Berth::getId() const {
     return id_;
@@ -59,4 +60,12 @@ void Berth::carryGoods(int num) {
 
 void Berth::pullGoods() {
     goods_num_++;
+}
+
+void Berth::setBlockId(int blockId) {
+	blockId_ = blockId;
+}
+
+int Berth::getBlockId() const {
+	return blockId_;
 }
