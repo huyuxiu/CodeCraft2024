@@ -12,10 +12,15 @@ int main(){
 		IO::readFrame();
 		if(flag){
 			for(int i=0;i<conVar::maxRobot;i++){
-				robot[i].setBlockId(getBlockId(robot[i].getPosition()));
+				int blockId = getBlockId(robot[i].getPosition());
+				robot[i].setBlockId(blockId);
+				if(blockId!=-1){
+					aliveRobotId.push_back(i);
+				}
 			}
 			flag = false;
 		}
+
 		/*      指令序列输出      */
 		robotMove();
 		shipToBearth();

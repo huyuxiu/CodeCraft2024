@@ -13,6 +13,12 @@ namespace IO {
 		for(int i = 0;i<conVar::maxX+1;i++){
 			scanf("%s",map[i]);
 		}
+		for(int i = 0;i<conVar::maxX+1;i++){
+			for(int j = 0;j<conVar::maxY+1;j++){
+				printf("%c",map[i][j]);
+			}
+			std::cout<<std::endl;
+		}
 		for(int i = 0;i<10;i++){
 			/*     读取泊点信息     */
 			int id, x, y, time, velocity;
@@ -57,6 +63,7 @@ namespace IO {
 		for(int i =0;i<k;i++){
 			scanf("%d %d %d",&x,&y,&value);
 			pos.x = x,pos.y = y;
+			if(getBlockId(pos)==-1) continue;
 			if(isCollision(pos)) continue;
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
 			int minPri = 1e8;

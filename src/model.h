@@ -14,7 +14,7 @@
 #include <deque>
 extern char map[conVar::maxX+1][conVar::maxY+1];                                         //地图
 extern Berth berth[conVar::maxBerth];                                                    //泊点
-extern Goods goods[2000];                                                                //货物
+extern Goods goods[5000];                                                                //货物
 extern Robot robot[conVar::maxRobot];                                                    //机器人
 extern std::unordered_map<int,std::vector<int>> deleteGoods;                             //删除货物<frameid,货物id>
 extern int goodsSize;                                                                    //货物数量

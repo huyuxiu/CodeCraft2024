@@ -71,7 +71,7 @@ void distributeGoods(int num){
 				robotPri = p;
 			}
 		}
-		if (robotGoodsQueue[id].size() <= 1) robotGoodsQueue[id].push(g);
+		robotGoodsQueue[id].push(g);
 	}
 }
 
@@ -110,26 +110,46 @@ void robotFindBerth(int id){
 	}
 }
 
+//void robotMove(){
+//	for(auto i :aliveRobotId){
+//		if(robotMoveQueue[i].empty() ) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
+//
+//		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();                                                                      //取出队头指令
+//		IO::ROBOT::move(i,front);                                                                                                      //执行move指令
+//
+//		if(!robotMoveQueue[i].empty()){                                                                                                            //如果下一操作是get/pull，一起执行
+//			front = robotMoveQueue[i].front();
+//			if(front == -1){
+//				robotMoveQueue[i].pop_front();
+//				IO::ROBOT::get(i);
+//				continue;
+//			}else if(front == -2){
+//				robotMoveQueue[i].pop_front();
+//				IO::ROBOT::pull(i);
+//				berth[robot[i].getGoods().berthId].pullGoods();
+//				continue;
+//			}
+//		}
+//	}
+//}
+//
 void robotMove(){
 	for(auto i :aliveRobotId){
-		if(robotMoveQueue[i].empty() || !robot[i].getStatus()) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
+		if(robotMoveQueue[i].empty() ) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
 
-		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();                                                                      //取出队头指令
-		IO::ROBOT::move(i,front);                                                                                                      //执行move指令
-
-		if(!robotMoveQueue[i].empty()){                                                                                                            //如果下一操作是get/pull，一起执行
-			front = robotMoveQueue[i].front();
-			if(front == -1){
-				robotMoveQueue[i].pop_front();
-				IO::ROBOT::get(i);
-				continue;
-			}else if(front == -2){
-				robotMoveQueue[i].pop_front();
-				IO::ROBOT::pull(i);
-				berth[robot[i].getGoods().berthId].pullGoods();
-				continue;
-			}
+		int front = robotMoveQueue[i].front();
+		robotMoveQueue[i].pop_front();                                                                      //取出队头指令
+		if(front == -1){
+			IO::ROBOT::get(i);
+		}
+		else if(front == -2){
+			IO::ROBOT::pull(i);
+			berth[robot[i].getGoods().berthId].pullGoods();
+		}//执行move指令
+		else{
+			IO::ROBOT::move(i,front);
 		}
 	}
+
 }
 

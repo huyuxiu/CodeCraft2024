@@ -2,7 +2,7 @@
 
 char map[conVar::maxX+1][conVar::maxY+1];                                         // 地图
 Robot robot[conVar::maxRobot];                                                    // 机器人
-Goods goods[2000];                                                                // 货物
+Goods goods[5000];                                                                // 货物
 std::unordered_map<int, std::vector<int>> deleteGoods;                            // 删除货物<frameid,货物id>
 int goodsSize = 0;                                                                // 货物数量
 int k = 0;                                                                        // 新增货物数量
