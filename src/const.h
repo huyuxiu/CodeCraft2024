@@ -1,5 +1,7 @@
 #ifndef CONST_H
 #define CONST_H
+#include <cstddef>
+#include <functional>
 
 /*      题目常量       */
 namespace conVar{
@@ -18,23 +20,65 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
-
+	const int outGoodsHeapSurplusFrame = 200;                               //出物品队列剩余帧数
+	const int goodsPermitDeathFrame = 400;                            //货物消失容许误差帧数
 }
 
 /*    常用结构体    */
 struct Position{
 	/*     坐标     */
-	int x;                                                             //x坐标
-	int y;                                                             //y坐标
-	Position(int x,int y) : x(x),y(y) {};                              //坐标构造函数
-	Position() : x(0),y(0) {};                                         //坐标默认构造函数
+	int x;                                                                                          //x坐标
+	int y;                                                                                          //y坐标
+	Position(int x,int y) : x(x),y(y) {};                                                           //坐标构造函数
+	Position() : x(0),y(0) {};                                                                      //坐标默认构造函数
+	bool operator==(const Position& other) const {
+		/* 相等性比较操作符重载 */
+		return x == other.x && y == other.y;
+	}
+	Position operator-(const Position& other) const {
+		/*     相减运算符重载     */
+		return Position(x - other.x, y - other.y);
+	}
 };
-
+struct PositionHash {
+	size_t operator()(const Position& p) const {
+		return std::hash<int>()(p.x) ^ std::hash<int>()(p.y);
+	}
+};
+namespace std {
+	template<> struct hash<Position> {
+		size_t operator()(const Position& p) const {
+			return hash<int>()(p.x) ^ hash<int>()(p.y);
+		}
+	};
+}
 struct Goods{
 	/*     货物     */
-	int value;                                                          //货物价格
-	Position pos;                                                       //货物位置
-	Goods(int value, const Position& pos) : value(value), pos(pos) {}   //货物构造函数
-	Goods() : value(0), pos() {}                                        //货物默认构造函数
+	int value;                                                                                       //货物价格
+	Position pos;                                                                                    //货物位置
+	int deathId;                                                                                     //这一帧到的时候货物消失
+	int berthShipDist;                                                                               //到泊点和虚拟点最近距离
+	int berthId;                                                                                     //泊点id
+	int priority;                                                                                     //优先级
+	Goods(int value, const Position pos,int deathId) : value(value), pos(pos),deathId(deathId),priority(1e8) {}   //货物构造函数
+	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                              //货物默认构造函数
+
 };
+
+struct Compare {
+	/*      比较PIP        */
+	bool operator()(const std::pair<int, Position>& a, const std::pair<int, Position>& b) const {
+		return a.first > b.first;
+	}
+};
+
+struct CompareGoodsToBerth {
+	/*      维护货物到港口优先队列       */
+	bool operator()(const Goods& a, const Goods& b) const {
+		return a.priority > b.priority;
+	}
+};
+
+struct CompareGoods;
+
 #endif // CONST_H
