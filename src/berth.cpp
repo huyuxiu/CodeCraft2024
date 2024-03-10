@@ -56,3 +56,7 @@ void Berth::setStatus(int status){
 void Berth::carryGoods(int num) {
     goods_num_ -= num;
 }
+
+void Berth::pullGoods() {
+    goods_num_++;
+}

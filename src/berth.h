@@ -27,5 +27,6 @@ public:
 	void setId(int id);                     //设定id
     void setStatus(int status);             //设置泊位的状态
     void carryGoods(int num);               //搬运货物
+    void pullGoods();                       //机器人放下货物
 };
 #endif //BERTH_H

@@ -71,7 +71,8 @@ void distributeGoods(int num){
 				robotPri = p;
 			}
 		}
-		robotGoodsQueue[id].push(g);
+		if (robotGoodsQueue[id].size() <= 1)
+			robotGoodsQueue[id].push(g);
 	}
 }
 
@@ -124,6 +125,7 @@ void robotMove(){
 		}
 		else if(front==-2){
 			IO::ROBOT::pull(i);
+			berth[robot[i].getGoods().berthId].pullGoods();
 			continue;
 		}
 		else IO::ROBOT::move(i,front);
