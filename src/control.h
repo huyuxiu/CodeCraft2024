@@ -11,4 +11,5 @@ void robotFindBerth(int id);                                      //机器人送
 int calucateRobotPri(int i,Position goodsPos);
 void distributeGoods(int num);                                      //将货物队列分配给机器人
 void robotMove();                                                   //移动机器人输出指令序列
+void shipToBearth();                                                //船与泊位匹配
 #endif //CONRTOL_H

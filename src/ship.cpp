@@ -1,8 +1,8 @@
 #include "ship.h"
 
-Ship::Ship(int id, int status,int berthId) : id_(id),  status_(status), loaded_cap_(0), money_(0),berthId_(berthId) {}
+Ship::Ship(int id, int status,int berthId) : id_(id),  status_(status), loaded_cap_(0), berthId_(berthId) {}
 
-Ship::Ship() : id_(), pos_(), status_(1), capacity_(0), loaded_cap_(0), money_(0),berthId_(-1) {}
+Ship::Ship() : id_(), status_(1), capacity_(0), loaded_cap_(0), berthId_(-1) {}
 
 int Ship::getId() const{
     return id_;
@@ -12,9 +12,6 @@ int Ship::getCapacity() const{
     return capacity_;
 }
 
-Position Ship::getPosition() const{
-    return pos_;
-}
 
 int Ship::getLoaded() const{
     return loaded_cap_;
