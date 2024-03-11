@@ -20,4 +20,6 @@ std::queue<Goods> robotGoodsQueue[10];                                          
 std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 std::vector<int> aliveRobotId;                                                          //活的机器人
+int maxValue = 200;
+int shipTargetBerth[conVar::maxBerth];
 

@@ -5,6 +5,7 @@
 #include "iointerface.h"
 #include "util.h"
 
+
 bool moveRobort(Robot robot,int i);
 void robotFindGood(int id);                                       //机器人找货
 void robotFindBerth(int id);                                      //机器人送货

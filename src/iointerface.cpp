@@ -48,6 +48,7 @@ namespace IO {
 		for(int i =0;i<5;i++){
 			ship[i].setCapacity(shipCapacity);
 		}
+		memset(shipTargetBerth,0,sizeof shipTargetBerth);
 	    char ok[100];
 	    scanf("%s",&ok);        //读帧结束
 
@@ -69,14 +70,20 @@ namespace IO {
 			int minPri = 1e8;
 			int minId = 0;
 			for(int j = 0;j<10;j++){
+
 				int pri = priorityGoodsBerthSHip(goods[goodsId],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
 				if(pri<minPri){
 					minPri = pri;
 					minId = j;
 				}
 			}
+
 			goods[goodsId].berthId = minId;
 			goods[goodsId].priority = minPri;
+			if(value>maxValue){
+				maxValue = value;
+				goods[goodsId].priority = 0;//优先去拿最贵的货
+			}
 			goodsHeap.push(goods[goodsId++]);
 
 		}

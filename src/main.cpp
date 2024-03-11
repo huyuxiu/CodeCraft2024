@@ -3,9 +3,12 @@
 #include "control.h"
 
 #include<iostream>
+#include <ctime>
 #include "const.h"
 #include "util.h"
 int main(){
+	// 设置随机种子
+	srand(time(0));
 	IO::init();
 	bool flag = true;
 	for(frameId; frameId<=15000; ){

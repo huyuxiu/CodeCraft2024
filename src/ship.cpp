@@ -17,7 +17,7 @@ int Ship::getLoaded() const{
     return loaded_cap_;
 }
 
-void Ship::setLoaded(int &loaded){
+void Ship::setLoaded(int loaded){
     loaded_cap_ = loaded;
 }
 

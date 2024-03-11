@@ -19,7 +19,7 @@ public:
 	void setBerthId(int berthId);                     //设置船只泊位ID,-1为虚拟点
 	int getBerthId() const;                           //获取船只泊位ID，-1为虚拟点
     int getLoaded() const;                            //获取船只已经装载的货物容量
-    void setLoaded(int &loaded);                      //设置船只已经加载的货物容量
+    void setLoaded(int loaded);                      //设置船只已经加载的货物容量
 	void setCapacity(int capacity);                   //设置船只容量
 	void setStatus(int status);                       //设置船只状态
 	int getStatus() const;                            //获取船只状态

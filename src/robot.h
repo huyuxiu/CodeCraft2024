@@ -15,7 +15,7 @@ public:
 	void setPosition(Position pos);                 //机器人设置位置
 	void setStatus(int status);                     //机器人设置状态
 	void setCarry(int carry);						//设置机器人状态
-	int getStatus() const;                          //机器人获取状态
+	int getStatus() const;                          //机器人获取状态1:正常运行
 	Goods getGoods() const;                         //获取机器人货物
 	int getBlockId() const;                         //获取机器人联通块id
 	void setBlockId(int blockId);                              //设置机器人联通块id
