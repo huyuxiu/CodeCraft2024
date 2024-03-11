@@ -80,3 +80,44 @@ void floodFill(Position startPos,int blockId){
 int getBlockId(Position pos){
 	return block[pos.x][pos.y];
 }
+
+void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
+	std::queue<Position> q;
+	q.push(start);
+	dist[start.x][start.y] = 0;
+
+	while (!q.empty()) {
+		auto node = q.front();
+		q.pop();
+		for (int i = 0; i < 4; ++i) {
+			int nx = node.x + dx[i];
+			int ny = node.y + dy[i];
+			if(isCollision(Position(nx,ny))) continue;// 判断新位置是否合法
+			if(nx<0||nx>conVar::maxX||ny<0||ny>conVar::maxY) continue;
+
+			if (dist[nx][ny] == -1) {
+				dist[nx][ny] = dist[node.x][node.y] + 1;
+				q.push({nx, ny});
+			}
+		}
+	}
+}
+
+/*     泊位距离排序函数     */
+bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b){
+	return a.second < b.second;
+}
+
+int calPriorityGoodsBerth(int value,int dist){
+	/*      通过距离和价格计算得到节点优先级       */
+	return value/dist;
+}
+
+int findBerthId(Goods g){
+	return g.berthQueue[g.deathId].first;
+}
+
+int findNextBerthId(Goods g){
+	if(g.deathId<9) return g.berthQueue[++g.deathId].first;
+	else return g.berthQueue[g.deathId].first;
+}

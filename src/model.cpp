@@ -22,4 +22,4 @@ int block[conVar::maxX+1][conVar::maxY+1];                                      
 std::vector<int> aliveRobotId;                                                          //活的机器人
 int maxValue = 200;
 int shipTargetBerth[conVar::maxBerth];
-
+std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列

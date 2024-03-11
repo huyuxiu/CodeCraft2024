@@ -30,7 +30,8 @@ extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsH
 extern std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
 extern std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 extern int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
-extern std::vector<int> aliveRobotId;                                                         //活着的机器人
-extern int maxValue;                                                                           //场上价值最高的货
+extern std::vector<int> aliveRobotId;                                                    //活着的机器人
+extern int maxValue;                                                                     //场上价值最高的货
 extern int shipTargetBerth[conVar::maxBerth];
+extern std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
 #endif //MODEL_H

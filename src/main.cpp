@@ -30,8 +30,8 @@ int main(){
 		puts("OK");
 		std::fflush(stdout);
 		/*      货物进机器人货物队列      */
-		if(frameId%200 == 0){
-			distributeGoods(10);
+		if(frameId%50 == 1){
+			distributeGoods(15);
 		}
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){

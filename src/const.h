@@ -22,6 +22,7 @@ namespace conVar{
 namespace Parameter{
 	const int outGoodsHeapSurplusFrame = 200;                               //出物品队列剩余帧数
 	const int goodsPermitDeathFrame = 400;                            //货物消失容许误差帧数
+	const int berthMaxPresure = 2;                                      //泊位最大压力
 }
 
 /*    常用结构体    */
@@ -54,14 +55,15 @@ namespace std {
 }
 struct Goods{
 	/*     货物     */
-	int value;                                                                                       //货物价格
-	Position pos;                                                                                    //货物位置
-	int deathId;                                                                                     //这一帧到的时候货物消失
-	int berthShipDist;                                                                               //到泊点和虚拟点最近距离
-	int berthId;                                                                                     //泊点id
-	int priority;                                                                                     //优先级
+	int value;                                                                                                    //货物价格
+	Position pos;                                                                                                 //货物位置
+	int deathId;                                                                                                  //这一帧到的时候货物消失
+	int berthDist;                                                                                                //到泊点和虚拟点最近距离
+	int berthId;                                                                                                  //泊点数组的下标，下标越小距离泊点越近
+	int priority;                                                                                                 //优先级
+	std::pair<int,int> berthQueue[10];                                                                            //泊点队列
 	Goods(int value, const Position pos,int deathId) : value(value), pos(pos),deathId(deathId),priority(1e8) {}   //货物构造函数
-	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                              //货物默认构造函数
+	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                                         //货物默认构造函数
 
 };
 
@@ -75,10 +77,9 @@ struct Compare {
 struct CompareGoodsToBerth {
 	/*      维护货物到港口优先队列       */
 	bool operator()(const Goods& a, const Goods& b) const {
-		return a.priority > b.priority;
+		return a.priority < b.priority;
 	}
 };
 
-struct CompareGoods;
 
 #endif // CONST_H

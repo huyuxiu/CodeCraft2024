@@ -51,3 +51,11 @@ void Robot::setBlockId(int blockId) {
 int Robot::getBlockId() const {
 	return blockId_;
 }
+
+void Robot::setBerthId(int berthId) {
+	berthId_=berthId;
+}
+
+int Robot::getBerthId() const {
+	return berthId_;
+}

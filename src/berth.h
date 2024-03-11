@@ -15,6 +15,7 @@ private:
 public:
     Berth(int id, const Position& pos, const int transport_time, const int velocity,int blockId);     //泊位构造函数
     Berth();                                //船只默认构造函数
+	int presure;                           //泊位压力
     int getId() const;                      //获取泊位id
     int getTransport_time() const;          //获取泊位达到虚拟点的时间
     Position getPosition() const;           //获取泊位位置
@@ -31,6 +32,7 @@ public:
     void pullGoods();                       //机器人放下货物
 	int getBlockId() const;                 //获取泊位联通块id
 	void setBlockId(int blockId);           //设置泊位联通块id
+
 
 };
 #endif //BERTH_H

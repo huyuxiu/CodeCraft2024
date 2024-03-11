@@ -15,4 +15,9 @@ std::deque<PPI> aStar(Position start, Position end);                        //A-
 int priorityGoodsBerthSHip(Goods good,Berth berth);                         //货物-泊点优先函数
 void floodFill(Position pos,int blockid);                                   //floodfill算法
 int getBlockId(Position pos);                                               //获取blockid
+void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]);//暴搜最近泊位
+bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b);       //泊位距离排序函数
+int calPriorityGoodsBerth(int value,int dist);                              //通过距离和价格计算得到节点优先级
+int findBerthId(Goods g);                                                   //寻找最近的泊点id
+int findNextBerthId(Goods g);                                               //寻找下一个泊点id
 #endif //UTIL_H

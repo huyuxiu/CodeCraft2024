@@ -13,12 +13,6 @@ namespace IO {
 		for(int i = 0;i<conVar::maxX+1;i++){
 			scanf("%s",map[i]);
 		}
-		for(int i = 0;i<conVar::maxX+1;i++){
-			for(int j = 0;j<conVar::maxY+1;j++){
-				printf("%c",map[i][j]);
-			}
-			std::cout<<std::endl;
-		}
 		for(int i = 0;i<10;i++){
 			/*     读取泊点信息     */
 			int id, x, y, time, velocity;
@@ -28,9 +22,35 @@ namespace IO {
 			berth[id].setPos(pos);
 			berth[id].setTransport_time(time);
 			berth[id].setVelocity(velocity);
+			berth[id].presure = 0;
+
+		}
+		int dist[conVar::maxX+5][conVar::maxY+5];//临时距离数组
+		/*     暴搜10次，给每个点标记泊位队列     */
+		for(int i =0;i<10;i++){
+			memset(dist,-1,sizeof dist);
+			bfsBerth(berth[i].getPosition(),dist);
+
+			for(int x =0;x<conVar::maxX+1;x++){
+				for(int y = 0;y<conVar::maxY+1;y++){
+					berthQueue[x][y][i] = {i,dist[x][y]};
+				}
+			}
 
 		}
 
+		/*     对暴搜的结果进行排序     */
+	    for (int i = 0; i <= conVar::maxX; ++i) {
+		    for (int j = 0; j <= conVar::maxY; ++j) {
+			    std::sort(berthQueue[i][j], berthQueue[i][j] + 10, sortGoodsBerthDist);
+		    }
+	    }
+//		for(int i = 0;i<200;i++){
+//			for(int j = 0;j<200;j++){
+//				std::cout<<berthQueue[i][j][0].second<<" ";
+//			}
+//			std::cout<<std::endl;
+//		}
 		/*     floodfill     */
 		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
 	    for(int i =0;i<10;i++){
@@ -52,7 +72,7 @@ namespace IO {
 	    char ok[100];
 	    scanf("%s",&ok);        //读帧结束
 
-
+		//多源bfs初始化地图上所有点到所有泊位的距离
 		puts("OK");
 		std::fflush(stdout);
 	}
@@ -69,20 +89,22 @@ namespace IO {
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
 			int minPri = 1e8;
 			int minId = 0;
-			for(int j = 0;j<10;j++){
+//			for(int j = 0;j<10;j++){
+//          使用优先队列这里就不用判断最近泊点了
+//				int pri = priorityGoodsBerthSHip(goods[goodsId],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
+//				if(pri<minPri){
+//					minPri = pri;
+//					minId = j;
+//				}
+//			}
 
-				int pri = priorityGoodsBerthSHip(goods[goodsId],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
-				if(pri<minPri){
-					minPri = pri;
-					minId = j;
-				}
-			}
+			goods[goodsId].berthId = 0;                 //货物泊点队列的下标，从0开始
+			goods[goodsId].berthDist = berthQueue[x][y][goods[goodsId].berthId].second;
+			goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
 
-			goods[goodsId].berthId = minId;
-			goods[goodsId].priority = minPri;
 			if(value>maxValue){
 				maxValue = value;
-				goods[goodsId].priority = 0;//优先去拿最贵的货
+				goods[goodsId].priority = 1e8;//优先去拿最贵的货
 			}
 			goodsHeap.push(goods[goodsId++]);
 
