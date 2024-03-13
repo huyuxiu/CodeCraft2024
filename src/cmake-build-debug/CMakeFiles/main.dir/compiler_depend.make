@@ -189,6 +189,7 @@ CMakeFiles/main.dir/control.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCr
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdlib \
+  D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwchar \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h \
@@ -276,12 +277,14 @@ CMakeFiles/main.dir/control.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCr
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/signal.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/timeb.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/types.h \
@@ -581,6 +584,7 @@ CMakeFiles/main.dir/main.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCraft
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdlib \
+  D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwchar \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
@@ -669,12 +673,14 @@ CMakeFiles/main.dir/main.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCraft
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/signal.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/timeb.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/types.h \
@@ -1155,6 +1161,7 @@ CMakeFiles/main.dir/util.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCraft
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdlib \
+  D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwchar \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
   D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h \
@@ -1242,12 +1249,14 @@ CMakeFiles/main.dir/util.cpp.obj: C:/Users/10048/Desktop/CodeCraft2024/CodeCraft
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/signal.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stddef.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+  D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/timeb.h \
   D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sys/types.h \
@@ -1553,6 +1562,8 @@ D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/queue
 
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath:
 
+D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring:
+
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwchar:
 
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype:
@@ -1631,6 +1642,8 @@ D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/pthread_unistd.h:
 
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h:
 
+D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h:
+
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
 
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h:
@@ -1638,6 +1651,8 @@ D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/wchar_s.h:
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/signal.h:
 
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/stdio.h:
+
+D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h:
 
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl:
 
@@ -1650,12 +1665,6 @@ D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/wchar.h:
 D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/wctype.h:
 
 C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/iointerface.cpp:
-
-D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring:
-
-D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h:
-
-D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h:
 
 C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/main.cpp:
 

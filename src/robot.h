@@ -28,7 +28,7 @@ private:
 	int carry_;                                     //是否携带货物
 	Goods goods_;                                   //货物
 	bool status_;                                   //货物状态
-	int blockId_;                                    //机器人所处联通块,-1就是死掉了
+	int blockId_;                                   //机器人所处联通块,-1就是死掉了
 };
 
 #endif //ROBOT_H

@@ -3,6 +3,7 @@
 #include "control.h"
 
 #include<iostream>
+#include<cstring>
 #include <ctime>
 #include "const.h"
 #include "util.h"
@@ -12,6 +13,7 @@ int main(){
 	IO::init();
 	bool flag = true;
 	for(frameId; frameId<=15000; ){
+		memset(robotMap,0,sizeof robotMap);
 		IO::readFrame();
 		if(flag){
 			for(int i=0;i<conVar::maxRobot;i++){
@@ -30,16 +32,17 @@ int main(){
 		puts("OK");
 		std::fflush(stdout);
 		/*      货物进机器人货物队列      */
-		if(frameId%50 == 1){
-			distributeGoods(15);
-		}
+
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
+
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
 			}
 			else{
+
+				if(robotGoodsQueue[i].empty()) distributeGoods(i);     //给机器人分配货物
 				robotFindGood(i);
 			}
 		}

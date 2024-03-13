@@ -5,12 +5,12 @@ int manhattanDist(Position pos1,Position pos2){
 	return abs(pos1.x-pos2.x)+abs(pos1.y-pos2.y);
 }
 
-bool Robort_isCollision(Position pos){
-	return map[pos.x][pos.y] == '*' || map[pos.x][pos.y] == '#' || map[pos.x][pos.y] == 'A';
-}
-
 bool isCollision(Position pos){
 	return map[pos.x][pos.y] == '*' || map[pos.x][pos.y] == '#';
+}
+
+bool robotIsCollision(Position pos){
+	return map[pos.x][pos.y] == '*' || map[pos.x][pos.y] == '#' || robotMap[pos.x][pos.y]==1;
 }
 
 std::deque<PPI> aStar(Position start, Position end) {
@@ -36,7 +36,7 @@ std::deque<PPI> aStar(Position start, Position end) {
         for (int i = 0; i < 4; i++) {
             Position p(ver.x + dx[i], ver.y + dy[i]);
             if (p.x < 0 || p.x > conVar::maxX || p.y < 0 || p.y > conVar::maxY) continue;                        //地图越界
-            if (isCollision(p)) continue;                                                                   //碰撞检测
+            if (isCollision(p)) continue;
             if (!dist.count(p) || dist[p] > dist[ver] + 1) {                                                  //第一次遍历or距离更短
                 dist[p] = dist[ver] + 1;
                 prev[p] = {ver, i};
@@ -105,12 +105,21 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 
 /*     泊位距离排序函数     */
 bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b){
-	return a.second < b.second;
+	//还需要考虑距离为-1需要排在最后
+	if (a.second == -1 && b.second == -1) {
+		return false; // 如果两者都是 -1，则认为它们相等，不需要交换顺序
+	} else if (a.second == -1) {
+		return false; // 如果 a 是 -1，b 不是 -1，则将 a 放在 b 后面
+	} else if (b.second == -1) {
+		return true; // 如果 b 是 -1，a 不是 -1，则将 b 放在 a 后面
+	} else {
+		return a.second < b.second; // 否则按照距离大小进行比较
+	}
 }
 
 int calPriorityGoodsBerth(int value,int dist){
 	/*      通过距离和价格计算得到节点优先级       */
-	return value/dist;
+	return value-dist;
 }
 
 int findBerthId(Goods g){
@@ -121,3 +130,123 @@ int findNextBerthId(Goods g){
 	if(g.deathId<9) return g.berthQueue[++g.deathId].first;
 	else return g.berthQueue[g.deathId].first;
 }
+
+
+
+bool isLinked(Position start, Position end){
+	/* 判断起点和终点的连通性 */
+	std::queue<Position> q;
+	bool vis[conVar::maxX + 1][conVar::maxY + 1];
+	memset(vis, 0, sizeof vis);
+	q.push(start);
+	while (!q.empty()){
+		Position t = q.front();
+		if (t == end) return true;
+		q.pop();
+		for (int i = 0; i < 4; i++){
+			Position p(t.x + dx[i], t.y + dy[i]);
+			if (p.x < 0 || p.x > conVar::maxX || p.y < 0 || p.y > conVar::maxY) continue;
+			if (robotIsCollision(p)) continue;
+			if (vis[p.x][p.y]) continue;
+			vis[p.x][p.y] = true;
+			q.push(p);
+		}
+	}
+	return false;
+}
+
+std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
+	/*
+	 * 返回std::pair<Position, int>(坐标, 该坐标下一步操作方向)
+	 * */
+	std::deque<PPI> res;
+	if (start.x == end.x && start.y == end.y) return res;
+
+	std::unordered_map<Position, int, PositionHash> dist;                                                         //某一点到起点的真实距离
+	std::unordered_map<Position, PPI> prev;                                                                      //某一点是从哪个点走过来的及操作
+	std::priority_queue<PIP, std::vector<PIP>, Compare> heap;                                                    //小根堆 (估价, 坐标)
+	heap.push({ manhattanDist(start, end), start });
+	int sum = 0;
+	isGet = false;
+
+	while (heap.size()) {
+		sum++;
+		if (sum > 300) {
+			isGet = false;
+			break;
+		}
+		auto t = heap.top();
+		heap.pop();
+
+		Position ver = t.second;                                                                                 //估价最小坐标
+		if (ver.x == end.x && ver.y == end.y) {
+			isGet = true;
+			break;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			Position p(ver.x + dx[i], ver.y + dy[i]);
+			if (p.x < 0 || p.x > conVar::maxX || p.y < 0 || p.y > conVar::maxY) continue;                        //地图越界
+			if (robotIsCollision(p)) continue;                                                                   //碰撞检测
+			if (!dist.count(p) || dist[p] > dist[ver] + 1) {                                                  //第一次遍历or距离更短
+				dist[p] = dist[ver] + 1;
+				prev[p] = { ver, i };
+				heap.push({ dist[p] + manhattanDist(p, end), p });
+			}
+		}
+	}
+	res.push_front({ end, -1 });
+	if (isGet) {
+		while (end.x != start.x || end.y != start.y) {
+			res.push_front(prev[end]);
+			end = prev[end].first;
+		}
+	}
+	return res;
+}
+
+std::deque<PPI> bfsTarget(Position startPos, char target) {
+	std::deque<PPI> res;
+	std::queue<Position>q;
+	std::unordered_map<Position, PPI> prev;
+	std::unordered_map<Position, bool> visitited;
+	visitited[startPos] = true;
+
+	bool isGet = false;
+	Position end;
+	q.push(startPos);
+
+	while (q.size()) {
+		Position current_position = q.front();
+		q.pop();
+		if (map[current_position.x][current_position.y] == target) {
+			isGet = true;
+			end = current_position;
+			break;
+		}
+		for (int i = 0; i < 4; i++) {
+			Position next_position(current_position.x + dx[i], current_position.y + dy[i]);
+			if (next_position.x < 0 || next_position.x > conVar::maxX || next_position.y < 0 || next_position.y > conVar::maxY) continue;                        //地图越界
+			if (robotIsCollision(next_position) || visitited[next_position]) continue;                                                                 //碰撞检测
+			visitited[next_position] = true;
+			prev[next_position] = {current_position, i};
+			q.push(next_position);
+		}
+	}
+	res.push_front({ end, -1 });
+	if (isGet) {
+		while (end.x != startPos.x || end.y != startPos.y) {
+			res.push_front(prev[end]);
+			end = prev[end].first;
+		}
+	}
+	return res;
+}
+
+
+
+
+
+
+
+

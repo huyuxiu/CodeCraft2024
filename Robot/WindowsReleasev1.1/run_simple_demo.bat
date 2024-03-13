@@ -1,1 +1,1 @@
-.\PreliminaryJudge.exe -m maps\map6.txt ..\..\build\Release\main.exe -d .\output.txt 
+.\PreliminaryJudge.exe -m maps\map8.txt ..\..\build\Release\main.exe -d .\output.txt 

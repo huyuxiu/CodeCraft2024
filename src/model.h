@@ -26,7 +26,7 @@ extern int money;                                                               
 extern int shipCapacity;                                                                 //船的容积
 extern int dx[4];                                                                        //机器人移动
 extern int dy[4];                                                                        //机器人移动
-extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap;     //物品到港口优先队列
+extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10];     //物品到港口优先队列
 extern std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
 extern std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 extern int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
@@ -34,4 +34,6 @@ extern std::vector<int> aliveRobotId;                                           
 extern int maxValue;                                                                     //场上价值最高的货
 extern int shipTargetBerth[conVar::maxBerth];
 extern std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
+extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                         //当前/下帧机器人在的点
+extern int back[4];                         //回退当前指令
 #endif //MODEL_H

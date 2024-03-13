@@ -45,12 +45,7 @@ namespace IO {
 			    std::sort(berthQueue[i][j], berthQueue[i][j] + 10, sortGoodsBerthDist);
 		    }
 	    }
-//		for(int i = 0;i<200;i++){
-//			for(int j = 0;j<200;j++){
-//				std::cout<<berthQueue[i][j][0].second<<" ";
-//			}
-//			std::cout<<std::endl;
-//		}
+
 		/*     floodfill     */
 		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
 	    for(int i =0;i<10;i++){
@@ -75,6 +70,7 @@ namespace IO {
 		//多源bfs初始化地图上所有点到所有泊位的距离
 		puts("OK");
 		std::fflush(stdout);
+
 	}
 	void readFrame(){
 		scanf("%d %d",&frameId,&money);
@@ -87,7 +83,7 @@ namespace IO {
 			if(getBlockId(pos)==-1) continue;
 			if(isCollision(pos)) continue;
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
-			int minPri = 1e8;
+			int minPri = -1;
 			int minId = 0;
 //			for(int j = 0;j<10;j++){
 //          使用优先队列这里就不用判断最近泊点了
@@ -97,16 +93,24 @@ namespace IO {
 //					minId = j;
 //				}
 //			}
+			for(int j = 0;j<10;j++){
+				if(berth[berthQueue[x][y][j].first].getBlockId()==block[x][y]){
+					/*     判断泊位连通性     */
+					goods[goodsId].berthDist = berthQueue[x][y][j].second;
+					goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
+					goodsHeap[berthQueue[x][y][0].first].push(goods[goodsId++]);
+					break;
+				}
 
-			goods[goodsId].berthId = 0;                 //货物泊点队列的下标，从0开始
-			goods[goodsId].berthDist = berthQueue[x][y][goods[goodsId].berthId].second;
-			goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
-
-			if(value>maxValue){
-				maxValue = value;
-				goods[goodsId].priority = 1e8;//优先去拿最贵的货
 			}
-			goodsHeap.push(goods[goodsId++]);
+
+
+
+//			if(value>maxValue){
+//				maxValue = value;
+//				goods[goodsId].priority = -1;//优先去拿最贵的货
+//			}
+
 
 		}
 
@@ -118,6 +122,8 @@ namespace IO {
 			robot[i].setPosition(pos);
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
+			robot[i].setBerthId(berthQueue[x][y][0].first);
+			robotMap[x][y] = 1;
 		}
 
         for(int i = 0;i<5;i++){

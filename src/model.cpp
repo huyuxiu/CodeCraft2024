@@ -15,11 +15,15 @@ int shipCapacity = 0;                                                           
 int dx[4] = {0, 0, -1, 1};                                        // 机器人移动
 int dy[4] = {1, -1, 0, 0};                                        // 机器人移动
 std::unordered_map<Position,int> posToInstruction;                                //相对位置到指令
-std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap;     //物品到港口优先队列
+std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10];     //物品到港口优先队列
 std::queue<Goods> robotGoodsQueue[10];                                          //机器人拿货队列
 std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
-std::vector<int> aliveRobotId;                                                          //活的机器人
+std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
 int shipTargetBerth[conVar::maxBerth];
 std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
+int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
+int back[4] = {1,0,3,2};                                          //回退当前指令
+
+

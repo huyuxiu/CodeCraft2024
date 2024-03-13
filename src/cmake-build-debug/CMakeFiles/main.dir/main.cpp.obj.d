@@ -193,4 +193,7 @@ CMakeFiles/main.dir/main.cpp.obj: \
  D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/riemann_zeta.tcc \
  C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\control.h \
  C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h \
+ D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
+ D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/string.h \
+ D:/CLion\ 2023.3.4/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
  D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime
