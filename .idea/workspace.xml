@@ -22,29 +22,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/run_simple_demo.bat" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/run_simple_demo.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/berth.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/berth.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/control.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/control.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/iointerface.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/iointerface.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/main.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/main.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/model.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/model.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/util.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/util.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/berth.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/berth.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iointerface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/iointerface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/src.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,26 +48,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;CMake Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/CMakeLists.txt&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.advertisement.text.overridden": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/CMakeLists.txt",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CodeCraftSDK" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CodeCraftSDK" RUN_TARGET_NAME="main">
       <method v="2">
@@ -111,7 +92,7 @@
       <workItem from="1710310330189" duration="18000" />
       <workItem from="1710310380755" duration="2480000" />
       <workItem from="1710312900413" duration="9875000" />
-      <workItem from="1710393252848" duration="4390000" />
+      <workItem from="1710393252848" duration="8072000" />
     </task>
     <servers />
   </component>

@@ -199,12 +199,35 @@ std::deque<PPI> bfsTarget(Position startPos, char target) {
 }
 
 void multiSourceBFS(){
-	/*     多源bfs给地图上每个点分配一个泊位     */
+	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
 	bool vis[conVar::maxX+1][conVar::maxY+1];
-	std::pair<int,Position>;
+	//初始化为{-1，-1}
+	for (int i = 0; i <= conVar::maxX; ++i) {
+		for (int j = 0; j <= conVar::maxY; ++j) {
+			bestBerth[i][j] = {-1,-1};
+		}
+	}
+	std::queue<Position> q;
 	memset(vis,false,sizeof vis);
 	for(int i =0;i<10;i++){
-
+		Position p = berth[i].getPosition();
+		bestBerth[p.x][p.y].first = i;
+		bestBerth[p.x][p.y].second = 0;
+		q.push(p);
+	}
+	while(!q.empty()){
+		Position t = q.front();
+		q.pop();
+		for(int i =0;i<4;i++){
+			int a = t.x+dx[i];
+			int b = t.y+dy[i];
+			if(a<0||a>conVar::maxX||b<0||b>conVar::maxY) continue;
+			if(isCollision(Position(a,b))) continue;
+			if(bestBerth[a][b].first!=-1) continue;
+			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
+			bestBerth[a][b].second = bestBerth[t.x][t.y].second+1;
+			q.push(Position(a,b));
+		}
 	}
 }
 

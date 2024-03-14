@@ -104,24 +104,7 @@ void shipToBearth() {
 }
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
-	bool isDistribute = false;
-	int t = 0;//第t近的泊位
-	while(!isDistribute){
-		if(goodsHeap[robot[id].getBerthId()].empty()) {
-			/*     泊位货物队列空，找新的泊位     */
-			if(!findNewBerth(id)||goodsHeap[robot[id].getBerthId()].empty()){
-				/*    没找到新泊位,或者新泊位没货货     */
-				break;
-			}
 
-		}
-
-		Goods g = goodsHeap[robot[id].getBerthId()].top();
-		goodsHeap[robot[id].getBerthId()].pop();
-		if (frameId+Parameter::goodsPermitDeathFrame>g.deathId) continue;
-		robotGoodsQueue[id].push(g);
-		isDistribute = true;
-	}
 }
 
 
@@ -155,7 +138,7 @@ void robotFindBerth(int id){
 	bool isFind = false;//有无可替换（可达）/同一个联通块的泊位
 	Goods g = robot[id].getGoods();//要拿的货
 	int i= 0;//第i优的泊位
-	int berthId = berthQueue[g.pos.x][g.pos.y][i].first; //找到最优泊位(必定可达)
+	int berthId = robot[id].getGoods().berthId; //找到最优泊位(必定可达)
 	robot[id].setBerthId(berthId);
 	berth[berthId].presure++;//给泊位上压力
 

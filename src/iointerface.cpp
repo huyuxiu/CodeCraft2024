@@ -25,11 +25,9 @@ namespace IO {
 			berth[id].presure = 0;
 
 		}
-		int dist[conVar::maxX+5][conVar::maxY+5];//临时距离数组
+
 		/*     多源bfs，给每个点标记泊位id     */
-
-
-
+		multiSourceBFS();
 		/*     floodfill     */
 		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
 	    for(int i =0;i<10;i++){
@@ -70,11 +68,11 @@ namespace IO {
 			int minPri = -1;
 			int minId = 0;
 			for(int j = 0;j<10;j++){
-				if(berth[berthQueue[x][y][j].first].getBlockId()==block[x][y]){
+				if(berth[bestBerth[x][y].first].getBlockId()==block[x][y]){
 					/*     判断泊位连通性     */
-					goods[goodsId].berthDist = berthQueue[x][y][j].second;
+					goods[goodsId].berthDist = bestBerth[x][y].second;
 					goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
-					goodsHeap[berthQueue[x][y][0].first].push(goods[goodsId++]);
+					//goodsHeap[class].push(goods[goodsId++]);//TODO
 					break;
 				}
 
@@ -98,7 +96,7 @@ namespace IO {
 			robot[i].setPosition(pos);
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
-			robot[i].setBerthId(berthQueue[x][y][0].first);
+			robot[i].setBerthId(bestBerth[x][y].second);//TODO 后续得优化
 			robotMap[x][y] = 1;
 		}
 
