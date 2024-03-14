@@ -8,16 +8,14 @@
 #include "const.h"
 #include "util.h"
 int main(){
-	// 设置随机种子
-	srand(time(0));
+	srand(time(0)); // 设置随机种子
 	IO::init();
 	bool flag = true;
 	bool distributed[10];
 	for(frameId; frameId<=15000; ){
-		memset(robotMap,0,sizeof robotMap);
 		IO::readFrame();
 		if(flag){
-			for(int i=0;i<conVar::maxRobot;i++){
+			for(int i=0; i < conVar::maxRobot; i++){
 				int blockId = getBlockId(robot[i].getPosition());
 				robot[i].setBlockId(blockId);
 				if(blockId!=-1){
@@ -26,14 +24,11 @@ int main(){
 			}
 			flag = false;
 		}
-
 		/*      指令序列输出      */
 		robotMove();
 		shipToBearth();
 		puts("OK");
 		std::fflush(stdout);
-		/*      货物进机器人货物队列      */
-
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
