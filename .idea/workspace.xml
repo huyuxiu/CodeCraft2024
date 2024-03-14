@@ -34,16 +34,15 @@
       <change beforePath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/main.dir/Release/util.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/util.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/berth.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/berth.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/control.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/control.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/iointerface.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/iointerface.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iointerface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/iointerface.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/robot.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/robot.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/robot.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/robot.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/src.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +114,7 @@
       <workItem from="1710310330189" duration="18000" />
       <workItem from="1710310380755" duration="2480000" />
       <workItem from="1710312900413" duration="9875000" />
-      <workItem from="1710393252848" duration="16080000" />
+      <workItem from="1710393252848" duration="20293000" />
     </task>
     <servers />
   </component>

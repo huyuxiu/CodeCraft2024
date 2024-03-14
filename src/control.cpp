@@ -105,12 +105,14 @@ void shipToBearth() {
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
 	int classId = robot[id].getClassId();
-	while(goodsHeap[classId].size()){
+	bool isFind = false;
+	while(!isFind&&goodsHeap[classId].size()){
 		Goods g = goodsHeap[classId].top();
 		goodsHeap[classId].pop();
-		if(g.deathId<frameId+150) continue;
+		if(frameId+20>g.deathId) continue;
 		robotGoodsQueue[id].push(g);
 		robot[id].carryGoods(g);
+		isFind = true;
 	}
 }
 

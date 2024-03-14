@@ -65,17 +65,14 @@ namespace IO {
 			if(getBlockId(pos)==-1) continue;
 			if(isCollision(pos)) continue;
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
-			int minPri = -1;
-			int minId = 0;
-			for(int j = 0; j < 10; j++){
-				if(berth[bestBerth[x][y].first].getBlockId()==block[x][y]){
-					/*     判断泊位连通性     */
-					goods[goodsId].berthDist = bestBerth[x][y].second;
-					goods[goodsId].berthId = bestBerth[x][y].first;
-					goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
-					goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
-					break;
-				}
+
+			if(berth[bestBerth[x][y].first].getBlockId()==block[x][y]){
+				/*     判断泊位连通性     */
+				goods[goodsId].berthDist = bestBerth[x][y].second;
+				goods[goodsId].berthId = bestBerth[x][y].first;
+				std::cout<<goods[goodsId].berthDist<<std::endl;
+				goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
+				goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
 			}
 
 		}
@@ -89,7 +86,7 @@ namespace IO {
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
 			robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
-			robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
+			//robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}
 
