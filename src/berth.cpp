@@ -73,6 +73,6 @@ int Berth::getBlockId() const {
 int Berth::getClassId() const{
 	return classId_;
 }
-void setClassId(int classId){
+void Berth::setClassId(int classId){
 	classId_ = classId;
 }

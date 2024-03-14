@@ -35,5 +35,5 @@ extern int maxValue;                                                            
 extern int shipTargetBerth[conVar::maxBerth];
 extern std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                     //地图上某点的最近泊位
 extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
-
+extern int totalClass;                                                                   //总共类的数量
 #endif //MODEL_H

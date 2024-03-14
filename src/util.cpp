@@ -232,6 +232,60 @@ void multiSourceBFS(){
 }
 
 
+//void clusteringBerth(){
+//  roll点版本
+//	std::unordered_map<int, std::vector<int>> berth_in_block; // blockid:包含的泊位id
+//	int cnt = 0; // class个数
+//	for (int i = 0; i < conVar::maxBerth; i++) {
+//		berth_in_block[berth[i].getBlockId()].push_back(i);
+//	}
+//	for (auto p : berth_in_block) {
+//		auto q = p.second;
+//		if (q.size() > 2) { // 需要再分类
+//			int k = std::ceil(q.size() / 2); // 需要分成的类数
+//			int max_iterations = 100;
+//			std::unordered_map<int, std::vector<int>> res; // 中心，泊位id
+//			/*      kmeans聚类        */
+//			std::vector<int> cx, cy; // 初始化k个中心
+//
+//			// 使用K-means++算法选择初始聚类中心
+//			std::vector<int> indices(q.size());
+//			std::iota(indices.begin(), indices.end(), 0); // 生成0到q.size()-1的序列
+//			std::shuffle(indices.begin(), indices.end(), std::mt19937(std::random_device{}())); // 打乱序列
+//			for (int i = 0; i < k; i++) {
+//				cx.push_back(berth[q[indices[i]]].getPosition().x);
+//				cy.push_back(berth[q[indices[i]]].getPosition().y);
+//			}
+//
+//			for (int i = 0; i < max_iterations; i++) { // 迭代
+//				res.clear();
+//				for (int j = 0; j < q.size(); j++) { // 分配每个样本到最近的中心
+//					int min = 0, min_dist = 1e8, dist;
+//					for (int s = 0; s < k; s++) {
+//						dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
+//						if (dist < min_dist) min_dist = dist, min = s;
+//					}
+//					res[min].push_back(q[j]);
+//				}
+//
+//				for (int s = 0; s < k; s++) { // 更新聚类中心
+//					cx[s] = 0, cy[s] = 0;
+//					for (auto b : res[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
+//					cx[s] /= res[s].size(), cy[s] /= res[s].size();
+//				}
+//			}
+//
+//			for (int s = 0; s < k; s++) {
+//				for (auto b : res[s]) berth[b].setClassId(cnt);
+//				cnt++;
+//			}
+//		} else {
+//			for (auto b : q) berth[b].setClassId(cnt);
+//			cnt++;
+//		}
+//	}
+//}
+
 void clusteringBerth(){
 	std::unordered_map<int, std::vector<int>> berth_in_block; //blockid:包含的泊位id
 	int cnt = 0; //class个数
@@ -242,14 +296,15 @@ void clusteringBerth(){
 		auto q = p.second;
 		if(q.size() > 2){ //需要再分类
 			int k = std::ceil(q.size() / 2); //需要分成的类数
+			totalClass += k;//记录所有连通块分为几类
 			int max_iterations = 100;
 			std::unordered_map<int, std::vector<int>> res; //中心，泊位id
 
 			/*      kmeans聚类        */
 			std::vector<int> cx, cy; //初始化k个中心
 			for(int i = 0; i < k; i++){
-				cx[i] = berth[q[i]].getPosition().x;
-				cy[i] = berth[q[i]].getPosition().y;
+				cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
+				cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
 			}
 
 			for(int i = 0; i < max_iterations; i++){ //迭代
@@ -280,8 +335,5 @@ void clusteringBerth(){
 		}
 	}
 }
-
-
-
 
 

@@ -104,7 +104,14 @@ void shipToBearth() {
 }
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
-
+	int classId = robot[id].getClassId();
+	while(goodsHeap[classId].size()){
+		Goods g = goodsHeap[classId].top();
+		goodsHeap[classId].pop();
+		if(g.deathId<frameId+150) continue;
+		robotGoodsQueue[id].push(g);
+		robot[id].carryGoods(g);
+	}
 }
 
 
@@ -113,7 +120,6 @@ void robotFindGood(int id){
 	/*      机器人找货       */
 	auto q = robotGoodsQueue[id];
 	Goods g;//从机器人的货物队头拿第一个合法货物
-	berth[robot[id].getBerthId()].presure--;//减轻泊位压力
 	bool isFind = false;                                                                                                                           //拿到合法货物没有
 	while(robotGoodsQueue[id].size()){
 		g = robotGoodsQueue[id].front();
@@ -131,19 +137,16 @@ void robotFindGood(int id){
 		auto m = moves.front(); moves.pop_front();
 		robotMoveQueue[id].push_back(m.second);                                                                                                 //get指令为-1
 	}
+
 }
 
 void robotFindBerth(int id){
 	/*      机器人送货（拿到货找泊位）          */
 	bool isFind = false;//有无可替换（可达）/同一个联通块的泊位
 	Goods g = robot[id].getGoods();//要拿的货
-	int i= 0;//第i优的泊位
 	int berthId = robot[id].getGoods().berthId; //找到最优泊位(必定可达)
 	robot[id].setBerthId(berthId);
-	berth[berthId].presure++;//给泊位上压力
-
 	//TODO 后续判断泊位是否忙碌，忙碌就转为后续泊位
-
     Position berthPos = berth[berthId].getPosition();
     berthPos.x+=rand() % 4,berthPos.y+=rand() % 4;              //泊位增加随机数
 	auto moves = aStar(robot[id].getPosition(), berthPos);                                    //加载找泊位指令序列

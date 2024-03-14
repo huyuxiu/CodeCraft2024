@@ -59,3 +59,11 @@ void Robot::setBerthId(int berthId) {
 int Robot::getBerthId() const {
 	return berthId_;
 }
+
+int Robot::getClassId() const {
+	return classId_;
+}
+
+void Robot::setClassId(int classId) {
+	classId_ = classId;
+}

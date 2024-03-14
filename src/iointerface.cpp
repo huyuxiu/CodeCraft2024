@@ -42,7 +42,6 @@ namespace IO {
 
 		/*      给泊位分类       */
 		clusteringBerth();
-
 		scanf("%d",&shipCapacity);
 		for(int i = 0; i < conVar::maxShip; i++){
 			ship[i].setCapacity(shipCapacity);
@@ -72,15 +71,13 @@ namespace IO {
 				if(berth[bestBerth[x][y].first].getBlockId()==block[x][y]){
 					/*     判断泊位连通性     */
 					goods[goodsId].berthDist = bestBerth[x][y].second;
+					goods[goodsId].berthId = bestBerth[x][y].first;
 					goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
-					//goodsHeap[class].push(goods[goodsId++]);//TODO
+					goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
 					break;
 				}
 			}
-//			if(value>maxValue){
-//				maxValue = value;
-//				goods[goodsId].priority = -1;//优先去拿最贵的货
-//			}
+
 		}
 
 		for(int i = 0;i<10;i++){
@@ -91,7 +88,8 @@ namespace IO {
 			robot[i].setPosition(pos);
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
-			robot[i].setBerthId(bestBerth[x][y].second);//TODO 后续得优化
+			robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
+			robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}
 

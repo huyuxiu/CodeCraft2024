@@ -5,6 +5,9 @@
 #include "berth.h"
 #include<cmath>
 #include<cstring>
+#include <random>
+#include<algorithm>
+#include<numeric>
 typedef std::pair<int, Position> PIP;
 typedef std::pair<Position, int> PPI;
 typedef std::pair<int,int> PII;

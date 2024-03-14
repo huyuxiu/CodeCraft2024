@@ -32,7 +32,6 @@ int main(){
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
-
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
 			}

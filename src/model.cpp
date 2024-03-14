@@ -24,6 +24,7 @@ int maxValue = 200;
 int shipTargetBerth[conVar::maxBerth];
 std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
+int totalClass = 0;                                                               //总共类的数量
 
 
 
