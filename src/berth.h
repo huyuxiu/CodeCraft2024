@@ -11,11 +11,11 @@ private:
     int goods_num_;                         //泊位上的货物数量
     int transport_time_;                    //泊位到虚拟点的传送时间
     int velocity_;                          //泊位的装载速度
-	int blockId_;                                    //泊位所处联通块
+	int blockId_;                           //泊位所处联通块
 public:
     Berth(int id, const Position& pos, const int transport_time, const int velocity,int blockId);     //泊位构造函数
     Berth();                                //船只默认构造函数
-	int presure;                           //泊位压力
+	int presure;                            //泊位压力
     int getId() const;                      //获取泊位id
     int getTransport_time() const;          //获取泊位达到虚拟点的时间
     Position getPosition() const;           //获取泊位位置

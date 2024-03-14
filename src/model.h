@@ -33,7 +33,7 @@ extern int block[conVar::maxX+1][conVar::maxY+1];                               
 extern std::vector<int> aliveRobotId;                                                    //活着的机器人
 extern int maxValue;                                                                     //场上价值最高的货
 extern int shipTargetBerth[conVar::maxBerth];
-extern std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
-extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                         //当前/下帧机器人在的点
-extern int back[4];                         //回退当前指令
+extern std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                     //地图上某点的最近泊位
+extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
+
 #endif //MODEL_H

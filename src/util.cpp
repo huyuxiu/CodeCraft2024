@@ -103,56 +103,11 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 	}
 }
 
-/*     泊位距离排序函数     */
-bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b){
-	//还需要考虑距离为-1需要排在最后
-	if (a.second == -1 && b.second == -1) {
-		return false; // 如果两者都是 -1，则认为它们相等，不需要交换顺序
-	} else if (a.second == -1) {
-		return false; // 如果 a 是 -1，b 不是 -1，则将 a 放在 b 后面
-	} else if (b.second == -1) {
-		return true; // 如果 b 是 -1，a 不是 -1，则将 b 放在 a 后面
-	} else {
-		return a.second < b.second; // 否则按照距离大小进行比较
-	}
-}
+
 
 int calPriorityGoodsBerth(int value,int dist){
 	/*      通过距离和价格计算得到节点优先级       */
 	return value-dist;
-}
-
-int findBerthId(Goods g){
-	return g.berthQueue[g.deathId].first;
-}
-
-int findNextBerthId(Goods g){
-	if(g.deathId<9) return g.berthQueue[++g.deathId].first;
-	else return g.berthQueue[g.deathId].first;
-}
-
-
-
-bool isLinked(Position start, Position end){
-	/* 判断起点和终点的连通性 */
-	std::queue<Position> q;
-	bool vis[conVar::maxX + 1][conVar::maxY + 1];
-	memset(vis, 0, sizeof vis);
-	q.push(start);
-	while (!q.empty()){
-		Position t = q.front();
-		if (t == end) return true;
-		q.pop();
-		for (int i = 0; i < 4; i++){
-			Position p(t.x + dx[i], t.y + dy[i]);
-			if (p.x < 0 || p.x > conVar::maxX || p.y < 0 || p.y > conVar::maxY) continue;
-			if (robotIsCollision(p)) continue;
-			if (vis[p.x][p.y]) continue;
-			vis[p.x][p.y] = true;
-			q.push(p);
-		}
-	}
-	return false;
 }
 
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
@@ -243,7 +198,15 @@ std::deque<PPI> bfsTarget(Position startPos, char target) {
 	return res;
 }
 
+void multiSourceBFS(){
+	/*     多源bfs给地图上每个点分配一个泊位     */
+	bool vis[conVar::maxX+1][conVar::maxY+1];
+	std::pair<int,Position>;
+	memset(vis,false,sizeof vis);
+	for(int i =0;i<10;i++){
 
+	}
+}
 
 
 

@@ -26,25 +26,9 @@ namespace IO {
 
 		}
 		int dist[conVar::maxX+5][conVar::maxY+5];//临时距离数组
-		/*     暴搜10次，给每个点标记泊位队列     */
-		for(int i =0;i<10;i++){
-			memset(dist,-1,sizeof dist);
-			bfsBerth(berth[i].getPosition(),dist);
+		/*     多源bfs，给每个点标记泊位id     */
 
-			for(int x =0;x<conVar::maxX+1;x++){
-				for(int y = 0;y<conVar::maxY+1;y++){
-					berthQueue[x][y][i] = {i,dist[x][y]};
-				}
-			}
 
-		}
-
-		/*     对暴搜的结果进行排序     */
-	    for (int i = 0; i <= conVar::maxX; ++i) {
-		    for (int j = 0; j <= conVar::maxY; ++j) {
-			    std::sort(berthQueue[i][j], berthQueue[i][j] + 10, sortGoodsBerthDist);
-		    }
-	    }
 
 		/*     floodfill     */
 		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
@@ -85,14 +69,6 @@ namespace IO {
 			goods[goodsId].value = value,goods[goodsId].deathId = frameId+1000,goods[goodsId].pos = pos;
 			int minPri = -1;
 			int minId = 0;
-//			for(int j = 0;j<10;j++){
-//          使用优先队列这里就不用判断最近泊点了
-//				int pri = priorityGoodsBerthSHip(goods[goodsId],berth[j]);  //泊点优先级,优先级越小运送到泊点代价越小
-//				if(pri<minPri){
-//					minPri = pri;
-//					minId = j;
-//				}
-//			}
 			for(int j = 0;j<10;j++){
 				if(berth[berthQueue[x][y][j].first].getBlockId()==block[x][y]){
 					/*     判断泊位连通性     */

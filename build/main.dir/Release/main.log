@@ -116,6 +116,7 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h(1,1): warning C481
   (编译源文件“../src/main.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(12,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(15,7): warning C4101: “distributed”: 未引用的局部变量
   model.cpp
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失

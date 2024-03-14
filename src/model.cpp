@@ -22,8 +22,8 @@ int block[conVar::maxX+1][conVar::maxY+1];                                      
 std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
 int shipTargetBerth[conVar::maxBerth];
-std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
+std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
-int back[4] = {1,0,3,2};                                          //回退当前指令
+
 
 

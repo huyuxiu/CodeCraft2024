@@ -12,6 +12,7 @@ int main(){
 	srand(time(0));
 	IO::init();
 	bool flag = true;
+	bool distributed[10];
 	for(frameId; frameId<=15000; ){
 		memset(robotMap,0,sizeof robotMap);
 		IO::readFrame();
@@ -41,11 +42,9 @@ int main(){
 				robotFindBerth(i);
 			}
 			else{
-
 				if(robotGoodsQueue[i].empty()) distributeGoods(i);     //给机器人分配货物
 				robotFindGood(i);
 			}
 		}
-
 	}
 }
