@@ -13,4 +13,5 @@ void robotMove();                                                   //移动机�
 void shipToBearth();                                                //船与泊位匹配
 int maxGoodsBerth();
 void robotAfterCollision(int id);                                  //机器人碰撞
+int findNewRobot(int classId,int berthId);
 #endif //CONRTOL_H

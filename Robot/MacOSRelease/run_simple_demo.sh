@@ -1,1 +1,1 @@
-./PreliminaryJudge ./Demo/main -m ./maps/map1.txt
+./PreliminaryJudge ../../build/main -m ./maps/map2.txt -d ./output.txt -f 0

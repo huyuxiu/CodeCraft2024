@@ -4,130 +4,126 @@
 	<Project>
 		<Option title="CodeCraftSDK"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
+		<Option compiler="clang"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug"/>
+				<Option working_dir="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="main">
-				<Option output="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug"/>
+				<Option output="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="clang"/>
 				<Compiler>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 main"/>
-					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 main"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="main/fast">
-				<Option output="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug"/>
+				<Option output="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="clang"/>
 				<Compiler>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
-					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 main/fast"/>
-					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 main/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug"/>
+				<Option working_dir="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug"/>
+				<Option working_dir="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/berth.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/berth.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/berth.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/berth.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/control.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/control.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/control.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/control.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/iointerface.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/iointerface.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/iointerface.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/iointerface.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/main.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/main.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/model.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/model.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/model.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/model.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/robot.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/robot.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/robot.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/robot.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/ship.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/ship.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/ship.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/ship.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/util.cpp">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/util.cpp">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/util.h">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/util.h">
 			<Option target="main"/>
 		</Unit>
-		<Unit filename="C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/CMakeLists.txt">
+		<Unit filename="/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

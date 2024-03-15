@@ -40,7 +40,8 @@ namespace IO {
 	    }
 		/*      给泊位分类       */
 		clusteringBerth();
-	    calCenterPos();//计算泊位中心位置
+	    calCenterPos(); //计算泊位中心位置
+
 		scanf("%d",&shipCapacity);
 		for(int i = 0; i < conVar::maxShip; i++){
 			ship[i].setCapacity(shipCapacity);
@@ -83,7 +84,7 @@ namespace IO {
 			robot[i].setPosition(pos);
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
-			robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
+			if(frameId==1)robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
 			//robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}

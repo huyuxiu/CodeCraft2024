@@ -109,10 +109,27 @@ void distributeGoods(int id){
 	while(!isFind&&goodsHeap[classId].size()){
 		Goods g = goodsHeap[classId].top();
 		goodsHeap[classId].pop();
-		if(frameId+20>g.deathId) continue;
-		robotGoodsQueue[id].push(g);
-		robot[id].carryGoods(g);
-		isFind = true;
+		if(frameId+Parameter::outGoodsHeapSurplusFrame>g.deathId) continue;
+		if(g.berthId!=robot[id].getBerthId()){
+			//货物和机器人不在一个泊位
+			int robotid = findNewRobot(robot[id].getClassId(),g.berthId);
+			if(robotid!=-1){
+				//给类内其他机器人派活
+				robotGoodsQueue[robotid].push(g);
+				robot[robotid].carryGoods(g);
+			}
+			else{
+				robotGoodsQueue[id].push(g);
+				robot[id].carryGoods(g);
+				isFind = true;
+			}
+		}
+		else{
+			robotGoodsQueue[id].push(g);
+			robot[id].carryGoods(g);
+			isFind = true;
+		}
+
 	}
 }
 
@@ -126,11 +143,12 @@ void robotFindGood(int id){
 	while(robotGoodsQueue[id].size()){
 		g = robotGoodsQueue[id].front();
 		robotGoodsQueue[id].pop();
+		if(frameId+20>g.deathId) continue;
 		isFind = true;
 		break;
 	}
 	if(!isFind){
-		//std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
+		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
 		return;
 	}
 	robot[id].carryGoods(g);
@@ -265,4 +283,13 @@ void robotAfterCollision(int id) {
 		robotMap[new_x - dx[front]][new_y - dy[front]] = 0;
 		IO::ROBOT::move(id, front);
 	}
+}
+
+int findNewRobot(int classId,int berthId){
+	for(int i : robot_in_class[classId]){
+		if(robotGoodsQueue[i].size()<Parameter::maxRobotGoodsQueue&&robot[i].getBerthId()){
+			return i;
+		}
+	}
+	return -1;
 }
