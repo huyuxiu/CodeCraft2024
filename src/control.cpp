@@ -110,9 +110,22 @@ void distributeGoods(int id){
 		Goods g = goodsHeap[classId].top();
 		goodsHeap[classId].pop();
 		if(frameId+20>g.deathId) continue;
-		robotGoodsQueue[id].push(g);
-		robot[id].carryGoods(g);
-		isFind = true;
+		if(g.berthId!=robot[id].getBerthId()){
+			//货物和机器人不在一个泊位
+			int robotid = findNewRobot(robot[id].getClassId(),g.berthId);
+			std::cout<<id<<" "<<classId<<std::endl;
+			if(robotid!=-1){
+				//给类内其他机器人派活
+				robotGoodsQueue[robotid].push(g);
+				robot[robotid].carryGoods(g);
+			}
+			else{
+				robotGoodsQueue[id].push(g);
+				robot[id].carryGoods(g);
+				isFind = true;
+			}
+		}
+
 	}
 }
 
@@ -130,7 +143,7 @@ void robotFindGood(int id){
 		break;
 	}
 	if(!isFind){
-		//std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
+		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << id <<std::endl;
 		return;
 	}
 	robot[id].carryGoods(g);

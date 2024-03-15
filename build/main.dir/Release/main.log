@@ -6,10 +6,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\berth.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/berth.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/berth.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/berth.cpp”)
   
   control.cpp
@@ -20,10 +20,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/control.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/control.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/control.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\robot.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -55,10 +55,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/iointerface.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/iointerface.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/iointerface.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\robot.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -80,9 +80,9 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(51,6): wa
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(57,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(58,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(62,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(80,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(93,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(98,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(81,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(94,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(99,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   main.cpp
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -94,10 +94,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/main.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/main.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/main.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\robot.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -116,7 +116,6 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h(1,1): warning C481
   (编译源文件“../src/main.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(11,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(17,7): warning C4101: “distributed”: 未引用的局部变量
   model.cpp
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -125,10 +124,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/model.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/model.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/model.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\robot.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -147,10 +146,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\robot.h(1,1): warning C48
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/robot.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/robot.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/robot.cpp”)
   
   ship.cpp
@@ -160,10 +159,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\ship.h(1,1): warning C481
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/ship.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/ship.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/ship.cpp”)
   
   util.cpp
@@ -174,10 +173,10 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h(1,1): warning C481
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/util.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(65,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,101): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/util.cpp”)
   
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(66,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\const.h(67,47): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   (编译源文件“../src/util.cpp”)
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\model.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -206,6 +205,5 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267:         ]
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(346,29): warning C4267: “/=”: 从“size_t”转换到“int”，可能丢失数据
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(347,29): warning C4267: “/=”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(363,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
   正在生成代码...
   main.vcxproj -> C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\build\Release\main.exe

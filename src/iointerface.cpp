@@ -70,6 +70,7 @@ namespace IO {
 				goods[goodsId].berthDist = bestBerth[x][y].second;
 				goods[goodsId].berthId = bestBerth[x][y].first;
 				goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
+				std::cout<<berth[goods[goodsId].berthId].getClassId()<<std::endl;
 				goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
 			}
 

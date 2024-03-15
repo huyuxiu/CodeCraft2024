@@ -23,4 +23,5 @@ std::deque<PPI> bfsTarget(Position startPos, char target);                  //bf
 void multiSourceBFS();                                                      //初始化时多源bfs找当前点最近泊位
 void clusteringBerth();                                                     //初始化时给泊位分类
 void calCenterPos();
+int findNewRobot(int classId,int berthId);                                              //找空闲机器人
 #endif //UTIL_H
