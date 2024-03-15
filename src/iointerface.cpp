@@ -29,19 +29,18 @@ namespace IO {
 		multiSourceBFS();
 
 		/*     floodfill     */
-		berth[0].setBlockId(0);         //最先开始floodfill的泊位设置联通块id为0
+
 	    for(int i =0;i<10;i++){
 		    Position pos = berth[i].getPosition();
 		    if(block[pos.x][pos.y]==-1){
-				floodFill(pos,i);
+				floodFill(pos,maxBlockId++);
 		    }
-			else{
-				berth[i].setBlockId(block[pos.x][pos.y]);
-			}
-	    }
+			berth[i].setBlockId(block[pos.x][pos.y]);
 
+	    }
 		/*      给泊位分类       */
 		clusteringBerth();
+	    calCenterPos();//计算泊位中心位置
 		scanf("%d",&shipCapacity);
 		for(int i = 0; i < conVar::maxShip; i++){
 			ship[i].setCapacity(shipCapacity);
@@ -70,7 +69,6 @@ namespace IO {
 				/*     判断泊位连通性     */
 				goods[goodsId].berthDist = bestBerth[x][y].second;
 				goods[goodsId].berthId = bestBerth[x][y].first;
-				std::cout<<goods[goodsId].berthDist<<std::endl;
 				goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
 				goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
 			}

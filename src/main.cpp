@@ -11,20 +11,26 @@ int main(){
 	srand(time(0)); // 设置随机种子
 	IO::init();
 	for(int i = 0;i<10;i++){
-		robot[i].setClassId(i/2);
+		robot[i].setClassId(4-i/2);
 	}
 	bool flag = true;
 	bool distributed[10];
 	for(frameId; frameId<=15000; ){
 		IO::readFrame();
 		if(flag){
+			//第一次执行
 			for(int i=0; i < conVar::maxRobot; i++){
 				int blockId = getBlockId(robot[i].getPosition());
 				robot[i].setBlockId(blockId);
 				if(blockId!=-1){
 					aliveRobotId.push_back(i);
+					robot_in_block[blockId].push_back(i);
 				}
 			}
+			for(int i = 0;i<10;i++){
+				std::cout<<robot[i].getClassId()<<std::endl;
+			}
+
 			flag = false;
 		}
 		/*      指令序列输出      */

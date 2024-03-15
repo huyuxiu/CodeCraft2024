@@ -75,15 +75,16 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.h(1,1): warning C481
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(14,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(19,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(45,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(52,6): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(44,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(51,6): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(57,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(58,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(59,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(63,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(82,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(95,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(100,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(62,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(80,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(93,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.cpp(98,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   main.cpp
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\main.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\iointerface.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“../src/main.cpp”)
   
@@ -193,15 +194,18 @@ C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\berth.h(1,1): warning C48
   
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(298,10): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
 C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(313,28): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,26): warning C4267: “/=”: 从“size_t”转换到“_Ty”，可能丢失数据
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,26): warning C4267:         with
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,26): warning C4267:         [
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,26): warning C4267:             _Ty=int
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,26): warning C4267:         ]
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,50): warning C4267: “/=”: 从“size_t”转换到“_Ty”，可能丢失数据
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,50): warning C4267:         with
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,50): warning C4267:         [
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,50): warning C4267:             _Ty=int
-C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,50): warning C4267:         ]
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,36): warning C4267: “/=”: 从“size_t”转换到“_Ty”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,36): warning C4267:         with
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,36): warning C4267:         [
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,36): warning C4267:             _Ty=int
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,36): warning C4267:         ]
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267: “/=”: 从“size_t”转换到“_Ty”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267:         with
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267:         [
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267:             _Ty=int
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(324,70): warning C4267:         ]
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(346,29): warning C4267: “/=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(347,29): warning C4267: “/=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\src\util.cpp(363,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
   正在生成代码...
   main.vcxproj -> C:\Users\10048\Desktop\CodeCraft2024\CodeCraft2024\build\Release\main.exe
