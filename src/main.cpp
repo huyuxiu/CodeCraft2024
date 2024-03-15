@@ -10,9 +10,7 @@
 int main(){
 	srand(time(0)); // 设置随机种子
 	IO::init();
-	for(int i = 0;i<10;i++){
-		robot[i].setClassId(i/2);
-	}
+	int totalMoney = 0;
 	bool flag = true;
 	for(frameId; frameId<=15000; ){
 		IO::readFrame();
@@ -27,13 +25,15 @@ int main(){
 				}
 			}
 			for(int i :aliveRobotId){
+				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
 				robot_in_class[robot[i].getClassId()].push_back(i);
 			}
+			balanceRobot();
 			flag = false;
 		}
 		/*      指令序列输出      */
 		robotMove();
-		shipToBearth();
+		shipToBerth();
 		puts("OK");
 		std::fflush(stdout);
 		/*      指令进机器人指令队列      */
@@ -41,11 +41,15 @@ int main(){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
+				totalMoney+=robot[i].getGoods().value;
 			}
 			else{
 				if(robotGoodsQueue[i].empty()) distributeGoods(i);     //给机器人分配货物
 				robotFindGood(i);
 			}
 		}
+		if(frameId==14199) std::clog<<totalMoney<<std::endl;
+		if(frameId==14999) std::clog<<totalMoney<<std::endl;
 	}
+
 }

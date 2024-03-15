@@ -18,6 +18,7 @@ bool Robot::hasGoods() const {
 
 void Robot::carryGoods(Goods goods) {
 	goods_ = goods;
+	berthId_ = goods_.berthId;
 }
 
 void Robot::setCarry(int carry) {

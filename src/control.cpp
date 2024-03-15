@@ -58,50 +58,157 @@
 //	}
 //}
 
-void shipToBearth() {
-	/*      船和泊位的匹配      */
-	for (int i = 0; i < conVar::maxShip; i++) {
-		if (ship[i].getBerthId() == -1 && ship[i].getStatus() == 1) {            //当船达到虚拟点空闲的时候
+//void shipToBearth() {
+//	/*      船和泊位的匹配      */
+//	for (int i = 0; i < conVar::maxShip; i++) {
+//		if (ship[i].getBerthId() == -1 && ship[i].getStatus() == 1) {            //当船达到虚拟点空闲的时候
+//			int temp_max = 0, target_berth = -1;
+//			ship[i].setLoaded(0);
+//			for (int j = 0; j < conVar::maxBerth; j++) {
+//				if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j]) {      //找物品多的港口
+//					temp_max = berth[j].getGoods_size();
+//					target_berth = j;
+//				}
+//			}
+//			if (target_berth != -1) {
+//				IO::SHIP::ship(i, target_berth);
+//				shipTargetBerth[target_berth] = 1;
+//			}
+//		}
+//		else if (ship[i].getStatus() == 1) {                                     //当船到达泊位
+//			int current_berth = ship[i].getBerthId();
+//			int rest_cap = ship[i].getCapacity() - ship[i].getLoaded();
+//			if (berth[current_berth].getGoods_size() && rest_cap && frameId + berth[current_berth].getTransport_time() < 14980) {              //如果泊位还有货物则还需要搬货并且来得及回去
+//				int carry_num = berth[current_berth].getGoods_size() > berth[current_berth].getVelocity() ? berth[current_berth].getVelocity() : berth[current_berth].getGoods_size();
+//				carry_num = carry_num > rest_cap ? rest_cap : carry_num;        //搬运货物的数量是速度，船剩余容量，泊位货物数量三个中的最小值
+//				berth[current_berth].carryGoods(carry_num);
+//				berth[current_berth].setStatus(1);
+//				int new_load = ship[i].getLoaded() + carry_num;
+//				ship[i].setLoaded(new_load);
+//			}
+//			else {                                                              //已经没有货物可以搬了了要开走了
+//				IO::SHIP::go(i);
+//				berth[current_berth].setStatus(0);
+//				shipTargetBerth[current_berth] = 0;
+//			}
+//		}
+//		else if (ship[i].getStatus() == 2) {
+//			int current_berth = ship[i].getBerthId();
+//			if (berth[current_berth].getStatus() == 0 && !shipTargetBerth[i]){
+//				IO::SHIP::ship(i, current_berth);
+//				berth[current_berth].setStatus(1);
+//				shipTargetBerth[current_berth] = 1;
+//			}
+//		}
+//	}
+//}
+void shipFull(int id) {	//到泊位最多的泊位，船没满继续拿
+	if (ship[id].getBerthId() == -1 && ship[id].getStatus() == 1) {            //当船达到虚拟点空闲的时候
+		ship[id].setLoaded(0);
+		int target_berth = maxGoodsBerth();
+		if (target_berth != -1) {
+			IO::SHIP::ship(id, target_berth);
+			shipTargetBerth[target_berth] = 1;
+		}
+	}
+	else if (ship[id].getStatus() == 1) {                                     //当船到达泊位
+		int current_berth = ship[id].getBerthId();
+		int rest_cap = ship[id].getCapacity() - ship[id].getLoaded();
+		if (berth[current_berth].getGoods_size() && rest_cap > 0 && frameId + berth[current_berth].getTransport_time() + 5 < 15000) {              //如果泊位还有货物则还需要搬货并且来得及回去
+			int carry_num = berth[current_berth].getGoods_size() > berth[current_berth].getVelocity() ? berth[current_berth].getVelocity() : berth[current_berth].getGoods_size();
+			carry_num = carry_num > rest_cap ? rest_cap : carry_num;        //搬运货物的数量是速度，船剩余容量，泊位货物数量三个中的最小值
+			berth[current_berth].carryGoods(carry_num);
+			berth[current_berth].setStatus(1);
+			int new_load = ship[id].getLoaded() + carry_num;
+			ship[id].setLoaded(new_load);
+		}
+		else if (rest_cap > 0 && !berth[current_berth].getGoods_size()) {		//当前港口搬完但是还能搬去其他地方搬
 			int temp_max = 0, target_berth = -1;
-			ship[i].setLoaded(0);
 			for (int j = 0; j < conVar::maxBerth; j++) {
-				if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j]) {      //找物品多的港口
+				if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j] && frameId + 500 + berth[j].getTransport_time() + 10 < 15000) {      //找物品多的港口
 					temp_max = berth[j].getGoods_size();
 					target_berth = j;
 				}
 			}
 			if (target_berth != -1) {
-				IO::SHIP::ship(i, target_berth);
-				shipTargetBerth[target_berth] = 1;
-			}
-		}
-		else if (ship[i].getStatus() == 1) {                                     //当船到达泊位
-			int current_berth = ship[i].getBerthId();
-			int rest_cap = ship[i].getCapacity() - ship[i].getLoaded();
-			if (berth[current_berth].getGoods_size() && rest_cap && frameId + berth[current_berth].getTransport_time() < 14980) {              //如果泊位还有货物则还需要搬货并且来得及回去
-				int carry_num = berth[current_berth].getGoods_size() > berth[current_berth].getVelocity() ? berth[current_berth].getVelocity() : berth[current_berth].getGoods_size();
-				carry_num = carry_num > rest_cap ? rest_cap : carry_num;        //搬运货物的数量是速度，船剩余容量，泊位货物数量三个中的最小值
-				berth[current_berth].carryGoods(carry_num);
-				berth[current_berth].setStatus(1);
-				int new_load = ship[i].getLoaded() + carry_num;
-				ship[i].setLoaded(new_load);
-			}
-			else {                                                              //已经没有货物可以搬了了要开走了
-				IO::SHIP::go(i);
+				IO::SHIP::ship(id, target_berth);
 				berth[current_berth].setStatus(0);
+				shipTargetBerth[target_berth] = 1;
 				shipTargetBerth[current_berth] = 0;
 			}
 		}
-		else if (ship[i].getStatus() == 2) {
-			int current_berth = ship[i].getBerthId();
-			if (berth[current_berth].getStatus() == 0 && !shipTargetBerth[i]){
-				IO::SHIP::ship(i, current_berth);
-				berth[current_berth].setStatus(1);
-				shipTargetBerth[current_berth] = 1;
-			}
+		else {                                                              //已经没有货物可以搬了了要开走了
+			IO::SHIP::go(id);
+			berth[current_berth].setStatus(0);
+			shipTargetBerth[current_berth] = 0;
+		}
+	}
+	else if (ship[id].getStatus() == 2) {
+		int current_berth = ship[id].getBerthId();
+		if (berth[current_berth].getStatus() == 0 && !shipTargetBerth[current_berth]) {
+			IO::SHIP::ship(id, current_berth);
+			shipTargetBerth[current_berth] = 0;
+			berth[current_berth].setStatus(1);
 		}
 	}
 }
+
+void shipGreedy(int id) {	//船和泊位的匹配,贪心跑到货物最多的泊位拿完就走
+	if (ship[id].getBerthId() == -1 && ship[id].getStatus() == 1) {            //当船达到虚拟点空闲的时候
+		int temp_max = 0, target_berth = -1;
+		ship[id].setLoaded(0);
+		for (int j = 0; j < conVar::maxBerth; j++) {
+			if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j]) {      //找物品多的港口
+				temp_max = berth[j].getGoods_size();
+				target_berth = j;
+			}
+		}
+		if (target_berth != -1) {
+			IO::SHIP::ship(id, target_berth);
+			shipTargetBerth[target_berth] = 1;
+		}
+	}
+	else if (ship[id].getStatus() == 1) {                                     //当船到达泊位
+		int current_berth = ship[id].getBerthId();
+		int rest_cap = ship[id].getCapacity() - ship[id].getLoaded();
+		if (berth[current_berth].getGoods_size() && rest_cap && frameId + berth[current_berth].getTransport_time() < 14990) {              //如果泊位还有货物则还需要搬货并且来得及回去
+			int carry_num = berth[current_berth].getGoods_size() > berth[current_berth].getVelocity() ? berth[current_berth].getVelocity() : berth[current_berth].getGoods_size();
+			carry_num = carry_num > rest_cap ? rest_cap : carry_num;        //搬运货物的数量是速度，船剩余容量，泊位货物数量三个中的最小值
+			berth[current_berth].carryGoods(carry_num);
+			berth[current_berth].setStatus(1);
+			int new_load = ship[id].getLoaded() + carry_num;
+			ship[id].setLoaded(new_load);
+		}
+		else {                                                              //已经没有货物可以搬了了要开走了
+			IO::SHIP::go(id);
+			berth[current_berth].setStatus(0);
+			shipTargetBerth[current_berth] = 0;
+		}
+	}
+	else if (ship[id].getStatus() == 2) {
+		int current_berth = ship[id].getBerthId();
+		if (berth[current_berth].getStatus() == 0 && !shipTargetBerth[id]){
+			IO::SHIP::ship(id, current_berth);
+			berth[current_berth].setStatus(1);
+			shipTargetBerth[current_berth] = 1;
+		}
+	}
+}
+
+void shipToBerth() {
+	for (int i = 0; i < conVar::maxShip; i++) {
+		if (ship[i].getBerthId() == -1) {
+			shipGreedy(i);
+		}
+		else {
+			if (berth[ship[i].getBerthId()].getTransport_time() * 3 + frameId < 14995)
+				shipGreedy(i);
+			else
+				shipFull(i);
+		}
+	}
+}
+
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
 	int classId = robot[id].getClassId();
@@ -109,11 +216,10 @@ void distributeGoods(int id){
 	while(!isFind&&goodsHeap[classId].size()){
 		Goods g = goodsHeap[classId].top();
 		goodsHeap[classId].pop();
-		if(frameId+20>g.deathId) continue;
+		if(frameId+Parameter::outGoodsHeapSurplusFrame>g.deathId) continue;
 		if(g.berthId!=robot[id].getBerthId()){
 			//货物和机器人不在一个泊位
 			int robotid = findNewRobot(robot[id].getClassId(),g.berthId);
-			std::cout<<id<<" "<<classId<<std::endl;
 			if(robotid!=-1){
 				//给类内其他机器人派活
 				robotGoodsQueue[robotid].push(g);
@@ -124,6 +230,11 @@ void distributeGoods(int id){
 				robot[id].carryGoods(g);
 				isFind = true;
 			}
+		}
+		else{
+			robotGoodsQueue[id].push(g);
+			robot[id].carryGoods(g);
+			isFind = true;
 		}
 
 	}
@@ -139,11 +250,12 @@ void robotFindGood(int id){
 	while(robotGoodsQueue[id].size()){
 		g = robotGoodsQueue[id].front();
 		robotGoodsQueue[id].pop();
+		if(frameId+20>g.deathId) continue;
 		isFind = true;
 		break;
 	}
 	if(!isFind){
-		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << id <<std::endl;
+		std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
 		return;
 	}
 	robot[id].carryGoods(g);

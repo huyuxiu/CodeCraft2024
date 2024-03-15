@@ -336,18 +336,6 @@ void clusteringBerth(){
 	}
 }
 
-void calCenterPos(){
-	for(int i =0;i<totalClass;i++){
-		Position p(0,0);
-		for(int j =0;j<berthInCenter[i].size();j++){
-			p.x+=berth[berthInCenter[i][j]].getPosition().x;
-			p.y+=berth[berthInCenter[i][j]].getPosition().y;
-		}
-		p.x/=berthInCenter[i].size();
-		p.y/=berthInCenter[i].size();
-		classCenterPos.insert(std::make_pair(0,p));
-	}
-}
 
 int findNewRobot(int classId,int berthId){
 	for(int i : robot_in_class[classId]){
@@ -356,4 +344,35 @@ int findNewRobot(int classId,int berthId){
 		}
 	}
 	return -1;
+}
+
+void balanceRobot(){
+	for(int i =0;i<maxBlockId;i++){
+		int minClass = class_in_block[i][0],maxClass = class_in_block[i][0],minSize = 1e8,maxSize = 0;
+		bool flag = true;
+		while(flag){
+			for(int j = 0;j<class_in_block[i].size();j++){
+				flag = false;
+				int classId = class_in_block[i][j];
+				if(robot_in_class[classId].size()==0){
+					minClass = classId;
+					minSize = goodsHeap[classId].size();
+					flag = true;
+				}
+				if(robot_in_class[classId].size()>minSize){
+					maxClass = classId;
+					maxSize = robot_in_class[classId].size();
+				}
+			}
+			//交换
+			if(robot_in_class[minClass].size()>0){
+				robot[robot_in_class[minClass][0]].setClassId(maxClass);
+				robot_in_class[minClass].erase(robot_in_class[minClass].begin());
+				robot_in_class[maxClass].push_back(robot_in_class[minClass][0]);
+			}
+
+		}
+
+
+	}
 }
