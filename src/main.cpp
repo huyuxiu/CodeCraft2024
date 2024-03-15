@@ -8,46 +8,47 @@
 #include "const.h"
 #include "util.h"
 int main(){
-	srand(time(0)); // 设置随机种子
+	// 设置随机种子
+	srand(time(0));
 	IO::init();
-	for(int i = 0;i<10;i++){
-		robot[i].setClassId(4-i/2);
-	}
 	bool flag = true;
-	bool distributed[10];
 	for(frameId; frameId<=15000; ){
+		memset(robotMap,0,sizeof robotMap);
 		IO::readFrame();
 		if(flag){
-			//第一次执行
-			for(int i=0; i < conVar::maxRobot; i++){
+			for(int i=0;i<conVar::maxRobot;i++){
 				int blockId = getBlockId(robot[i].getPosition());
 				robot[i].setBlockId(blockId);
 				if(blockId!=-1){
 					aliveRobotId.push_back(i);
-					robot_in_block[blockId].push_back(i);
 				}
 			}
-			for(int i = 0;i<10;i++){
-				std::cout<<robot[i].getClassId()<<std::endl;
-			}
-
 			flag = false;
 		}
+
 		/*      指令序列输出      */
 		robotMove();
-		shipToBearth();
+		shipToBerth();
 		puts("OK");
+//		for (int i = 0; i < conVar::maxBerth; i++)
+//			std::clog << berth[i].getGoods_size() <<" ";
+//		std::clog << std::endl;
 		std::fflush(stdout);
+		/*      货物进机器人货物队列      */
+
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
+
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
 			}
 			else{
+
 				if(robotGoodsQueue[i].empty()) distributeGoods(i);     //给机器人分配货物
 				robotFindGood(i);
 			}
 		}
+
 	}
 }

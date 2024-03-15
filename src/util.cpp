@@ -103,11 +103,56 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 	}
 }
 
-
+/*     泊位距离排序函数     */
+bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b){
+	//还需要考虑距离为-1需要排在最后
+	if (a.second == -1 && b.second == -1) {
+		return false; // 如果两者都是 -1，则认为它们相等，不需要交换顺序
+	} else if (a.second == -1) {
+		return false; // 如果 a 是 -1，b 不是 -1，则将 a 放在 b 后面
+	} else if (b.second == -1) {
+		return true; // 如果 b 是 -1，a 不是 -1，则将 b 放在 a 后面
+	} else {
+		return a.second < b.second; // 否则按照距离大小进行比较
+	}
+}
 
 int calPriorityGoodsBerth(int value,int dist){
 	/*      通过距离和价格计算得到节点优先级       */
 	return value-dist;
+}
+
+int findBerthId(Goods g){
+	return g.berthQueue[g.deathId].first;
+}
+
+int findNextBerthId(Goods g){
+	if(g.deathId<9) return g.berthQueue[++g.deathId].first;
+	else return g.berthQueue[g.deathId].first;
+}
+
+
+
+bool isLinked(Position start, Position end){
+	/* 判断起点和终点的连通性 */
+	std::queue<Position> q;
+	bool vis[conVar::maxX + 1][conVar::maxY + 1];
+	memset(vis, 0, sizeof vis);
+	q.push(start);
+	while (!q.empty()){
+		Position t = q.front();
+		if (t == end) return true;
+		q.pop();
+		for (int i = 0; i < 4; i++){
+			Position p(t.x + dx[i], t.y + dy[i]);
+			if (p.x < 0 || p.x > conVar::maxX || p.y < 0 || p.y > conVar::maxY) continue;
+			if (robotIsCollision(p)) continue;
+			if (vis[p.x][p.y]) continue;
+			vis[p.x][p.y] = true;
+			q.push(p);
+		}
+	}
+	return false;
 }
 
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
@@ -198,155 +243,43 @@ std::deque<PPI> bfsTarget(Position startPos, char target) {
 	return res;
 }
 
-void multiSourceBFS(){
+void multiSourceBFS() {
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
-	bool vis[conVar::maxX+1][conVar::maxY+1];
+	bool vis[conVar::maxX + 1][conVar::maxY + 1];
 	//初始化为{-1，-1}
 	for (int i = 0; i <= conVar::maxX; ++i) {
 		for (int j = 0; j <= conVar::maxY; ++j) {
-			bestBerth[i][j] = {-1,-1};
+			bestBerth[i][j] = { -1,-1 };
 		}
 	}
 	std::queue<Position> q;
-	memset(vis,false,sizeof vis);
-	for(int i = 0; i < conVar::maxBerth; i++){
+	memset(vis, false, sizeof vis);
+	for (int i = 0; i < conVar::maxBerth; i++) {
 		Position p = berth[i].getPosition();
 		bestBerth[p.x][p.y].first = i;
 		bestBerth[p.x][p.y].second = 0;
 		q.push(p);
 	}
-	while(!q.empty()){
+	while (!q.empty()) {
 		Position t = q.front();
 		q.pop();
-		for(int i =0;i<4;i++){
-			int a = t.x+dx[i];
-			int b = t.y+dy[i];
-			if(a<0||a>conVar::maxX||b<0||b>conVar::maxY) continue;
-			if(isCollision(Position(a,b))) continue;
-			if(bestBerth[a][b].first!=-1) continue;
+		for (int i = 0; i < 4; i++) {
+			int a = t.x + dx[i];
+			int b = t.y + dy[i];
+			if (a<0 || a>conVar::maxX || b<0 || b>conVar::maxY) continue;
+			if (isCollision(Position(a, b))) continue;
+			if (bestBerth[a][b].first != -1) continue;
 			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
-			bestBerth[a][b].second = bestBerth[t.x][t.y].second+1;
-			q.push(Position(a,b));
+			bestBerth[a][b].second = bestBerth[t.x][t.y].second + 1;
+			q.push(Position(a, b));
 		}
 	}
 }
 
 
-//void clusteringBerth(){
-//  roll点版本
-//	std::unordered_map<int, std::vector<int>> berth_in_block; // blockid:包含的泊位id
-//	int cnt = 0; // class个数
-//	for (int i = 0; i < conVar::maxBerth; i++) {
-//		berth_in_block[berth[i].getBlockId()].push_back(i);
-//	}
-//	for (auto p : berth_in_block) {
-//		auto q = p.second;
-//		if (q.size() > 2) { // 需要再分类
-//			int k = std::ceil(q.size() / 2); // 需要分成的类数
-//			int max_iterations = 100;
-//			std::unordered_map<int, std::vector<int>> res; // 中心，泊位id
-//			/*      kmeans聚类        */
-//			std::vector<int> cx, cy; // 初始化k个中心
-//
-//			// 使用K-means++算法选择初始聚类中心
-//			std::vector<int> indices(q.size());
-//			std::iota(indices.begin(), indices.end(), 0); // 生成0到q.size()-1的序列
-//			std::shuffle(indices.begin(), indices.end(), std::mt19937(std::random_device{}())); // 打乱序列
-//			for (int i = 0; i < k; i++) {
-//				cx.push_back(berth[q[indices[i]]].getPosition().x);
-//				cy.push_back(berth[q[indices[i]]].getPosition().y);
-//			}
-//
-//			for (int i = 0; i < max_iterations; i++) { // 迭代
-//				res.clear();
-//				for (int j = 0; j < q.size(); j++) { // 分配每个样本到最近的中心
-//					int min = 0, min_dist = 1e8, dist;
-//					for (int s = 0; s < k; s++) {
-//						dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
-//						if (dist < min_dist) min_dist = dist, min = s;
-//					}
-//					res[min].push_back(q[j]);
-//				}
-//
-//				for (int s = 0; s < k; s++) { // 更新聚类中心
-//					cx[s] = 0, cy[s] = 0;
-//					for (auto b : res[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
-//					cx[s] /= res[s].size(), cy[s] /= res[s].size();
-//				}
-//			}
-//
-//			for (int s = 0; s < k; s++) {
-//				for (auto b : res[s]) berth[b].setClassId(cnt);
-//				cnt++;
-//			}
-//		} else {
-//			for (auto b : q) berth[b].setClassId(cnt);
-//			cnt++;
-//		}
-//	}
-//}
-
-void clusteringBerth(){
-	int cnt = 0; //class个数
-	for(int i = 0; i < conVar::maxBerth; i++){
-		berth_in_block[berth[i].getBlockId()].push_back(i);
-	}
-
-	for(auto p : berth_in_block){
-		auto q = p.second;
-		if(q.size() > 2){ //需要再分类
-			int k = std::ceil(q.size() / 2); //需要分成的类数
-			totalClass += k;//记录所有连通块分为几类
-			int max_iterations = 100;
 
 
-			/*      kmeans聚类        */
-			std::vector<int> cx, cy; //初始化k个中心
-			for(int i = 0; i < k; i++){
-				cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
-				cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
-			}
 
-			for(int i = 0; i < max_iterations; i++){ //迭代
-				berthInCenter.clear();
-				for(int j = 0; j < q.size(); j++){ //分配每个样本到最近的中心
-					int min = 0, min_dist = 1e8, dist;
-					for(int s = 0; s < k; s++){
-						dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
-						if(dist < min_dist) min_dist = dist, min = s;
-					}
-					berthInCenter[min].push_back(q[j]);
-				}
 
-				for(int s = 0; s < k; s++){ //更新聚类中心
-					cx[s] = 0, cy[s] = 0;
-					for(auto b : berthInCenter[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
-					cx[s] /= berthInCenter[s].size(), cy[s] /= berthInCenter[s].size();
-				}
-			}
-
-			for(int s = 0; s < k; s++){
-				for(auto b : berthInCenter[s]) berth[b].setClassId(cnt);
-				class_in_block[p.first].push_back(cnt++);
-			}
-		}else{
-			for(auto b:q) berth[b].setClassId(cnt);
-			class_in_block[p.first].push_back(cnt++);
-		}
-	}
-}
-
-void calCenterPos(){
-	for(int i =0;i<totalClass;i++){
-		Position p(0,0);
-		for(int j =0;j<berthInCenter[i].size();j++){
-			p.x+=berth[berthInCenter[i][j]].getPosition().x;
-			p.y+=berth[berthInCenter[i][j]].getPosition().y;
-		}
-		p.x/=berthInCenter[i].size();
-		p.y/=berthInCenter[i].size();
-		classCenterPos.insert(std::make_pair(0,p));
-	}
-}
 
 

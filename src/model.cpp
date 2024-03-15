@@ -21,15 +21,10 @@ std::deque<int> robotMoveQueue[10];                                             
 int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
-int maxBlockId = 0;//连通块数量
 int shipTargetBerth[conVar::maxBerth];
-std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
+std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
-int totalClass = 0;                                                               //总共类的数量
-std::unordered_map<int, std::vector<int>> berth_in_block;                       //blockid:包含的泊位id
-std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的泊位id
-std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid::类的id
-std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
-std::unordered_map<int,Position> classCenterPos;    //类中心泊位
-std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
+int back[4] = {1,0,3,2};                                          //回退当前指令
+std::pair<int, int> bestBerth[conVar::maxX + 1][conVar::maxY + 1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
+
 
