@@ -20,40 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/run_simple_demo.bat" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/WindowsReleasev1.1/run_simple_demo.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/berth.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/berth.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/control.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/control.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/iointerface.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/iointerface.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/main.log" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/main.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/main.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/model.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/model.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/robot.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/ship.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main.dir/Release/util.obj" beforeDir="false" afterPath="$PROJECT_DIR$/build/main.dir/Release/util.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/berth.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/berth.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/control.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/control.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/iointerface.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/iointerface.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/model.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/model.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/objects.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/robot.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/robot.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/ship.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/ship.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/util.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/CMakeFiles/main.dir/util.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/main.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/const.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/const.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iointerface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/iointerface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/robot.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/robot.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.h" afterDir="false" />
-    </list>
+    <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +91,7 @@
       <workItem from="1710310330189" duration="18000" />
       <workItem from="1710310380755" duration="2480000" />
       <workItem from="1710312900413" duration="9875000" />
-      <workItem from="1710393252848" duration="55688000" />
+      <workItem from="1710393252848" duration="56036000" />
     </task>
     <servers />
   </component>
