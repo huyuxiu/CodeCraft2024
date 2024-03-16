@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <cmath>
+#include <algorithm>
 #include <deque>
 extern char map[conVar::maxX+1][conVar::maxY+1];                                         //地图
 extern Berth berth[conVar::maxBerth];                                                    //泊点
@@ -33,7 +34,7 @@ extern std::deque<int> robotMoveQueue[10];                                      
 extern int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 extern std::vector<int> aliveRobotId;                                                    //活着的机器人
 extern int maxValue;                                                                     //场上价值最高的货
-extern int maxBlockId;//连通块数量
+extern int maxBlockId;                                                                   //连通块数量
 extern int shipTargetBerth[conVar::maxBerth];
 extern std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                     //地图上某点的最近泊位
 extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
@@ -41,6 +42,7 @@ extern int totalClass;                                                          
 extern std::unordered_map<int, std::vector<int>> berth_in_block;                        //blockid:包含的泊位id
 extern std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的机器人id
 extern std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:包含的类id
+extern std::unordered_map<int, int> berthArea;                                                 //berthid:berth面积
 extern std::unordered_map<int,std::vector<int>> robot_in_class;                         //classid:包含的机器人id，初始化时候安排
 extern std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
 extern std::unordered_map<int, Position> classCenterPos;                  //类中心位置

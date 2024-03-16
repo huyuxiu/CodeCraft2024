@@ -28,8 +28,9 @@ int robotMap[conVar::maxX+1][conVar::maxY+1];                                   
 int totalClass = 0;                                                               //总共类的数量
 std::unordered_map<int, std::vector<int>> berth_in_block;                       //blockid:包含的泊位id
 std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的泊位id
-std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid::类的id
+std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:类的id
+std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
 std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
-std::unordered_map<int,Position> classCenterPos;    //类中心泊位
+std::unordered_map<int,Position> classCenterPos;    //类中心
 std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
 
