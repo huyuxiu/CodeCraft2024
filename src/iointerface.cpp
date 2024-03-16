@@ -114,6 +114,7 @@ namespace IO {
 
 		}
 
+
 		for(int i = 0;i<10;i++){
 			/*       读取机器人状态       */
 			scanf("%d %d %d %d",&carry,&x,&y,&status);
@@ -122,7 +123,10 @@ namespace IO {
 			robot[i].setPosition(pos);
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
-			robot[i].setBerthId(bestBerth[x][y].first);
+			if (frameId == 1) {
+				robot[i].setBerthId(bestBerth[x][y].first);
+				berth[bestBerth[x][y].first].presure++;
+			}
 			robotMap[x][y] = 1;
 		}
 

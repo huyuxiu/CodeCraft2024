@@ -17,7 +17,7 @@ bool moveRobort(Robot robot,int i){
 int calucateRobotPri(int i,Position goodsPos){
 	Position pos = robot[i].hasGoods() ? berth[robot[i].getBerthId()].getPosition():robot[i].getPosition();
 	int dist = manhattanDist(goodsPos,pos);
-	return (robotMoveQueue[i].size()/50+1+robotGoodsQueue[i].size())*dist;
+	return (0.5+robotGoodsQueue[i].size())*(dist + robotMoveQueue[i].size());
 }
 
 void shipFull(int id) {	//到泊位最多的泊位，船没满继续拿
@@ -43,7 +43,7 @@ void shipFull(int id) {	//到泊位最多的泊位，船没满继续拿
 		else if (rest_cap > 0 && !berth[current_berth].getGoods_size()) {		//当前港口搬完但是还能搬去其他地方搬
 			int temp_max = 0, target_berth = -1;
 			for (int j = 0; j < conVar::maxBerth; j++) {
-				if (berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j] && frameId + 500 + berth[j].getTransport_time() + 10 < 15000) {      //找物品多的港口
+				if ( berth[j].getGoods_size() > temp_max && berth[j].getStatus() == 0 && !shipTargetBerth[j] && frameId + 500 + berth[j].getTransport_time() + 5 < 15000) {      //找物品多的港口   abs(berth[j].getGoods_size() - rest_cap)
 					temp_max = berth[j].getGoods_size();
 					target_berth = j;
 				}
@@ -89,7 +89,7 @@ void shipGreedy(int id) {	//船和泊位的匹配,贪心跑到货物最多的泊
 	else if (ship[id].getStatus() == 1) {                                     //当船到达泊位
 		int current_berth = ship[id].getBerthId();
 		int rest_cap = ship[id].getCapacity() - ship[id].getLoaded();
-		if (berth[current_berth].getGoods_size() && rest_cap && frameId + berth[current_berth].getTransport_time() < 14990) {              //如果泊位还有货物则还需要搬货并且来得及回去
+		if (berth[current_berth].getGoods_size() && rest_cap && frameId + berth[current_berth].getTransport_time() < 14995) {              //如果泊位还有货物则还需要搬货并且来得及回去
 			int carry_num = berth[current_berth].getGoods_size() > berth[current_berth].getVelocity() ? berth[current_berth].getVelocity() : berth[current_berth].getGoods_size();
 			carry_num = carry_num > rest_cap ? rest_cap : carry_num;        //搬运货物的数量是速度，船剩余容量，泊位货物数量三个中的最小值
 			berth[current_berth].carryGoods(carry_num);
@@ -119,7 +119,8 @@ void shipToBerth() {
 			shipGreedy(i);
 		}
 		else {
-			if (berth[ship[i].getBerthId()].getTransport_time() * 3 + frameId < 14995)
+			if (berth[ship[i].getBerthId()].getTransport_time() * 3 + frameId < 14985)
+			//if (frameId < 1800 || frameId > 2800)
 				shipGreedy(i);
 			else
 				shipFull(i);
@@ -147,9 +148,6 @@ void distributeGoods(int id){
 		if (frameId+Parameter::goodsPermitDeathFrame>g.deathId) continue;
 		robotGoodsQueue[id].push(g);
 		isDistribute = true;
-
-
-
 	}
 }
 
@@ -159,7 +157,7 @@ void robotFindGood(int id){
 	/*      机器人找货       */
 	auto q = robotGoodsQueue[id];
 	Goods g;//从机器人的货物队头拿第一个合法货物
-	berth[robot[id].getBerthId()].presure--;//减轻泊位压力
+	//berth[robot[id].getBerthId()].presure--;//减轻泊位压力
 	bool isFind = false;                                                                                                                           //拿到合法货物没有
 	while(robotGoodsQueue[id].size()){
 		g = robotGoodsQueue[id].front();
@@ -185,15 +183,31 @@ void robotFindBerth(int id){
 	/*      机器人送货（拿到货找泊位）          */
 	bool isFind = false;//有无可替换（可达）/同一个联通块的泊位
 	Goods g = robot[id].getGoods();//要拿的货
-	int i= 0;//第i优的泊位
 	int berthId = bestBerth[g.pos.x][g.pos.y].first; //找到最优泊位(必定可达)
-//	while(berth[berthId].presure>Parameter::berthMaxPresure&& getBlockId(g.pos)== getBlockId(berth[berthQueue[g.pos.x][g.pos.y][i+1].first].getPosition())){
+	int old = berthId;
+	int temp_min = 100;
+	if (berth[berthId].presure > Parameter::berthMaxPresure) {
+		for (int i = 0; i < conVar::maxBerth; i++) {
+			if (berth[i].presure < Parameter::berthMaxPresure && getBlockId(g.pos) == getBlockId(berth[i].getPosition()))
+			{
+				if (berth[i].presure < temp_min || ((berth[i].presure == temp_min) && goodsHeap[berthId].size() < goodsHeap[i].size()))
+				{
+					temp_min = berth[i].presure;
+					berthId = i;
+				}
+			}
+		}
+	}
+//	while(berth[berthId].presure>Parameter::berthMaxPresure&& getBlockId(g.pos)== getBlockId(berth[i].getPosition())){
 //		i+=1;
 //		berthId = berthQueue[g.pos.x][g.pos.y][i].first;//如果压力大且次优泊位可达，转向次优泊位
 //	}
 
 	robot[id].setBerthId(berthId);
-	berth[berthId].presure++;//给泊位上压力
+	if (old != berthId) {
+		berth[berthId].presure++;//给泊位上压力
+		berth[old].presure--;
+	}
 
 	//TODO 后续判断泊位是否忙碌，忙碌就转为后续泊位
 
@@ -347,7 +361,7 @@ bool findNewBerth(int id){
 	int new_berthId = -1, temp = 0;
 	int oldBerthId = robot[id].getBerthId();
 	for (int i = 0; i < conVar::maxBerth; i++) {
-		if (robot[id].getBlockId() == berth[i].getBlockId() && goodsHeap[i].size() > temp) {
+		if (robot[id].getBlockId() == berth[i].getBlockId() && goodsHeap[i].size() > temp && berth[i].presure < Parameter::berthMaxPresure) {
 			new_berthId = i;
 			temp = goodsHeap[i].size();
 		}
@@ -359,7 +373,9 @@ bool findNewBerth(int id){
 //	}
 	if(new_berthId == -1) return false;        //所有泊位都没货
 	robot[id].setBerthId(new_berthId);
-	std::cerr << "nonononono" << std::endl;
+	berth[oldBerthId].presure--;
+	berth[new_berthId].presure++;
+	//std::cerr << "nonononono" << std::endl;
 	return true;
 }
 

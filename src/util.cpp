@@ -119,7 +119,7 @@ bool sortGoodsBerthDist(std::pair<int,int>& a,std::pair<int,int>& b){
 
 int calPriorityGoodsBerth(int value,int dist){
 	/*      通过距离和价格计算得到节点优先级       */
-	return value-dist;
+	return value - dist;
 }
 
 int findBerthId(Goods g){
@@ -277,7 +277,19 @@ void multiSourceBFS() {
 }
 
 
-
+void finalRobotBerth() {
+	int sum[10];
+	memset(sum, 0, sizeof(sum));
+	for (auto i : aliveRobotId) {
+		for (int j = 0; j < conVar::maxBerth; j++) {
+			if (shipTargetBerth[j] && sum[j] < 2) {
+				robot[i].setBerthId(j);
+				sum[j]++;
+				break;
+			}
+		}
+	}
+}
 
 
 

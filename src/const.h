@@ -22,7 +22,7 @@ namespace conVar{
 namespace Parameter{
 	const int outGoodsHeapSurplusFrame = 200;                          //出物品队列剩余帧数
 	const int goodsPermitDeathFrame = 40;                              //货物消失容许误差帧数
-	const int berthMaxPresure = 1;                                     //泊位最大压力
+	const int berthMaxPresure = 2;                                     //泊位最大压力
 }
 
 /*    常用结构体    */

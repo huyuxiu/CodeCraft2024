@@ -33,10 +33,16 @@ int main(){
 //		for (int i = 0; i < conVar::maxBerth; i++)
 //			std::clog << berth[i].getGoods_size() <<" ";
 //		std::clog << std::endl;
+//		int sum = 0;
+//		for (int i = 0; i < conVar::maxBerth; i++)
+//			sum += berth[i].presure;
+//		std::clog << sum <<std::endl;
 		std::fflush(stdout);
 		/*      货物进机器人货物队列      */
 
 		/*      指令进机器人指令队列      */
+		//if (frameId > 12000)
+			//finalRobotBerth();
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
 

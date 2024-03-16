@@ -25,4 +25,5 @@ bool isLinked(Position start,Position end);                                 //�
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet);          //碰撞A*
 std::deque<PPI> bfsTarget(Position startPos, char target);                  //bfs寻路
 void multiSourceBFS();
+void finalRobotBerth();
 #endif //UTIL_H
