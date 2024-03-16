@@ -335,13 +335,13 @@ void clusteringBerth(){
 	}
 }
 
-
 int findNewRobot(int classId,int berthId){
-	for(int i : robot_in_class[classId]){
-		if(robotGoodsQueue[i].size()<Parameter::maxRobotGoodsQueue&&robot[i].getBerthId()){
+	for(int i : robot_in_class[classId]) {
+		if (robotGoodsQueue[i].size() < Parameter::maxRobotGoodsQueue && robot[i].getBerthId()) {
 			return i;
 		}
-
+	}
+}
 void calCenterPos(){
 	for(int i = 0; i < totalClass; i++){
 		Position p(0,0);
@@ -378,12 +378,12 @@ void distributeRobots(){
 			if(!busy_robots.count(r)) free_robots.push_back(r);
 		}
 		if(!free_robots.size()){
-//			std::clog <<  "block" << b << std::endl;
-//			for(auto c:berthss) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-//			for(int i : class_in_block[b]){
-//				std::clog << "class" << i << std::endl;
-//				for(int j : robot_in_class[i]) std::clog << "robot" << j << std::endl;
-//			}
+//            std::clog <<  "block" << b << std::endl;
+//            for(auto c:berthss) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+//            for(int i : class_in_block[b]){
+//                std::clog << "class" << i << std::endl;
+//                for(int j : robot_in_class[i]) std::clog << "robot" << j << std::endl;
+//            }
 			continue; //没有闲人，撤退！
 		}
 
@@ -401,8 +401,8 @@ void distributeRobots(){
 
 		//保证每个类先分一个机器人（安排第一个机器人到哪个类）
 		for(int j = 1; j <= class_number; j++){
-				dp[1][j] = manhattanDist(robot[free_robots[0]].getPosition(), classCenterPos[class_in_block[b][j-1]]);
-				path[1][j] = j;
+			dp[1][j] = manhattanDist(robot[free_robots[0]].getPosition(), classCenterPos[class_in_block[b][j-1]]);
+			path[1][j] = j;
 		}
 		//枚举后面机器人分不分
 		for(int i = 2, dist; i <= robot_number; i++)
@@ -428,8 +428,13 @@ void distributeRobots(){
 			robot[free_robots[i]].setClassId(class_in_block[b][res[i]-1]);
 		}
 
+//        std::clog <<  "block" << b << std::endl;
+//        for(auto c:berthss) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+//        for(int i : class_in_block[b]){
+//            std::clog << "class" << i << std::endl;
+//            for(int j : robot_in_class[i]) std::clog << "robot" << j << std::endl;
+//        }
 	}
-	return -1;
 }
 
 void balanceRobot(){

@@ -25,14 +25,12 @@ int main(){
 				}
 			}
 
-			for(int i :aliveRobotId){
-				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
-				robot_in_class[robot[i].getClassId()].push_back(i);
-			}
+//			for(int i :aliveRobotId){
+//				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
+//				robot_in_class[robot[i].getClassId()].push_back(i);
+//			}
 			//balanceRobot();
-
 			distributeRobots();
-
 			flag = false;
 		}
 		/*      指令序列输出      */
