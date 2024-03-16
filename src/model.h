@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 #include <cmath>
 #include <deque>
 extern char map[conVar::maxX+1][conVar::maxY+1];                                         //地图
@@ -37,10 +38,10 @@ extern int shipTargetBerth[conVar::maxBerth];
 extern std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                     //地图上某点的最近泊位
 extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
 extern int totalClass;                                                                   //总共类的数量
-extern std::unordered_map<int, std::vector<int>> berth_in_block;
-extern std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的泊位id
-extern std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid::类的id
+extern std::unordered_map<int, std::vector<int>> berth_in_block;                        //blockid:包含的泊位id
+extern std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的机器人id
+extern std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:包含的类id
+extern std::unordered_map<int,std::vector<int>> robot_in_class;                         //classid:包含的机器人id，初始化时候安排
 extern std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
-extern std::unordered_map<int,Position> classCenterPos;                  //类中心位置
-extern std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
+extern std::unordered_map<int, Position> classCenterPos;                  //类中心位置
 #endif //MODEL_H

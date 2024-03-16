@@ -25,4 +25,6 @@ void clusteringBerth();                                                     //�
 void calCenterPos();
 int findNewRobot(int classId,int berthId);                                              //找空闲机器人
 void balanceRobot();//平衡机器人
+void distributeRobots();                                                    //初始化时分配机器人到类
+
 #endif //UTIL_H

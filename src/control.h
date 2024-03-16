@@ -15,4 +15,6 @@ int maxGoodsBerth();
 void robotAfterCollision(int id);                                  //机器人碰撞
 void shipFull(int id);
 void shipGreedy(int id);
+int findNewRobot(int classId,int berthId);
+
 #endif //CONRTOL_H

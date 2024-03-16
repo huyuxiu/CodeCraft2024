@@ -391,3 +391,12 @@ void robotAfterCollision(int id) {
 		IO::ROBOT::move(id, front);
 	}
 }
+
+int findNewRobot(int classId,int berthId){
+	for(int i : robot_in_class[classId]){
+		if(robotGoodsQueue[i].size()<Parameter::maxRobotGoodsQueue&&robot[i].getBerthId()){
+			return i;
+		}
+	}
+	return -1;
+}

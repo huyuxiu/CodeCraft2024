@@ -19,10 +19,10 @@ public:
 	Goods getGoods() const;                         //获取机器人货物
 	int getBlockId() const;                         //获取机器人联通块id
 	void setBlockId(int blockId);                              //设置机器人联通块id
-	int getBerthId() const;
 	int getClassId() const;                         //获取机器人类id
 	void setClassId(int classId);                   //设置机器人类id
-	void setBerthId(int berthId);
+	int getBerthId() const;                         //获取机器人泊位id
+	void setBerthId(int berthId);                   //设置机器人泊位id
 private:
 	int id_;                                        //机器人id
 	int berthId_;                                   //机器人目标泊位id

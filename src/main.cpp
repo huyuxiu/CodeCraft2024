@@ -8,27 +8,31 @@
 #include "const.h"
 #include "util.h"
 int main(){
-	srand(time(0)); // 设置随机种子
+	srand(time(0)); //设置随机种子
 	IO::init();
 	int totalMoney = 0;
 	bool flag = true;
-	for(frameId; frameId<=15000; ){
+	for(frameId; frameId <= 15000; ){
+
 		IO::readFrame();
-		if(flag){
-			//第一次执行
-			for(int i=0; i < conVar::maxRobot; i++){
+		if(flag){   //第一次执行
+			for(int i = 0; i < conVar::maxRobot; i++){ //判断机器人死活
 				int blockId = getBlockId(robot[i].getPosition());
 				robot[i].setBlockId(blockId);
-				if(blockId!=-1){
+				if(blockId != -1){
 					aliveRobotId.push_back(i);
 					robot_in_block[blockId].push_back(i);
 				}
 			}
+
 			for(int i :aliveRobotId){
 				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
 				robot_in_class[robot[i].getClassId()].push_back(i);
 			}
-			balanceRobot();
+			//balanceRobot();
+
+			distributeRobots();
+
 			flag = false;
 		}
 		/*      指令序列输出      */
