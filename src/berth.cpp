@@ -76,3 +76,4 @@ int Berth::getClassId() const{
 void Berth::setClassId(int classId){
 	classId_ = classId;
 }
+

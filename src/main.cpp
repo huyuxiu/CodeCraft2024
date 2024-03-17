@@ -29,15 +29,10 @@ int main(){
 //				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
 //				robot_in_class[robot[i].getClassId()].push_back(i);
 //			}
-			//balanceRobot();
+//			balanceRobot();
 			distributeRobots();
 			flag = false;
 		}
-		/*      指令序列输出      */
-		robotMove();
-		shipToBerth();
-		puts("OK");
-		std::fflush(stdout);
 		/*      指令进机器人指令队列      */
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
@@ -50,6 +45,11 @@ int main(){
 				robotFindGood(i);
 			}
 		}
+		/*      指令序列输出      */
+		robotMove();
+		shipToBerth();
+		puts("OK");
+		std::fflush(stdout);
 		if(frameId==14199) std::clog<<totalMoney<<std::endl;
 		if(frameId==14999) std::clog<<totalMoney<<std::endl;
 	}

@@ -105,9 +105,9 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 
 
 
-int calPriorityGoodsBerth(int value,int dist){
+double calPriorityGoodsBerth(Goods g){
 	/*      通过距离和价格计算得到节点优先级       */
-	return value-dist;
+	return double(g.value)-2*double(g.berthDist);
 }
 
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
@@ -214,11 +214,12 @@ void multiSourceBFS(){
 		bestBerth[p.x][p.y].first = i;
 		bestBerth[p.x][p.y].second = 0;
 		q.push(p);
+		berthArea[i] = 1;
 	}
 	while(!q.empty()){
 		Position t = q.front();
 		q.pop();
-		for(int i =0;i<4;i++){
+		for(int i = 0; i < 4; i++){
 			int a = t.x+dx[i];
 			int b = t.y+dy[i];
 			if(a<0||a>conVar::maxX||b<0||b>conVar::maxY) continue;
@@ -227,6 +228,7 @@ void multiSourceBFS(){
 			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
 			bestBerth[a][b].second = bestBerth[t.x][t.y].second+1;
 			q.push(Position(a,b));
+			berthArea[bestBerth[t.x][t.y].first] ++;
 		}
 	}
 }
@@ -295,9 +297,7 @@ void clusteringBerth(){
 		auto q = p.second;
 		if(q.size() > 2){ //需要再分类
 			int k = std::ceil(q.size() / 2); //需要分成的类数
-			totalClass += k;//记录所有连通块分为几类
 			int max_iterations = 100;
-
 
 			/*      kmeans聚类        */
 			std::vector<int> cx, cy; //初始化k个中心
@@ -306,41 +306,49 @@ void clusteringBerth(){
 				cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
 			}
 
+			std::unordered_map<int, std::vector<int>> center_berth;
 			for(int i = 0; i < max_iterations; i++){ //迭代
-				berthInCenter.clear();
+				center_berth.clear();
 				for(int j = 0; j < q.size(); j++){ //分配每个样本到最近的中心
 					int min = 0, min_dist = 1e8, dist;
 					for(int s = 0; s < k; s++){
 						dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
 						if(dist < min_dist) min_dist = dist, min = s;
 					}
-					berthInCenter[min].push_back(q[j]);
+					center_berth[min].push_back(q[j]);
 				}
 
 				for(int s = 0; s < k; s++){ //更新聚类中心
 					cx[s] = 0, cy[s] = 0;
-					for(auto b : berthInCenter[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
-					cx[s] /= berthInCenter[s].size(), cy[s] /= berthInCenter[s].size();
+					for(auto b : center_berth[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
+					cx[s] /= center_berth[s].size(), cy[s] /= center_berth[s].size();
 				}
 			}
 
 			for(int s = 0; s < k; s++){
-				for(auto b : berthInCenter[s]) berth[b].setClassId(cnt);
+				for(auto b : center_berth[s]){
+					berth[b].setClassId(cnt);
+					berthInCenter[cnt].push_back(b);
+				}
 				class_in_block[p.first].push_back(cnt++);
 			}
 		}else{
-			for(auto b:q) berth[b].setClassId(cnt);
+			for(auto b:q){
+				berth[b].setClassId(cnt);
+				berthInCenter[cnt].push_back(b);
+			}
 			class_in_block[p.first].push_back(cnt++);
 		}
 	}
+	totalClass = cnt;
 }
-
 int findNewRobot(int classId,int berthId){
 	for(int i : robot_in_class[classId]) {
-		if (robotGoodsQueue[i].size() < Parameter::maxRobotGoodsQueue && robot[i].getBerthId()) {
+		if (robotGoodsQueue[i].size() < Parameter::maxRobotGoodsQueue && robot[i].getBerthId()==berthId) {
 			return i;
 		}
 	}
+	return -1;
 }
 void calCenterPos(){
 	for(int i = 0; i < totalClass; i++){
@@ -355,115 +363,200 @@ void calCenterPos(){
 	}
 }
 
-void distributeRobots(){
-	for(int b = 0; b < maxBlockId; b++){ //遍历每个连通块
-		auto berthss = berth_in_block[b]; //连通块里的泊位id
 
-
-		//初始化分配机器人到最佳泊位
-		std::unordered_set<int> busy_robots; //已分配的机器人id
-		std::unordered_map<int, std::pair<int, int>> berth_robot; //berthid：分配的机器人id,距离
-		for(int r:robot_in_block[b]){ //遍历连通块里的机器人竞争最佳泊位
-			auto best_berth = bestBerth[robot[r].getPosition().x][robot[r].getPosition().y];
-			if(!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second) berth_robot[best_berth.first] = {r, best_berth.second};
-		}
-		for(auto best_pair:berth_robot){ //分配竞争到最佳泊位的机器人到类里
-			robot_in_class[berth[best_pair.first].getClassId()].push_back(best_pair.second.first);
-			busy_robots.insert(best_pair.second.first);
-		}
-
-		//还有哪些机器人没有分配
-		std::vector<int> free_robots; //闲人id
-		for(int r:robot_in_block[b]){
-			if(!busy_robots.count(r)) free_robots.push_back(r);
-		}
-		if(!free_robots.size()){
-//            std::clog <<  "block" << b << std::endl;
-//            for(auto c:berthss) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-//            for(int i : class_in_block[b]){
-//                std::clog << "class" << i << std::endl;
-//                for(int j : robot_in_class[i]) std::clog << "robot" << j << std::endl;
-//            }
-			continue; //没有闲人，撤退！
-		}
-
-
-		int robot_number = free_robots.size();
-		int class_number = class_in_block[b].size();
-		std::vector<std::vector<int>> dp(robot_number+1, std::vector<int>(class_number+1, 0x3f3f3f3f));
-		std::vector<std::vector<int>> path(robot_number+1, std::vector<int>(class_number+1, 0));
-		for(auto i : free_robots){
-			for(auto j:class_in_block[b]){
-				std::cout << manhattanDist(robot[i].getPosition(), classCenterPos[j]) << " ";
-			}
-			puts("");
-		}
-
-		//保证每个类先分一个机器人（安排第一个机器人到哪个类）
-		for(int j = 1; j <= class_number; j++){
-			dp[1][j] = manhattanDist(robot[free_robots[0]].getPosition(), classCenterPos[class_in_block[b][j-1]]);
-			path[1][j] = j;
-		}
-		//枚举后面机器人分不分
-		for(int i = 2, dist; i <= robot_number; i++)
-			for(int j = 1; j <= class_number; j++){
-				dist = manhattanDist(robot[free_robots[i-1]].getPosition(), classCenterPos[class_in_block[b][j-1]]); //如果机器人i分到类j
-				if(dp[i-1][j-1] + dist < dp[i][j]){
-					dp[i][j] = dp[i-1][j-1] + dist;
-					path[i][j] = j;
-				}else{ //如果机器人i不分到类j
-					dp[i][j] = dp[i-1][j];
-					path[i][j] = path[i-1][j];
-				}
-			}
-
-		std::vector<int> res;
-		res.resize(robot_number);
-		for(int i = robot_number, cur = class_number; i >= 1; i--){
-			res[i-1] = path[i][cur];
-			cur = path[i][cur] -1;
-		}
-		for(int i = 0; i < res.size(); i++){
-			robot_in_class[class_in_block[b][res[i]-1]].push_back(free_robots[i]);
-			robot[free_robots[i]].setClassId(class_in_block[b][res[i]-1]);
-		}
-
-//        std::clog <<  "block" << b << std::endl;
-//        for(auto c:berthss) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-//        for(int i : class_in_block[b]){
-//            std::clog << "class" << i << std::endl;
-//            for(int j : robot_in_class[i]) std::clog << "robot" << j << std::endl;
-//        }
-	}
-}
 
 void balanceRobot(){
 	for(int i =0;i<maxBlockId;i++){
-		int minClass = class_in_block[i][0],maxClass = class_in_block[i][0],minSize = 1e8,maxSize = 0;
+
 		bool flag = true;
 		while(flag){
+			int minClass = class_in_block[i][0],maxClass = class_in_block[i][0],minSize = 1e8,maxSize = 0;
 			for(int j = 0;j<class_in_block[i].size();j++){
 				flag = false;
+
 				int classId = class_in_block[i][j];
-				if(robot_in_class[classId].size()==0){
+				if(robot_in_class[classId].size()<minSize&&robot_in_class[classId].size()<berthInCenter[classId].size()){
+					minSize = robot_in_class[classId].size();
 					minClass = classId;
-					minSize = goodsHeap[classId].size();
 					flag = true;
 				}
-				if(robot_in_class[classId].size()>minSize){
+				if(robot_in_class[classId].size()>maxSize&&robot_in_class[classId]>berthInCenter[classId]){
 					maxClass = classId;
 					maxSize = robot_in_class[classId].size();
 				}
 			}
 			//交换
-			if(robot_in_class[minClass].size()>0){
-				robot[robot_in_class[minClass][0]].setClassId(maxClass);
-				robot_in_class[minClass].erase(robot_in_class[minClass].begin());
-				robot_in_class[maxClass].push_back(robot_in_class[minClass][0]);
+			if(robot_in_class[maxClass].size()>0){
+				robot[robot_in_class[maxClass][0]].setClassId(minClass);
+				robot_in_class[maxClass].erase(robot_in_class[maxClass].begin());
+				robot_in_class[minClass].push_back(robot_in_class[maxClass][0]);
 			}
+
+
 
 		}
 
 
+	}
+}
+
+void getStarBerth(){
+	for(int c = 0;c<totalClass;c++){
+		int maxVelocity = 0;
+		int starId = 0;
+		for(int b:berthInCenter[c]){
+			if(berth[b].getVelocity()>maxVelocity){
+				starId = b;
+				maxVelocity = berth[b].getVelocity();
+			}
+		}
+		starBerth.insert({c, starId});
+	}
+}
+
+struct CompareDouble {
+	bool operator()(const double& d1, const double& d2) const {
+		return d1 > d2;
+	}
+};
+
+void distributeRobots(){
+	for(int b = 0; b < maxBlockId; b++){ //遍历每个连通块
+		auto berthss = berth_in_block[b]; //连通块里的泊位id
+		//计算类面积，确定每个类要分配的机器人数量
+		int robot_number = robot_in_block[b].size(), rest_robot_number = robot_in_block[b].size();
+		double total_area = 0;
+		std::unordered_map<int, double> class_area; //类id:类面积
+		std::multimap<double,int, CompareDouble> class_area_sort; //未分配的比重:类id
+		std::unordered_map<int, std::pair<int, bool>> class_robot_number; //类id:类机器人数, 是否已满足硬需求（最少分配一个）
+		for(int ber:berthss){
+			class_area[berth[ber].getClassId()] += berthArea[ber];
+			total_area += berthArea[ber];
+		}
+		for(auto p:class_area){ //首次分配
+			int res = std::min(std::max(int(robot_number * p.second / total_area), 1), rest_robot_number);
+			class_robot_number[p.first] = {res, false};
+			rest_robot_number -= res; //剩下几个可以分
+
+			double rest = p.second / total_area - res / robot_number; //还有多少比重未分配
+			if(rest != 0) class_area_sort.insert({rest, p.first});
+		}
+		if(rest_robot_number != 0){ //二次分配
+			for(auto [area, cid]:class_area_sort){
+				if(rest_robot_number == 0) break;
+				class_robot_number[cid].first ++;
+				rest_robot_number --;
+			}
+		}
+
+
+		//初始化分配机器人到最佳泊位
+		std::unordered_set<int> free_robots; //闲人id
+		std::unordered_map<int, std::pair<int, int>> berth_robot; //berthid：分配的机器人id,距离
+		for(int r:robot_in_block[b]){ //遍历连通块里的机器人竞争最佳泊位（泊位选机器人
+			free_robots.insert(r);
+			auto best_berth = bestBerth[robot[r].getPosition().x][robot[r].getPosition().y];
+			if(!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second) berth_robot[best_berth.first] = {r, best_berth.second};
+		}
+		for(auto best_pair:berth_robot){ //分配竞争到最佳泊位的机器人到类里
+			robot_in_class[berth[best_pair.first].getClassId()].push_back(best_pair.second.first);
+			class_robot_number[berth[best_pair.first].getClassId()].first --;
+			class_robot_number[berth[best_pair.first].getClassId()].second = true;
+			robot[best_pair.second.first].setClassId(berth[best_pair.first].getClassId());
+			free_robots.erase(best_pair.second.first);
+		}
+		if(!free_robots.size()) continue; //没有闲人，撤退！
+
+
+		std::unordered_map<int, int> free_class; //需求类id:需求个数
+		std::unordered_set<int> must_class; //硬需求类id
+		for(auto [cid, i]:class_robot_number){
+			if(i.first > 0){
+				free_class[cid] = i.first;
+				if(i.second==false) must_class.insert(cid);
+			}
+		}
+//先分给硬需求类（类选机器人
+		while(must_class.size()){
+			if(!free_robots.size()) break;
+			std::unordered_map<int, std::vector<std::pair<int, int>>> res; //类id:机器人id,距离
+			for(auto i:free_robots){
+				int dist = 0x3f3f3f3f, class_id, tmp; //机器人离哪个类最近
+				for(auto j:must_class){
+					tmp = manhattanDist(robot[i].getPosition(), classCenterPos[j]);
+					if(tmp < dist) class_id = j, dist = tmp;
+				}
+				if(!res.count(class_id) || (free_robots.size() < must_class.size() && res[class_id].size() < free_class[class_id])){//当闲人比硬需求类个数多时允许排单
+					res[class_id].push_back({i, dist});
+				}else{
+					for(auto v:res[class_id]){
+						if(dist < v.second) v = {i, dist};
+					}
+				}
+			}
+			for(auto [c_id, v]:res){ //分配竞争到硬需求类的机器人到类里
+				for(auto [r_id, dist]:v){
+					robot_in_class[c_id].push_back(r_id);
+					robot[r_id].setClassId(c_id);
+					free_robots.erase(r_id);
+					if(free_class.count(c_id)){
+						free_class[c_id] --;
+						if(free_class[c_id] == 0) free_class.erase(c_id);
+					}
+				}
+				must_class.erase(c_id);
+			}
+		}
+
+
+		//再分给软需求类
+		while(free_class.size()){
+			if(!free_robots.size()) break;
+			std::unordered_map<int, std::vector<std::pair<int, int>>> res1; //类id:机器人id,距离
+			for(auto i:free_robots){ //机器人离哪个类近
+				int dist = 0x3f3f3f3f, class_id, tmp;
+				for(auto [cid,n]:free_class){
+					tmp = manhattanDist(robot[i].getPosition(), classCenterPos[cid]);
+					if(tmp < dist) class_id = cid, dist = tmp;
+				}
+				if(!res1.count(class_id) || res1[class_id].size() < free_class[class_id]){
+					res1[class_id].push_back({i, dist});
+				}else{
+					for(auto v:res1[class_id]){
+						if(dist < v.second) v = {i, dist};
+					}
+				}
+			}
+			for(auto [c_id, vect] :res1){
+				for(auto [r_id,dist]:vect){
+					robot_in_class[c_id].push_back(r_id);
+					robot[r_id].setClassId(c_id);
+					free_robots.erase(r_id);
+					if(free_class.count(c_id)){
+						free_class[c_id]--;
+						if(free_class[c_id]== 0) free_class.erase(c_id);
+					}
+				}
+			}
+		}
+
+		//再分给最佳泊位
+		for(auto p:free_robots){
+			int best_berth = bestBerth[robot[p].getPosition().x][robot[p].getPosition().y].first;
+			robot_in_class[berth[best_berth].getClassId()].push_back(p);
+			robot[p].setClassId(berth[best_berth].getClassId());
+		}
+	}
+
+
+
+
+	for(int b = 0; b < maxBlockId; b++){
+		std::clog << "block" << b << std::endl;
+		for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+		for(auto c:class_in_block[b]){
+			std::clog << "class" << c << std::endl;
+			for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
+		}
 	}
 }

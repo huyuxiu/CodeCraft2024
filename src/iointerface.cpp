@@ -48,6 +48,8 @@ namespace IO {
 		}
 		memset(shipTargetBerth,0,sizeof shipTargetBerth);
 
+		getStarBerth();     //获取类内运输能力高的泊位
+
 	    char ok[100];
 	    scanf("%s", &ok);
 		puts("OK");
@@ -70,7 +72,7 @@ namespace IO {
 				/*     判断泊位连通性     */
 				goods[goodsId].berthDist = bestBerth[x][y].second;
 				goods[goodsId].berthId = bestBerth[x][y].first;
-				goods[goodsId].priority = calPriorityGoodsBerth(value,goods[goodsId].berthDist);
+				goods[goodsId].priority = calPriorityGoodsBerth(goods[goodsId]);
 				goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列
 			}
 

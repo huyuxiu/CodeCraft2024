@@ -27,8 +27,8 @@ extern int money;                                                               
 extern int shipCapacity;                                                                 //船的容积
 extern int dx[4];                                                                        //机器人移动
 extern int dy[4];                                                                        //机器人移动
-extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10];     //物品到港口优先队列
-extern std::queue<Goods> robotGoodsQueue[10];                                            //机器人拿货队列
+extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10]; //物品到港口优先队列
+extern std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToRobot> robotGoodsQueue[10];//机器人拿货队列
 extern std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 extern int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 extern std::vector<int> aliveRobotId;                                                    //活着的机器人
@@ -42,6 +42,8 @@ extern std::unordered_map<int, std::vector<int>> berth_in_block;                
 extern std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的机器人id
 extern std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:包含的类id
 extern std::unordered_map<int,std::vector<int>> robot_in_class;                         //classid:包含的机器人id，初始化时候安排
-extern std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
-extern std::unordered_map<int, Position> classCenterPos;                  //类中心位置
+extern std::unordered_map<int, std::vector<int>> berthInCenter;                         //中心，泊位id
+extern std::unordered_map<int, Position> classCenterPos;                                //类中心位置
+extern std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
+extern std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
 #endif //MODEL_H

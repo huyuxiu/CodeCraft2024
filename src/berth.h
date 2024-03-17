@@ -13,6 +13,7 @@ private:
     int velocity_;                          //泊位的装载速度
 	int blockId_;                           //泊位所处联通块
 	int classId_;                           //泊位所属类
+	bool isOpen_;                           //泊位是否关闭
 public:
     Berth(int id, const Position& pos, const int transport_time, const int velocity, int blockId, int classId);     //泊位构造函数
     Berth();                                //船只默认构造函数

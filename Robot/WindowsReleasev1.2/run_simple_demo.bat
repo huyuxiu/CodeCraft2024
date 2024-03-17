@@ -1,0 +1,1 @@
+.\PreliminaryJudge.exe -m maps\map4.txt ..\..\build\Release\main.exe -d .\output.txt -l ERR

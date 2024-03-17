@@ -16,7 +16,7 @@ int dx[4] = {0, 0, -1, 1};                                        // 机器人�
 int dy[4] = {1, -1, 0, 0};                                        // 机器人移动
 std::unordered_map<Position,int> posToInstruction;                                //相对位置到指令
 std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10];     //物品到港口优先队列
-std::queue<Goods> robotGoodsQueue[10];                                          //机器人拿货队列
+std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToRobot> robotGoodsQueue[10];                                          //机器人拿货队列
 std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 std::vector<int> aliveRobotId;                                                     //活的机器人
@@ -32,4 +32,5 @@ std::unordered_map<int,std::vector<int>> class_in_block;                        
 std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
 std::unordered_map<int,Position> classCenterPos;    //类中心泊位
 std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
-
+std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
+std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
