@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ToolSet: 11.0 w64 (local)@D:\CLion 2023.3.4\bin\mingw
 Options: 
+=======
+ToolSet: 1.0 (local)Options: 
+>>>>>>> 1d9c2de4d907d266f3dfccfcc2ac720f8cc0247d
 
 Options:

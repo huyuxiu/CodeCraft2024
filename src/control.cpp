@@ -216,6 +216,7 @@ void shipToBerth() {
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
 	int classId = robot[id].getClassId();
+	std::cout << robot[id].getClassId() << std::endl;
 	bool isFind = false;
 	while(!isFind&&goodsHeap[classId].size()){
 		Goods g = goodsHeap[classId].top();

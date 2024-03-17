@@ -73,7 +73,6 @@ void floodFill(Position startPos,int blockId){
 			q[++tt] = {x, y};   // 入队
 			block[x][y] = blockId;
 		}
-
 	}
 }
 
@@ -341,6 +340,7 @@ void clusteringBerth(){
 		}
 	}
 	totalClass = cnt;
+
 }
 int findNewRobot(int classId,int berthId){
 	for(int i : robot_in_class[classId]) {
@@ -427,7 +427,7 @@ void distributeRobots(){
 		int robot_number = robot_in_block[b].size(), rest_robot_number = robot_in_block[b].size();
 		double total_area = 0;
 		std::unordered_map<int, double> class_area; //类id:类面积
-		std::multimap<double,int, CompareDouble> class_area_sort; //未分配的比重:类id
+		std::multimap<double, int, CompareDouble> class_area_sort; //未分配的比重:类id
 		std::unordered_map<int, std::pair<int, bool>> class_robot_number; //类id:类机器人数, 是否已满足硬需求（最少分配一个）
 		for(int ber:berthss){
 			class_area[berth[ber].getClassId()] += berthArea[ber];
@@ -476,7 +476,7 @@ void distributeRobots(){
 				if(i.second==false) must_class.insert(cid);
 			}
 		}
-//先分给硬需求类（类选机器人
+		//先分给硬需求类（类选机器人
 		while(must_class.size()){
 			if(!free_robots.size()) break;
 			std::unordered_map<int, std::vector<std::pair<int, int>>> res; //类id:机器人id,距离

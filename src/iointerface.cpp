@@ -29,15 +29,14 @@ namespace IO {
 		multiSourceBFS();
 
 		/*     floodfill     */
-
-	    for(int i =0;i<10;i++){
+	    for(int i = 0; i < 10; i++){
 		    Position pos = berth[i].getPosition();
-		    if(block[pos.x][pos.y]==-1){
+		    if(block[pos.x][pos.y] == -1){
 				floodFill(pos,maxBlockId++);
 		    }
 			berth[i].setBlockId(block[pos.x][pos.y]);
-
 	    }
+
 		/*      给泊位分类       */
 		clusteringBerth();
 

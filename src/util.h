@@ -7,6 +7,7 @@
 #include<cstring>
 #include <random>
 #include<algorithm>
+#include<map>
 #include<numeric>
 #include <map>
 typedef std::pair<int, Position> PIP;
