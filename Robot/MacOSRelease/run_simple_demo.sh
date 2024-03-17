@@ -1,1 +1,0 @@
-./PreliminaryJudge ../../build/main -m ./maps/map2.txt -d ./output.txt -f 0
