@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/CMakeFiles/main.dir
-C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-=======
-/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/CMakeFiles/main.dir
-/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/yokirrr/Documents/CodeCraft/CodeCraft2024/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
->>>>>>> 1d9c2de4d907d266f3dfccfcc2ac720f8cc0247d
