@@ -34,4 +34,3 @@ std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
 std::unordered_map<int,Position> classCenterPos;    //类中心
 std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
 std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
-std::unordered_map<int, int> berthArea;                                         //berthid:berth面积

@@ -24,6 +24,9 @@ namespace Parameter{
 	const int goodsPermitDeathFrame = 20;                              //货物出机器人队列消失容许误差帧数
 	const int berthMaxPresure = 1;                                     //泊位最大压力
 	const int maxRobotGoodsQueue = 4;                                  //机器人货物队列最大值
+	const int maxFoot = 90;                                             //分类计算的面积范围
+	const double max_area = 0.30;                                       //再分类的最小面积
+	const int max_berth_size = 2;                                       //再分类的最大泊位数
 }
 
 /*    常用结构体    */
