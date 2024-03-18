@@ -48,4 +48,5 @@ extern std::unordered_map<int, std::vector<int>> berthInCenter;                 
 extern std::unordered_map<int, Position> classCenterPos;                                //类中心位置
 extern std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
 extern std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
+extern int maxShipRestTime;
 #endif //MODEL_H

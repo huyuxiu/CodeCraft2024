@@ -16,5 +16,6 @@ void robotAfterCollision(int id);                                  //机器人�
 void shipFull(int id);
 void shipGreedy(int id);
 int findNewRobot(int classId,int berthId);
+void shipModerate(int id);
 
 #endif //CONRTOL_H

@@ -21,7 +21,7 @@ int getBlockId(Position pos);                                               //�
 double calPriorityGoodsBerth(Goods g);                              //通过距离和价格计算得到节点优先级
 bool robotIsCollision(Position pos);                                        //考虑下一帧机器人的碰撞检测
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet);          //碰撞A*
-std::deque<PPI> bfsTarget(Position startPos, char target);                  //bfs寻路
+std::deque<PPI> bfsTarget(Position startPos, char target, bool &isGet);                  //bfs寻路
 void multiSourceBFS();                                                      //初始化时多源bfs找当前点最近泊位
 void clusteringBerth();                                                     //初始化时给泊位分类
 void calCenterPos();
@@ -29,5 +29,4 @@ int findNewRobot(int classId,int berthId);                                      
 void balanceRobot();//平衡机器人
 void distributeRobots();                                                    //初始化时分配机器人到类
 void getStarBerth();                                                        //获取类内运输能力高的泊位
-
 #endif //UTIL_H

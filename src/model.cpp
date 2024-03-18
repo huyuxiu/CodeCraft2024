@@ -22,6 +22,7 @@ int block[conVar::maxX+1][conVar::maxY+1];                                      
 std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
 int maxBlockId = 0;//连通块数量
+int maxShipRestTime = 3;
 int shipTargetBerth[conVar::maxBerth];
 std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点

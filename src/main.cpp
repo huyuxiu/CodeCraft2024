@@ -13,7 +13,6 @@ int main(){
 	int totalMoney = 0;
 	bool flag = true;
 	for(frameId; frameId <= 15000; ){
-
 		IO::readFrame();
 		if(flag){   //第一次执行
 			for(int i = 0; i < conVar::maxRobot; i++){ //判断机器人死活

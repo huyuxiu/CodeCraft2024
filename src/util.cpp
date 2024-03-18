@@ -159,14 +159,14 @@ std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
 	return res;
 }
 
-std::deque<PPI> bfsTarget(Position startPos, char target) {
+std::deque<PPI> bfsTarget(Position startPos, char target, bool &isGet) {
 	std::deque<PPI> res;
 	std::queue<Position>q;
 	std::unordered_map<Position, PPI> prev;
 	std::unordered_map<Position, bool> visitited;
 	visitited[startPos] = true;
 
-	bool isGet = false;
+	isGet = false;
 	Position end;
 	q.push(startPos);
 
@@ -196,7 +196,6 @@ std::deque<PPI> bfsTarget(Position startPos, char target) {
 	}
 	return res;
 }
-
 void multiSourceBFS(){
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
 	for (int i = 0; i <= conVar::maxX; ++i) {
