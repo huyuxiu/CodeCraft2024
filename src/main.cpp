@@ -8,53 +8,53 @@
 #include "const.h"
 #include "util.h"
 int main(){
-	// 设置随机种子
-	srand(time(0));
+	srand(time(0)); //设置随机种子
 	IO::init();
+	int totalMoney = 0;
 	bool flag = true;
-	for(frameId; frameId<=15000; ){
-		memset(robotMap,0,sizeof robotMap);
+	for(frameId; frameId <= 15000; ){
+
 		IO::readFrame();
-		if(flag){
-			for(int i=0;i<conVar::maxRobot;i++){
+		if(flag){   //第一次执行
+			for(int i = 0; i < conVar::maxRobot; i++){ //判断机器人死活
 				int blockId = getBlockId(robot[i].getPosition());
 				robot[i].setBlockId(blockId);
-				if(blockId!=-1){
+				if(blockId != -1){
 					aliveRobotId.push_back(i);
+					robot_in_block[blockId].push_back(i);
 				}
 			}
+
+//			for(int i :aliveRobotId){
+//				robot[i].setClassId(berth[robot[i].getBerthId()].getClassId());
+//				robot_in_class[robot[i].getClassId()].push_back(i);
+//			}
+//			balanceRobot();
+			distributeRobots();
 			flag = false;
 		}
-
-		/*      指令序列输出      */
-		robotMove();
-		shipToBerth();
-		puts("OK");
-//		for (int i = 0; i < conVar::maxBerth; i++)
-//			std::clog << berth[i].getGoods_size() <<" ";
-//		std::clog << std::endl;
-//		int sum = 0;
-//		for (int i = 0; i < conVar::maxBerth; i++)
-//			sum += berth[i].presure;
-//		std::clog << sum <<std::endl;
-		std::fflush(stdout);
-		/*      货物进机器人货物队列      */
-
 		/*      指令进机器人指令队列      */
-		//if (frameId > 12000)
-			//finalRobotBerth();
 		for(auto i:aliveRobotId){
 			if(!robotMoveQueue[i].empty()) continue;        //指令序列非空跳过
-
 			if(robot[i].hasGoods()){
 				robotFindBerth(i);
+				totalMoney+=robot[i].getGoods().value;
 			}
 			else{
-
 				if(robotGoodsQueue[i].empty()) distributeGoods(i);     //给机器人分配货物
 				robotFindGood(i);
 			}
 		}
-
+		/*      指令序列输出      */
+		robotMove();
+		shipToBerth();
+		puts("OK");
+		for (int i = 0; i < conVar::maxBerth; i++)
+			std::clog << berth[i].getGoods_size() << " ";
+		std::clog << std::endl;
+		std::fflush(stdout);
+		if(frameId==14199) std::clog<<totalMoney<<std::endl;
+		if(frameId==14999) std::clog<<totalMoney<<std::endl;
 	}
+
 }

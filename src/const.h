@@ -20,9 +20,14 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
-	const int outGoodsHeapSurplusFrame = 200;                          //出物品队列剩余帧数
-	const int goodsPermitDeathFrame = 40;                              //货物消失容许误差帧数
-	const int berthMaxPresure = 2;                                     //泊位最大压力
+	const int outGoodsHeapSurplusFrame = 0;                          //货物出物品队列消失容许误差帧数
+	const int goodsPermitDeathFrame = 20;                              //货物出机器人队列消失容许误差帧数
+	const int berthMaxPresure = 1;                                     //泊位最大压力
+	const int maxRobotGoodsQueue = 4;                                  //机器人货物队列最大值
+	const int maxFoot = 90;                                             //分类计算的面积范围
+	const double max_area = 0.30;                                       //再分类的最小面积
+	const int max_berth_size = 2;                                       //再分类的最大泊位数
+
 }
 
 /*    常用结构体    */
@@ -60,7 +65,7 @@ struct Goods{
 	int deathId;                                                                                                  //这一帧到的时候货物消失
 	int berthDist;                                                                                                //到泊点和虚拟点最近距离
 	int berthId;                                                                                                  //泊点数组的下标，下标越小距离泊点越近
-	int priority;                                                                                                 //优先级
+	double priority;                                                                                                 //优先级
 	std::pair<int,int> berthQueue[10];                                                                            //泊点队列
 	Goods(int value, const Position pos,int deathId) : value(value), pos(pos),deathId(deathId),priority(1e8) {}   //货物构造函数
 	Goods() : value(0), pos(),deathId(0),priority(1e8) {}                                                         //货物默认构造函数
@@ -80,6 +85,11 @@ struct CompareGoodsToBerth {
 		return a.priority < b.priority;
 	}
 };
-
+struct CompareGoodsToRobot{
+	/*      机器人优先队列，把快消失的提前拿了       */
+	bool operator()(const Goods& a, const Goods& b) const {
+		return a.deathId < b.deathId;
+	}
+};
 
 #endif // CONST_H

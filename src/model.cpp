@@ -16,15 +16,22 @@ int dx[4] = {0, 0, -1, 1};                                        // 机器人�
 int dy[4] = {1, -1, 0, 0};                                        // 机器人移动
 std::unordered_map<Position,int> posToInstruction;                                //相对位置到指令
 std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToBerth>  goodsHeap[10];     //物品到港口优先队列
-std::queue<Goods> robotGoodsQueue[10];                                          //机器人拿货队列
+std::priority_queue<Goods,std::vector<Goods>,CompareGoodsToRobot> robotGoodsQueue[10];                                          //机器人拿货队列
 std::deque<int> robotMoveQueue[10];                                               //机器人指令队列 -1拿货 -2放货
 int block[conVar::maxX+1][conVar::maxY+1];                                        //标记地图的联通块，-1为不可达
 std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
+int maxBlockId = 0;//连通块数量
 int shipTargetBerth[conVar::maxBerth];
-std::pair<int,int> berthQueue[conVar::maxX+1][conVar::maxY+1][10];                //地图上某点到泊位的优先队列
+int maxShipRestTime = 3;
+std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
-int back[4] = {1,0,3,2};                                          //回退当前指令
-std::pair<int, int> bestBerth[conVar::maxX + 1][conVar::maxY + 1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
-
-
+int totalClass = 0;                                                               //总共类的数量
+std::unordered_map<int, std::vector<int>> berth_in_block;                       //blockid:包含的泊位id
+std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的泊位id
+std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:类的id
+std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
+std::unordered_map<int,Position> classCenterPos;    //类中心
+std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
+std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
+std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
