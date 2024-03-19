@@ -20,23 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.20.39.23.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.20.53.35.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.20.56.12.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.20.56.59.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.20.58.19.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.21.00.33.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.21.29.40.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/replay/2024-03-18.21.41.28.rep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/const.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/const.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iointerface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/iointerface.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +100,7 @@
       <workItem from="1710560883263" duration="1318000" />
       <workItem from="1710564009569" duration="34148000" />
       <workItem from="1710758898174" duration="5581000" />
-      <workItem from="1710765316050" duration="11824000" />
+      <workItem from="1710765316050" duration="12155000" />
     </task>
     <servers />
   </component>
