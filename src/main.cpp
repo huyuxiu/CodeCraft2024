@@ -29,6 +29,7 @@ int main(){
 //				robot_in_class[robot[i].getClassId()].push_back(i);
 //			}
 //			balanceRobot();
+
 			distributeRobots();
 			flag = false;
 		}

@@ -197,6 +197,7 @@ std::deque<PPI> bfsTarget(Position startPos, char target, bool &isGet) {
 	}
 	return res;
 }
+
 void multiSourceBFS(){
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
 	for (int i = 0; i <= conVar::maxX; ++i) {
