@@ -49,8 +49,10 @@ int main(){
 		shipToBerth();
 		puts("OK");
 		std::fflush(stdout);
-		if(frameId==14199) std::clog<<totalMoney<<std::endl;
-		if(frameId==14999) std::clog<<totalMoney<<std::endl;
+		if(Parameter::isDBG){
+			if(frameId==14199) std::clog<<totalMoney<<std::endl;
+			if(frameId==14999) std::clog<<totalMoney<<std::endl;
+		}
 	}
 
 }

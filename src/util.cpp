@@ -288,7 +288,7 @@ std::unordered_map<int, std::vector<int>> kmeans(int k, std::vector<int> q){
 	 * */
 	std::unordered_map<int, std::vector<int>> center_berth; //中心:berthid
 	if(q.size()>2){
-		int max_iterations = k < 4? 50 : 100;
+		int max_iterations = k < 4? 20 : 100;
 		std::vector<int> cx, cy; //初始化k个中心
 		for(int i = 0; i < k; i++){
 			cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
@@ -342,7 +342,7 @@ void clusteringBerth(){
 					for(auto b:berths) class_area[cid] += berthArea[b], total_area += berthArea[b];
 				}
 				for(auto [cid, berths]:center_berth){
-					std::clog << cid << " " << class_area[cid]/total_area << std::endl;
+					if(Parameter::isDBG) std::clog << cid << " " << class_area[cid]/total_area << std::endl;
 					if(berths.size()>=Parameter::max_berth_size && class_area[cid]/total_area>Parameter::max_area)  isOK = false;
 				}
 				if(isOK) break;
@@ -481,8 +481,9 @@ void distributeRobots(){
 				rest_robot_number --;
 			}
 		}
-
-		for(auto [cid, p]:class_robot_number) std::clog << cid << " " << p.first << std::endl;
+		if(Parameter::isDBG){
+			for(auto [cid, p]:class_robot_number) std::clog << cid << " " << p.first << std::endl;
+		}
 
 
 		//初始化分配机器人到最佳泊位
@@ -584,12 +585,14 @@ void distributeRobots(){
 	}
 
 
-	for(int b = 0; b < maxBlockId; b++){
-		std::clog << "block" << b << std::endl;
-		for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-		for(auto c:class_in_block[b]){
-			std::clog << "class" << c << std::endl;
-			for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
+	if(Parameter::isDBG){
+		for(int b = 0; b < maxBlockId; b++){
+			std::clog << "block" << b << std::endl;
+			for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+			for(auto c:class_in_block[b]){
+				std::clog << "class" << c << std::endl;
+				for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
+			}
 		}
 	}
 }

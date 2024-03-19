@@ -20,6 +20,7 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
+	const bool isDBG = false;                                         //debug模式不输出
 	const int outGoodsHeapSurplusFrame = 0;                          //货物出物品队列消失容许误差帧数
 	const int goodsPermitDeathFrame = 20;                              //货物出机器人队列消失容许误差帧数
 	const int berthMaxPresure = 1;                                     //泊位最大压力

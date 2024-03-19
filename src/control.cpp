@@ -273,7 +273,6 @@ void shipToBerth() {
 void distributeGoods(int id){
 	/*      将货物分配给机器人队列       */
 	int classId = robot[id].getClassId();
-	//std::cout << robot[id].getClassId() << std::endl;
 	bool isFind = false;
 	while(!isFind&&goodsHeap[classId].size()){
 		Goods g = goodsHeap[classId].top();
@@ -349,7 +348,7 @@ void robotFindGood(int id){
 		break;
 	}
 	if(!isFind){
-		//std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
+//		if(Parameter::isDBG) std::cerr << "[error][robortGetGood]couldn't find the suitable good." << std::endl;
 		return;
 	}
 	robot[id].carryGoods(g);
@@ -435,6 +434,7 @@ void robotMove(){
 				IO::ROBOT::move(i, front);
 			}
 			else {
+				std::clog << "!" << std::endl;
 				robotAfterCollision(i);
 			}
 		}

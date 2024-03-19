@@ -86,8 +86,6 @@ namespace IO {
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
 			if(frameId==1) robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
-
-			//robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}
 
