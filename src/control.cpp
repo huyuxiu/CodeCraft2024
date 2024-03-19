@@ -126,7 +126,7 @@ void shipModerate(int id) {	//到泊位最多的泊位，船没满继续拿
 		else if (rest_cap >= ship[id].getCapacity() / 4 && !berth[current_berth].getGoods_size()) {		//当前港口搬完但是还能搬去其他地方搬
 			int temp_max = 1000, target_berth = -1;
 			for (int j = 0; j < conVar::maxBerth; j++) {
-				if ( abs(berth[j].getGoods_size() - rest_cap) < temp_max && berth[j].getGoods_size() <= rest_cap + 10  && berth[j].getStatus() == 0 && !shipTargetBerth[j] && frameId + 500 + berth[j].getTransport_time() + maxShipRestTime < 15000) {      //找物品多的港口   abs(berth[j].getGoods_size() - rest_cap)
+				if ( abs(berth[j].getGoods_size() - rest_cap) < temp_max && berth[j].getGoods_size() <= rest_cap + 10  && berth[j].getStatus() == 0 && !shipTargetBerth[j] && frameId + 500 + berth[j].getTransport_time() * 3 + maxShipRestTime < 15000) {      //找物品多的港口   abs(berth[j].getGoods_size() - rest_cap)
 					temp_max = abs(berth[j].getGoods_size() - rest_cap);
 					target_berth = j;
 				}
@@ -388,55 +388,31 @@ void robotFindBerth(int id){
 	}
 }
 
-//void robotMove(){
-//	for(auto i :aliveRobotId){
-//		if(robotMoveQueue[i].empty() ) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
-//
-//		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();                                                                      //取出队头指令
-//		IO::ROBOT::move(i,front);                                                                                                      //执行move指令
-//
-//		if(!robotMoveQueue[i].empty()){                                                                                                            //如果下一操作是get/pull，一起执行
-//			front = robotMoveQueue[i].front();
-//			if(front == -1){
-//				robotMoveQueue[i].pop_front();
-//				IO::ROBOT::get(i);
-//				continue;
-//			}else if(front == -2){
-//				robotMoveQueue[i].pop_front();
-//				IO::ROBOT::pull(i);
-//				berth[robot[i].getGoods().berthId].pullGoods();
-//				continue;
-//			}
-//		}
-//	}
-//}
-//
 void robotMove(){
 	for(auto i :aliveRobotId){
-		if(robotMoveQueue[i].empty() || !robot[i].getStatus()) continue;                                                                           //如果当前指令序列为空or发生碰撞跳过
+		if(robotMoveQueue[i].empty() || !robot[i].getStatus()) continue; //如果当前指令序列为空or发生碰撞跳过
 
-		int front = robotMoveQueue[i].front();
-		robotMoveQueue[i].pop_front();                                                                      //取出队头指令
-		if(front == -1){
-			IO::ROBOT::get(i);
+		int front = robotMoveQueue[i].front(); robotMoveQueue[i].pop_front();
+		int new_x = robot[i].getPosition().x + dx[front], new_y = robot[i].getPosition().y + dy[front];
+		if (!robotIsCollision(Position(new_x, new_y)))
+		{
+			robotMap[new_x][new_y] = 1;
+			robotMap[new_x - dx[front]][new_y - dy[front]] = 0;
+			IO::ROBOT::move(i, front);
+
+			front = robotMoveQueue[i].front();
+			if(front == -1){ //下一步是拿货，拿
+				robotMoveQueue[i].pop_front();
+				IO::ROBOT::get(i);
+			}
+			if(map[new_x][new_y] == 'B' && robot[i].hasGoods()){ //下一个位置该拉&&有货，拉
+				robotMoveQueue[i] = std::deque<int>();
+				IO::ROBOT::pull(i);
+				berth[robot[i].getBerthId()].pullGoods();
+			}
 		}
-		else if(front == -2){
-			IO::ROBOT::pull(i);
-			berth[robot[i].getBerthId()].pullGoods();
-		}//执行move指令
-		else{
-			int new_x = robot[i].getPosition().x + dx[front];
-			int new_y = robot[i].getPosition().y + dy[front];
-			if (!robotIsCollision(Position(new_x, new_y)))
-			{
-				robotMap[new_x][new_y] = 1;
-				robotMap[new_x - dx[front]][new_y - dy[front]] = 0;
-				IO::ROBOT::move(i, front);
-			}
-			else {
-				std::clog << "!" << std::endl;
-				robotAfterCollision(i);
-			}
+		else {
+			robotAfterCollision(i);
 		}
 	}
 }
@@ -481,20 +457,21 @@ void robotAfterCollision(int id) {
 		}
 	}
 	if (robotMoveQueue[id].empty() || !robot[id].getStatus()) return;
-	int front = robotMoveQueue[id].front();
-	robotMoveQueue[id].pop_front();                                                                      //取出队头指令
-	if (front == -1) {
+
+	int front = robotMoveQueue[id].front(); robotMoveQueue[id].pop_front();
+	int new_x = robot[id].getPosition().x + dx[front], new_y = robot[id].getPosition().y + dy[front];
+	robotMap[new_x][new_y] = 1;
+	robotMap[new_x - dx[front]][new_y - dy[front]] = 0;
+	IO::ROBOT::move(id, front);
+
+	front = robotMoveQueue[id].front();
+	if(front == -1){ //下一步是拿货，拿
+		robotMoveQueue[id].pop_front();
 		IO::ROBOT::get(id);
 	}
-	else if (front == -2) {
+	if(map[new_x][new_y] == 'B' && robot[id].hasGoods()){ //下一个位置该拉&&有货，拉
+		robotMoveQueue[id] = std::deque<int>();
 		IO::ROBOT::pull(id);
-		berth[robot[id].getGoods().berthId].pullGoods();
-	}//执行move指令
-	else {
-		int new_x = robot[id].getPosition().x + dx[front];
-		int new_y = robot[id].getPosition().y + dy[front];
-		robotMap[new_x][new_y] = 1;
-		robotMap[new_x - dx[front]][new_y - dy[front]] = 0;
-		IO::ROBOT::move(id, front);
+		berth[robot[id].getBerthId()].pullGoods();
 	}
 }

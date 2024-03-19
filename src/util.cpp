@@ -106,6 +106,7 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 
 double calPriorityGoodsBerth(Goods g){
 	/*      通过距离和价格计算得到节点优先级       */
+//	if(frameId>12000) return double(g.value)-1.5*double(g.berthDist);
 	return double(g.value)-2*double(g.berthDist);
 }
 
@@ -449,7 +450,7 @@ void getStarBerth(){
 
 struct CompareDouble {
 	bool operator()(const double& d1, const double& d2) const {
-		return d1 > d2;
+		return d1 < d2;
 	}
 };
 

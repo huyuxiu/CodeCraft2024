@@ -47,6 +47,7 @@ namespace IO {
 		}
 		memset(shipTargetBerth,0,sizeof shipTargetBerth);
 
+
 		getStarBerth();     //获取类内运输能力高的泊位
 
 	    char ok[100];
