@@ -358,7 +358,6 @@ void robotFindGood(int id){
 		auto m = moves.front(); moves.pop_front();
 		robotMoveQueue[id].push_back(m.second);                                                                                                 //get指令为-1
 	}
-
 }
 
 void robotFindBerth(int id){
@@ -376,12 +375,10 @@ void robotFindBerth(int id){
 			}
 		}
 	}
-
 	robot[id].setBerthId(berthId);
 	//robot[id].setClassId(berth[berthId].getClassId());
 	//TODO 后续判断泊位是否忙碌，忙碌就转为后续泊位
-    Position berthPos = berth[berthId].getPosition();
-    berthPos.x+=rand() % 4,berthPos.y+=rand() % 4;              //泊位增加随机数
+    Position berthPos = bestBerth[g.pos.x][g.pos.y].second.second;
 	auto moves = aStar(robot[id].getPosition(), berthPos);                                    //加载找泊位指令序列
 	while(moves.size()){
 		auto m = moves.front(); moves.pop_front();
@@ -410,9 +407,8 @@ void robotMove() {
 			if (front == -1) { //下一步是拿货，拿
 				robotMoveQueue[i].pop_front();
 				IO::ROBOT::get(i);
-			}
-			if (map[new_x][new_y] == 'B' && robot[i].hasGoods()) { //下一个位置该拉&&有货，拉
-				robotMoveQueue[i] = std::deque<int>();
+			}else if(front == -2){ //下一步该拉，拉
+				robotMoveQueue[i].pop_front();
 				IO::ROBOT::pull(i);
 				berth[robot[i].getBerthId()].pullGoods();
 			}
@@ -483,9 +479,8 @@ void robotAfterCollision(int id) {
 	if (front == -1) { //下一步是拿货，拿
 		robotMoveQueue[id].pop_front();
 		IO::ROBOT::get(id);
-	}
-	if (map[new_x][new_y] == 'B' && robot[id].hasGoods()) { //下一个位置该拉&&有货，拉
-		robotMoveQueue[id] = std::deque<int>();
+	}else if(front == -2){ //下一步该拉，拉
+		robotMoveQueue[id].pop_front();
 		IO::ROBOT::pull(id);
 		berth[robot[id].getBerthId()].pullGoods();
 	}

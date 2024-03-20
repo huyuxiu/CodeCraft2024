@@ -26,7 +26,10 @@
 =======
       <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/control.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iointerface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/iointerface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
 >>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
     </list>
@@ -77,7 +80,7 @@
 =======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.main.executor": "Debug",
+    "CMake Application.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -92,12 +95,17 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "CMakeSettings",
     "vue.rearranger.settings.migration": "true"
 >>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
   }
 }</component>
   <component name="RunManager">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CodeCraftSDK" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CodeCraftSDK" RUN_TARGET_NAME="main">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -136,7 +144,13 @@
       <workItem from="1710564009569" duration="34148000" />
       <workItem from="1710758898174" duration="5581000" />
       <workItem from="1710765316050" duration="15938000" />
+<<<<<<< HEAD
 >>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
+=======
+      <workItem from="1710848702914" duration="7906000" />
+      <workItem from="1710914426148" duration="4113000" />
+      <workItem from="1710920751378" duration="3174000" />
+>>>>>>> 9efb7226a565a2bef333349a9d6152495d621bfd
     </task>
     <servers />
   </component>
@@ -160,15 +174,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/util.cpp</url>
-          <line>478</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="value" />
