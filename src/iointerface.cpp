@@ -70,7 +70,7 @@ namespace IO {
 
 			if(berth[bestBerth[x][y].first].getBlockId()==block[x][y]){
 				/*     判断泊位连通性     */
-				goods[goodsId].berthDist = bestBerth[x][y].second;
+				goods[goodsId].berthDist = bestBerth[x][y].second.first;
 				goods[goodsId].berthId = bestBerth[x][y].first;
 				goods[goodsId].priority = calPriorityGoodsBerth(goods[goodsId]);
 				goodsHeap[berth[goods[goodsId].berthId].getClassId()].push(goods[goodsId++]);//货物加到每一类的优先队列

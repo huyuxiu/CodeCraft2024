@@ -36,7 +36,7 @@ extern std::vector<int> aliveRobotId;                                           
 extern int maxValue;                                                                     //场上价值最高的货
 extern int maxBlockId;                                                                   //连通块数量
 extern int shipTargetBerth[conVar::maxBerth];
-extern std::pair<int,int> bestBerth[conVar::maxX+1][conVar::maxY+1];                     //地图上某点的最近泊位
+extern std::pair<int, std::pair<int, Position>> bestBerth[conVar::maxX+1][conVar::maxY+1];               //地图上某点的(最近泊位id, (距离，最近泊位坐标))
 extern int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
 extern int totalClass;                                                                   //总共类的数量
 extern std::unordered_map<int, std::vector<int>> berth_in_block;                        //blockid:包含的泊位id

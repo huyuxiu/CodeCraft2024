@@ -202,30 +202,38 @@ void multiSourceBFS(){
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
 	for (int i = 0; i <= conVar::maxX; ++i) {
 		for (int j = 0; j <= conVar::maxY; ++j) {
-			bestBerth[i][j] = {-1,-1};
+			bestBerth[i][j].first = -1;
+			bestBerth[i][j].second.first = 0x3f3f3f3f;
+			bestBerth[i][j].second.second = Position(-1, -1);
 		}
 	}
-	std::queue<Position> q;
-	for(int i = 0; i < conVar::maxBerth; i++){
-		Position p = berth[i].getPosition();
-		bestBerth[p.x][p.y].first = i;
-		bestBerth[p.x][p.y].second = 0;
-		q.push(p);
-		berthArea[i] = 1;
+	std::queue<Position> q; //队列
+	for(int i = 0; i < conVar::maxBerth; i++){ //初始化泊位4*4
+		for(int j = 0; j < 4; j++){
+			for(int k = 0; k < 4; k++){
+				Position temp = Position(berth[i].getPosition().x + j, berth[i].getPosition().y + k);
+				bestBerth[temp.x][temp.y].first = i;
+				bestBerth[temp.x][temp.y].second.first = 0;
+				bestBerth[temp.x][temp.y].second.second = temp;
+				q.push(temp);
+			}
+		}
 	}
+
 	while(!q.empty()){
-		Position t = q.front();
-		q.pop();
+		Position t = q.front(); q.pop();
+
 		for(int i = 0; i < 4; i++){
-			int a = t.x+dx[i];
-			int b = t.y+dy[i];
-			if(a<0||a>conVar::maxX||b<0||b>conVar::maxY) continue;
-			if(isCollision(Position(a,b))) continue;
-			if(bestBerth[a][b].first!=-1) continue;
+			int a = t.x + dx[i], b = t.y + dy[i];
+			if(a<0 || a>conVar::maxX || b<0 || b>conVar::maxY) continue;
+			if(isCollision(Position(a,b)) || map[a][b] == 'B') continue;
+			if(bestBerth[a][b].first != -1) continue;
+
 			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
-			bestBerth[a][b].second = bestBerth[t.x][t.y].second+1;
+			bestBerth[a][b].second.first = bestBerth[t.x][t.y].second.first+1;
+			bestBerth[a][b].second.second = bestBerth[t.x][t.y].second.second;
 			q.push(Position(a,b));
-			if(bestBerth[a][b].second < Parameter::maxFoot) berthArea[bestBerth[t.x][t.y].first] ++;
+			if(bestBerth[a][b].second.first < Parameter::maxFoot) berthArea[bestBerth[t.x][t.y].first] ++; //计算类面积
 		}
 	}
 }
@@ -494,7 +502,7 @@ void distributeRobots(){
 		for(int r:robot_in_block[b]){ //遍历连通块里的机器人竞争最佳泊位（泊位选机器人
 			free_robots.insert(r);
 			auto best_berth = bestBerth[robot[r].getPosition().x][robot[r].getPosition().y];
-			if(!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second) berth_robot[best_berth.first] = {r, best_berth.second};
+			if(!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second.first) berth_robot[best_berth.first] = {r, best_berth.second.first};
 		}
 		for(auto best_pair:berth_robot){ //分配竞争到最佳泊位的机器人到类里
 			robot_in_class[berth[best_pair.first].getClassId()].push_back(best_pair.second.first);
