@@ -22,8 +22,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/build/.vs/CodeCraftSDK/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +101,7 @@
       <workItem from="1710560883263" duration="1318000" />
       <workItem from="1710564009569" duration="35024000" />
       <workItem from="1710750298379" duration="3930000" />
-      <workItem from="1710913640380" duration="2000" />
+      <workItem from="1710913640380" duration="724000" />
     </task>
     <servers />
   </component>
