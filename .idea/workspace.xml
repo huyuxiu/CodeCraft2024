@@ -22,6 +22,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d2360257-997a-4967-a20a-2382e446cf52" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Robot/MacOSReleasev1.2/run_simple_demo.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.cpp" afterDir="false" />
+>>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +55,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;CMake Application.main.executor&quot;: &quot;Debug&quot;,
@@ -66,6 +74,27 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.main.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.advertisement.text.overridden": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "Merging main",
+    "last_opened_file_path": "C:/Users/10048/Desktop/CodeCraft2024/CodeCraft2024/src/CMakeLists.txt",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
   }
 }</component>
   <component name="RunManager">
@@ -99,9 +128,15 @@
       <workItem from="1710560567716" duration="3000" />
       <workItem from="1710560716651" duration="130000" />
       <workItem from="1710560883263" duration="1318000" />
+<<<<<<< HEAD
       <workItem from="1710564009569" duration="35024000" />
       <workItem from="1710750298379" duration="3930000" />
       <workItem from="1710913640380" duration="724000" />
+=======
+      <workItem from="1710564009569" duration="34148000" />
+      <workItem from="1710758898174" duration="5581000" />
+      <workItem from="1710765316050" duration="15938000" />
+>>>>>>> 15319d61f0df73ca9dd4a45b598427a4bb010421
     </task>
     <servers />
   </component>
@@ -125,6 +160,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/util.cpp</url>
+          <line>478</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="value" />

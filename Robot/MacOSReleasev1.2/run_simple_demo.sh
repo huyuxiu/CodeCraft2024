@@ -1,0 +1,1 @@
+./PreliminaryJudge ../../build/main -m ./maps/map5.txt -d ./output.txt -s 2024 -l ERR

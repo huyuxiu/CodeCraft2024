@@ -20,10 +20,14 @@ namespace conVar{
 
 /*     运行参数     */
 namespace Parameter{
+	const bool isDBG = true;                                         //debug模式不输出
 	const int outGoodsHeapSurplusFrame = 0;                          //货物出物品队列消失容许误差帧数
 	const int goodsPermitDeathFrame = 20;                              //货物出机器人队列消失容许误差帧数
 	const int berthMaxPresure = 1;                                     //泊位最大压力
 	const int maxRobotGoodsQueue = 4;                                  //机器人货物队列最大值
+	const int maxFoot = 90;                                             //分类计算的面积范围
+	const double max_area = 0.3;                                       //再分类的最小面积
+	const int max_berth_size = 2;                                       //再分类的最大泊位数
 }
 
 /*    常用结构体    */
@@ -84,7 +88,8 @@ struct CompareGoodsToBerth {
 struct CompareGoodsToRobot{
 	/*      机器人优先队列，把快消失的提前拿了       */
 	bool operator()(const Goods& a, const Goods& b) const {
-		return a.deathId < b.deathId;
+		if(a.deathId == b.deathId) return a.priority < b.priority;
+		else return a.deathId < b.deathId;
 	}
 };
 

@@ -23,6 +23,7 @@ public:
 	void setClassId(int classId);                   //设置机器人类id
 	int getBerthId() const;                         //获取机器人泊位id
 	void setBerthId(int berthId);                   //设置机器人泊位id
+	int collision;									//机器人是否要撞到了
 private:
 	int id_;                                        //机器人id
 	int berthId_;                                   //机器人目标泊位id

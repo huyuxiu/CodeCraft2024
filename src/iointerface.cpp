@@ -47,6 +47,7 @@ namespace IO {
 		}
 		memset(shipTargetBerth,0,sizeof shipTargetBerth);
 
+
 		getStarBerth();     //获取类内运输能力高的泊位
 
 	    char ok[100];
@@ -86,8 +87,6 @@ namespace IO {
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
 			if(frameId==1) robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
-
-			//robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}
 

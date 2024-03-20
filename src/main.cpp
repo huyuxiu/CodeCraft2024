@@ -13,7 +13,6 @@ int main(){
 	int totalMoney = 0;
 	bool flag = true;
 	for(frameId; frameId <= 15000; ){
-
 		IO::readFrame();
 		if(flag){   //第一次执行
 			for(int i = 0; i < conVar::maxRobot; i++){ //判断机器人死活
@@ -30,6 +29,7 @@ int main(){
 //				robot_in_class[robot[i].getClassId()].push_back(i);
 //			}
 //			balanceRobot();
+
 			distributeRobots();
 			flag = false;
 		}
@@ -50,8 +50,10 @@ int main(){
 		shipToBerth();
 		puts("OK");
 		std::fflush(stdout);
-		if(frameId==14199) std::clog<<totalMoney<<std::endl;
-		if(frameId==14999) std::clog<<totalMoney<<std::endl;
+		if(Parameter::isDBG){
+			if(frameId==14199) std::clog<<totalMoney<<std::endl;
+			if(frameId==14999) std::clog<<totalMoney<<std::endl;
+		}
 	}
 
 }

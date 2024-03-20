@@ -106,6 +106,7 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 
 double calPriorityGoodsBerth(Goods g){
 	/*      通过距离和价格计算得到节点优先级       */
+//	if(frameId>12000) return double(g.value)-1.5*double(g.berthDist);
 	return double(g.value)-2*double(g.berthDist);
 }
 
@@ -159,14 +160,14 @@ std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
 	return res;
 }
 
-std::deque<PPI> bfsTarget(Position startPos, char target) {
+std::deque<PPI> bfsTarget(Position startPos, char target, bool &isGet) {
 	std::deque<PPI> res;
 	std::queue<Position>q;
 	std::unordered_map<Position, PPI> prev;
 	std::unordered_map<Position, bool> visitited;
 	visitited[startPos] = true;
 
-	bool isGet = false;
+	isGet = false;
 	Position end;
 	q.push(startPos);
 
@@ -199,15 +200,12 @@ std::deque<PPI> bfsTarget(Position startPos, char target) {
 
 void multiSourceBFS(){
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
-	bool vis[conVar::maxX+1][conVar::maxY+1];
-	//初始化为{-1，-1}
 	for (int i = 0; i <= conVar::maxX; ++i) {
 		for (int j = 0; j <= conVar::maxY; ++j) {
 			bestBerth[i][j] = {-1,-1};
 		}
 	}
 	std::queue<Position> q;
-	memset(vis,false,sizeof vis);
 	for(int i = 0; i < conVar::maxBerth; i++){
 		Position p = berth[i].getPosition();
 		bestBerth[p.x][p.y].first = i;
@@ -227,7 +225,7 @@ void multiSourceBFS(){
 			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
 			bestBerth[a][b].second = bestBerth[t.x][t.y].second+1;
 			q.push(Position(a,b));
-			berthArea[bestBerth[t.x][t.y].first] ++;
+			if(bestBerth[a][b].second < Parameter::maxFoot) berthArea[bestBerth[t.x][t.y].first] ++;
 		}
 	}
 }
@@ -286,62 +284,105 @@ void multiSourceBFS(){
 //	}
 //}
 
+std::unordered_map<int, std::vector<int>> kmeans(int k, std::vector<int> q){
+	/*
+	 * 对q(berths)进行kmeans聚类，分成k个类。
+	 * */
+	std::unordered_map<int, std::vector<int>> center_berth; //中心:berthid
+	if(q.size()>2){
+		int max_iterations = k < 4? 20 : 100;
+		std::vector<int> cx, cy; //初始化k个中心
+		for(int i = 0; i < k; i++){
+			cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
+			cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
+		}
+		for(int i = 0; i < max_iterations; i++){ //迭代
+			center_berth.clear();
+			for(int j = 0; j < q.size(); j++){ //分配每个样本到最近的中心
+				int min = 0, min_dist = 1e8, dist;
+				for(int s = 0; s < k; s++){
+					dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
+					if(dist < min_dist) min_dist = dist, min = s;
+				}
+				center_berth[min].push_back(q[j]);
+			}
+
+			for(int s = 0; s < k; s++){ //更新聚类中心
+				cx[s] = 0, cy[s] = 0;
+				for(auto b : center_berth[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
+				cx[s] /= center_berth[s].size(), cy[s] /= center_berth[s].size();
+			}
+		}
+	}else{
+		for(int i = 0; i < q.size(); i++){
+			std::vector<int> res;
+			res.push_back(q[i]);
+			center_berth[i] = res;
+		}
+	}
+	return center_berth;
+}
+
 void clusteringBerth(){
-	int cnt = 0; //class个数
 	for(int i = 0; i < conVar::maxBerth; i++){
 		berth_in_block[berth[i].getBlockId()].push_back(i);
 	}
-
-	for(auto p : berth_in_block){
+	for(auto p : berth_in_block){ //遍历连通块
 		auto q = p.second;
-		if(q.size() > 2){ //需要再分类
-			int k = std::ceil(q.size() / 2); //需要分成的类数
-			int max_iterations = 100;
+		if(q.size() > 2){ //连通块内的泊位>2，需要再分类
+			int k = std::ceil(q.size() / 2.0);
+			auto center_berth = kmeans(k, q);
+			bool isOK = false;
 
-			/*      kmeans聚类        */
-			std::vector<int> cx, cy; //初始化k个中心
-			for(int i = 0; i < k; i++){
-				cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
-				cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
-			}
 
-			std::unordered_map<int, std::vector<int>> center_berth;
-			for(int i = 0; i < max_iterations; i++){ //迭代
-				center_berth.clear();
-				for(int j = 0; j < q.size(); j++){ //分配每个样本到最近的中心
-					int min = 0, min_dist = 1e8, dist;
-					for(int s = 0; s < k; s++){
-						dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
-						if(dist < min_dist) min_dist = dist, min = s;
+			while(!isOK){
+				//计算面积并判断是否需要继续分类
+				isOK = true;
+				double total_area = 0;
+				std::unordered_map<int, double> class_area;
+				for(auto [cid, berths]:center_berth){
+					for(auto b:berths) class_area[cid] += berthArea[b], total_area += berthArea[b];
+				}
+				for(auto [cid, berths]:center_berth){
+					if(Parameter::isDBG) std::clog << cid << " " << class_area[cid]/total_area << std::endl;
+					if(berths.size()>=Parameter::max_berth_size && class_area[cid]/total_area>Parameter::max_area)  isOK = false;
+				}
+				if(isOK) break;
+
+				//继续分类
+				std::unordered_map<int, std::vector<int>> add_res;
+				std::vector<int> erase_res_id;
+				for(auto [cid, berths]:center_berth){
+					if(berths.size()>=Parameter::max_berth_size && class_area[cid]/total_area>Parameter::max_area){
+						int k_new = berths.size()==2 ? 2 : std::ceil(berths.size() / 2.0);
+						auto res = kmeans(k_new, berths);
+						for(int i = 0; i < k_new; i++) {
+							add_res[k++] = res[i];
+						}
+						erase_res_id.push_back(cid);
 					}
-					center_berth[min].push_back(q[j]);
 				}
-
-				for(int s = 0; s < k; s++){ //更新聚类中心
-					cx[s] = 0, cy[s] = 0;
-					for(auto b : center_berth[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
-					cx[s] /= center_berth[s].size(), cy[s] /= center_berth[s].size();
-				}
+				for(auto i:erase_res_id) center_berth.erase(i);
+				for(auto [cid, berths]:add_res) center_berth[cid] = berths;
 			}
 
-			for(int s = 0; s < k; s++){
-				for(auto b : center_berth[s]){
-					berth[b].setClassId(cnt);
-					berthInCenter[cnt].push_back(b);
+			for(auto [cid, berths]:center_berth){
+				for(auto b : berths){
+					berth[b].setClassId(totalClass);
+					berthInCenter[totalClass].push_back(b);
 				}
-				class_in_block[p.first].push_back(cnt++);
+				class_in_block[p.first].push_back(totalClass++);
 			}
 		}else{
 			for(auto b:q){
-				berth[b].setClassId(cnt);
-				berthInCenter[cnt].push_back(b);
+				berth[b].setClassId(totalClass);
+				berthInCenter[totalClass].push_back(b);
 			}
-			class_in_block[p.first].push_back(cnt++);
+			class_in_block[p.first].push_back(totalClass++);
 		}
 	}
-	totalClass = cnt;
-
 }
+
 int findNewRobot(int classId,int berthId){
 	for(int i : robot_in_class[classId]) {
 		if (robotGoodsQueue[i].size() < Parameter::maxRobotGoodsQueue && robot[i].getBerthId()==berthId) {
@@ -350,6 +391,7 @@ int findNewRobot(int classId,int berthId){
 	}
 	return -1;
 }
+
 void calCenterPos(){
 	for(int i = 0; i < totalClass; i++){
 		Position p(0,0);
@@ -362,8 +404,6 @@ void calCenterPos(){
 		classCenterPos[i] = p;
 	}
 }
-
-
 
 void balanceRobot(){
 	for(int i =0;i<maxBlockId;i++){
@@ -391,12 +431,7 @@ void balanceRobot(){
 				robot_in_class[maxClass].erase(robot_in_class[maxClass].begin());
 				robot_in_class[minClass].push_back(robot_in_class[maxClass][0]);
 			}
-
-
-
 		}
-
-
 	}
 }
 
@@ -416,7 +451,7 @@ void getStarBerth(){
 
 struct CompareDouble {
 	bool operator()(const double& d1, const double& d2) const {
-		return d1 > d2;
+		return d1 < d2;
 	}
 };
 
@@ -447,6 +482,9 @@ void distributeRobots(){
 				class_robot_number[cid].first ++;
 				rest_robot_number --;
 			}
+		}
+		if(Parameter::isDBG){
+			for(auto [cid, p]:class_robot_number) std::clog << cid << " " << p.first << std::endl;
 		}
 
 
@@ -549,14 +587,14 @@ void distributeRobots(){
 	}
 
 
-
-
-	for(int b = 0; b < maxBlockId; b++){
-		std::clog << "block" << b << std::endl;
-		for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-		for(auto c:class_in_block[b]){
-			std::clog << "class" << c << std::endl;
-			for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
+	if(Parameter::isDBG){
+		for(int b = 0; b < maxBlockId; b++){
+			std::clog << "block" << b << std::endl;
+			for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+			for(auto c:class_in_block[b]){
+				std::clog << "class" << c << std::endl;
+				for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
+			}
 		}
 	}
 }
