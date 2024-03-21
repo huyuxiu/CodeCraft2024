@@ -106,8 +106,7 @@ void bfsBerth(Position start, int dist[conVar::maxX+5][conVar::maxY+5]) {
 
 double calPriorityGoodsBerth(Goods g){
 	/*      通过距离和价格计算得到节点优先级       */
-//	if(frameId>12000) return double(g.value)-1.5*double(g.berthDist);
-	return double(g.value)-2*double(g.berthDist);
+	return  double(g.value) -  2 * double(g.berthDist);
 }
 
 std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
@@ -126,7 +125,7 @@ std::deque<PPI> aStar2(Position start, Position end, bool &isGet) {
 
 	while (heap.size()) {
 		sum++;
-		if (sum > 300) {
+		if (sum > 1000) {
 			isGet = false;
 			break;
 		}
@@ -198,7 +197,57 @@ std::deque<PPI> bfsTarget(Position startPos, char target, bool &isGet) {
 	return res;
 }
 
-void multiSourceBFS(){
+std::deque<PPI> bfsTargetBerth(Position startPos, int targetBerth, bool& isGet) {
+	std::deque<PPI> res;
+	std::queue<Position>q;
+	std::unordered_map<Position, PPI> prev;
+	std::unordered_map<Position, bool> visitited;
+	visitited[startPos] = true;
+
+	isGet = false;
+	Position end;
+	q.push(startPos);
+
+	while (q.size()) {
+		Position current_position = q.front();
+		q.pop();
+		if (map[current_position.x][current_position.y] == 'B' && judgeBerthId(current_position) == targetBerth) {
+			isGet = true;
+			end = current_position;
+			break;
+		}
+		for (int i = 0; i < 4; i++) {
+			Position next_position(current_position.x + dx[i], current_position.y + dy[i]);
+			if (next_position.x < 0 || next_position.x > conVar::maxX || next_position.y < 0 || next_position.y > conVar::maxY) continue;                        //地图越界
+			if (robotIsCollision(next_position) || visitited[next_position]) continue;                                                                 //碰撞检测
+			visitited[next_position] = true;
+			prev[next_position] = { current_position, i };
+			q.push(next_position);
+		}
+	}												//判断到的是哪个泊位
+	res.push_front({ end, -1 });
+	if (isGet) {
+		while (end.x != startPos.x || end.y != startPos.y) {
+			res.push_front(prev[end]);
+			end = prev[end].first;
+		}
+	}
+	return res;
+}
+
+int judgeBerthId(Position pos) {
+	for (int i = 0; i < conVar::maxBerth; i++) {
+		int min_x = berth[i].getPosition().x;
+		int max_x = min_x + 3;
+		int min_y = berth[i].getPosition().y;
+		int max_y = min_y + 3;
+		if (pos.x >= min_x && pos.x <= max_x && pos.y >= min_y && pos.y <= max_y)
+			return i;
+	}
+	return -1;
+}
+
+void multiSourceBFS() {
 	/*     多源bfs给地图上每个点分配一个泊位(更新bestBerth)     */
 	for (int i = 0; i <= conVar::maxX; ++i) {
 		for (int j = 0; j <= conVar::maxY; ++j) {
@@ -208,9 +257,9 @@ void multiSourceBFS(){
 		}
 	}
 	std::queue<Position> q; //队列
-	for(int i = 0; i < conVar::maxBerth; i++){ //初始化泊位4*4
-		for(int j = 0; j < 4; j++){
-			for(int k = 0; k < 4; k++){
+	for (int i = 0; i < conVar::maxBerth; i++) { //初始化泊位4*4
+		for (int j = 0; j < 4; j++) {
+			for (int k = 0; k < 4; k++) {
 				Position temp = Position(berth[i].getPosition().x + j, berth[i].getPosition().y + k);
 				bestBerth[temp.x][temp.y].first = i;
 				bestBerth[temp.x][temp.y].second.first = 0;
@@ -220,23 +269,24 @@ void multiSourceBFS(){
 		}
 	}
 
-	while(!q.empty()){
+	while (!q.empty()) {
 		Position t = q.front(); q.pop();
 
-		for(int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++) {
 			int a = t.x + dx[i], b = t.y + dy[i];
-			if(a<0 || a>conVar::maxX || b<0 || b>conVar::maxY) continue;
-			if(isCollision(Position(a,b)) || map[a][b] == 'B') continue;
-			if(bestBerth[a][b].first != -1) continue;
+			if (a<0 || a>conVar::maxX || b<0 || b>conVar::maxY) continue;
+			if (isCollision(Position(a, b)) || map[a][b] == 'B') continue;
+			if (bestBerth[a][b].first != -1) continue;
 
 			bestBerth[a][b].first = bestBerth[t.x][t.y].first;
-			bestBerth[a][b].second.first = bestBerth[t.x][t.y].second.first+1;
+			bestBerth[a][b].second.first = bestBerth[t.x][t.y].second.first + 1;
 			bestBerth[a][b].second.second = bestBerth[t.x][t.y].second.second;
-			q.push(Position(a,b));
-			if(bestBerth[a][b].second.first < Parameter::maxFoot) berthArea[bestBerth[t.x][t.y].first] ++; //计算类面积
+			q.push(Position(a, b));
+			if (bestBerth[a][b].second.first < Parameter::maxFoot) berthArea[bestBerth[t.x][t.y].first]++; //计算类面积
 		}
 	}
 }
+
 
 /*      roll点版本     */
 //void clusteringBerth(){
@@ -292,37 +342,38 @@ void multiSourceBFS(){
 //	}
 //}
 
-std::unordered_map<int, std::vector<int>> kmeans(int k, std::vector<int> q){
+std::unordered_map<int, std::vector<int>> kmeans(int k, std::vector<int> q) {
 	/*
 	 * 对q(berths)进行kmeans聚类，分成k个类。
 	 * */
 	std::unordered_map<int, std::vector<int>> center_berth; //中心:berthid
-	if(q.size()>2){
-		int max_iterations = k < 4? 20 : 100;
+	if (q.size() > 2) {
+		int max_iterations = k < 4 ? 50 : 100;
 		std::vector<int> cx, cy; //初始化k个中心
-		for(int i = 0; i < k; i++){
+		for (int i = 0; i < k; i++) {
 			cx.push_back(berth[q[1 + i * q.size() / k]].getPosition().x);
 			cy.push_back(berth[q[1 + i * q.size() / k]].getPosition().y);
 		}
-		for(int i = 0; i < max_iterations; i++){ //迭代
+		for (int i = 0; i < max_iterations; i++) { //迭代
 			center_berth.clear();
-			for(int j = 0; j < q.size(); j++){ //分配每个样本到最近的中心
+			for (int j = 0; j < q.size(); j++) { //分配每个样本到最近的中心
 				int min = 0, min_dist = 1e8, dist;
-				for(int s = 0; s < k; s++){
+				for (int s = 0; s < k; s++) {
 					dist = manhattanDist(berth[q[j]].getPosition(), Position(cx[s], cy[s]));
-					if(dist < min_dist) min_dist = dist, min = s;
+					if (dist < min_dist) min_dist = dist, min = s;
 				}
 				center_berth[min].push_back(q[j]);
 			}
 
-			for(int s = 0; s < k; s++){ //更新聚类中心
+			for (int s = 0; s < k; s++) { //更新聚类中心
 				cx[s] = 0, cy[s] = 0;
-				for(auto b : center_berth[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
+				for (auto b : center_berth[s]) cx[s] += berth[b].getPosition().x, cy[s] += berth[b].getPosition().y;
 				cx[s] /= center_berth[s].size(), cy[s] /= center_berth[s].size();
 			}
 		}
-	}else{
-		for(int i = 0; i < q.size(); i++){
+	}
+	else {
+		for (int i = 0; i < q.size(); i++) {
 			std::vector<int> res;
 			res.push_back(q[i]);
 			center_berth[i] = res;
@@ -331,58 +382,60 @@ std::unordered_map<int, std::vector<int>> kmeans(int k, std::vector<int> q){
 	return center_berth;
 }
 
-void clusteringBerth(){
-	for(int i = 0; i < conVar::maxBerth; i++){
+
+void clusteringBerth() {
+	for (int i = 0; i < conVar::maxBerth; i++) {
 		berth_in_block[berth[i].getBlockId()].push_back(i);
 	}
-	for(auto p : berth_in_block){ //遍历连通块
+	for (auto p : berth_in_block) { //遍历连通块
 		auto q = p.second;
-		if(q.size() > 2){ //连通块内的泊位>2，需要再分类
+		if (q.size() > 2) { //连通块内的泊位>2，需要再分类
 			int k = std::ceil(q.size() / 2.0);
 			auto center_berth = kmeans(k, q);
 			bool isOK = false;
 
 
-			while(!isOK){
+			while (!isOK) {
 				//计算面积并判断是否需要继续分类
 				isOK = true;
 				double total_area = 0;
 				std::unordered_map<int, double> class_area;
-				for(auto [cid, berths]:center_berth){
-					for(auto b:berths) class_area[cid] += berthArea[b], total_area += berthArea[b];
+				for (auto [cid, berths] : center_berth) {
+					for (auto b : berths) class_area[cid] += berthArea[b], total_area += berthArea[b];
 				}
-				for(auto [cid, berths]:center_berth){
-					if(Parameter::isDBG) std::clog << cid << " " << class_area[cid]/total_area << std::endl;
-					if(berths.size()>=Parameter::max_berth_size && class_area[cid]/total_area>Parameter::max_area)  isOK = false;
+				for (auto [cid, berths] : center_berth) {
+					//std::clog << cid << " " << class_area[cid] / total_area << std::endl;
+					if (berths.size() >= Parameter::max_berth_size && class_area[cid] / total_area > Parameter::max_area)  isOK = false;
 				}
-				if(isOK) break;
+				if (isOK) break;
 
 				//继续分类
 				std::unordered_map<int, std::vector<int>> add_res;
 				std::vector<int> erase_res_id;
-				for(auto [cid, berths]:center_berth){
-					if(berths.size()>=Parameter::max_berth_size && class_area[cid]/total_area>Parameter::max_area){
-						int k_new = berths.size()==2 ? 2 : std::ceil(berths.size() / 2.0);
+				for (auto [cid, berths] : center_berth) {
+					if (berths.size() >= Parameter::max_berth_size && class_area[cid] / total_area > Parameter::max_area) {
+						int k_new = berths.size() == 2 ? 2 : std::ceil(berths.size() / 2.0);
 						auto res = kmeans(k_new, berths);
-						for(int i = 0; i < k_new; i++) {
+						for (int i = 0; i < k_new; i++) {
 							add_res[k++] = res[i];
 						}
 						erase_res_id.push_back(cid);
 					}
 				}
-				for(auto i:erase_res_id) center_berth.erase(i);
-				for(auto [cid, berths]:add_res) center_berth[cid] = berths;
+				for (auto i : erase_res_id) center_berth.erase(i);
+				for (auto [cid, berths] : add_res) center_berth[cid] = berths;
 			}
 
-			for(auto [cid, berths]:center_berth){
-				for(auto b : berths){
+			for (auto [cid, berths] : center_berth) {
+				for (auto b : berths) {
 					berth[b].setClassId(totalClass);
 					berthInCenter[totalClass].push_back(b);
 				}
 				class_in_block[p.first].push_back(totalClass++);
 			}
-		}else{
-			for(auto b:q){
+		}
+		else {
+			for (auto b : q) {
 				berth[b].setClassId(totalClass);
 				berthInCenter[totalClass].push_back(b);
 			}
@@ -399,7 +452,6 @@ int findNewRobot(int classId,int berthId){
 	}
 	return -1;
 }
-
 void calCenterPos(){
 	for(int i = 0; i < totalClass; i++){
 		Position p(0,0);
@@ -412,6 +464,8 @@ void calCenterPos(){
 		classCenterPos[i] = p;
 	}
 }
+
+
 
 void balanceRobot(){
 	for(int i =0;i<maxBlockId;i++){
@@ -439,7 +493,12 @@ void balanceRobot(){
 				robot_in_class[maxClass].erase(robot_in_class[maxClass].begin());
 				robot_in_class[minClass].push_back(robot_in_class[maxClass][0]);
 			}
+
+
+
 		}
+
+
 	}
 }
 
@@ -491,9 +550,6 @@ void distributeRobots(){
 				rest_robot_number --;
 			}
 		}
-		if(Parameter::isDBG){
-			for(auto [cid, p]:class_robot_number) std::clog << cid << " " << p.first << std::endl;
-		}
 
 
 		//初始化分配机器人到最佳泊位
@@ -502,7 +558,7 @@ void distributeRobots(){
 		for(int r:robot_in_block[b]){ //遍历连通块里的机器人竞争最佳泊位（泊位选机器人
 			free_robots.insert(r);
 			auto best_berth = bestBerth[robot[r].getPosition().x][robot[r].getPosition().y];
-			if(!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second.first) berth_robot[best_berth.first] = {r, best_berth.second.first};
+			if (!berth_robot.count(best_berth.first) || berth_robot[best_berth.first].second > best_berth.second.first) berth_robot[best_berth.first] = { r, best_berth.second.first };
 		}
 		for(auto best_pair:berth_robot){ //分配竞争到最佳泊位的机器人到类里
 			robot_in_class[berth[best_pair.first].getClassId()].push_back(best_pair.second.first);
@@ -595,14 +651,15 @@ void distributeRobots(){
 	}
 
 
-	if(Parameter::isDBG){
-		for(int b = 0; b < maxBlockId; b++){
-			std::clog << "block" << b << std::endl;
-			for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
-			for(auto c:class_in_block[b]){
-				std::clog << "class" << c << std::endl;
-				for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
-			}
+
+	/*
+	for(int b = 0; b < maxBlockId; b++){
+		std::clog << "block" << b << std::endl;
+		for(auto c: berth_in_block[b]) std::clog << "berth" << c << "in class" << berth[c].getClassId() << std::endl;
+		for(auto c:class_in_block[b]){
+			std::clog << "class" << c << std::endl;
+			for(int j : robot_in_class[c]) std::clog << "robot" << j << "in class"<< robot[j].getClassId() << std::endl;
 		}
 	}
+	*/
 }

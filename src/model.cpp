@@ -22,16 +22,17 @@ int block[conVar::maxX+1][conVar::maxY+1];                                      
 std::vector<int> aliveRobotId;                                                     //活的机器人
 int maxValue = 200;
 int maxBlockId = 0;//连通块数量
-int maxShipRestTime = 3;
-int shipTargetBerth[conVar::maxBerth];
-std::pair<int, std::pair<int, Position>>  bestBerth[conVar::maxX+1][conVar::maxY+1];                //地图上某点到泊位的优先队列<泊位id,到泊位距离>
+int shipTargetBerth[conVar::maxBerth];											   //船正在赶往的泊位标志
+int goodsTargetBerth[conVar::maxBerth];											   //货物前往的泊位标志
+int maxShipRestTime = 5;
+std::pair<int, std::pair<int, Position>> bestBerth[conVar::maxX + 1][conVar::maxY + 1];               //地图上某点的(最近泊位id, (距离，最近泊位坐标))
 int robotMap[conVar::maxX+1][conVar::maxY+1];                                     //当前/下帧机器人在的点
 int totalClass = 0;                                                               //总共类的数量
 std::unordered_map<int, std::vector<int>> berth_in_block;                       //blockid:包含的泊位id
 std::unordered_map<int, std::vector<int>> robot_in_block;                       //blockid:包含的泊位id
 std::unordered_map<int,std::vector<int>> class_in_block;                        //blockid:类的id
-std::unordered_map<int, int> berthArea;                                         //berthid:berth面积
 std::unordered_map<int, std::vector<int>> berthInCenter; //中心，泊位id
 std::unordered_map<int,Position> classCenterPos;    //类中心
 std::unordered_map<int,std::vector<int>> robot_in_class;         //类内机器人
 std::unordered_map<int,int> starBerth;                                           //类内运输能力高的泊位
+std::unordered_map<int, int> berthArea;                                         //berthid:berth面积

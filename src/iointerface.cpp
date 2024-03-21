@@ -45,8 +45,8 @@ namespace IO {
 		for(int i = 0; i < conVar::maxShip; i++){
 			ship[i].setCapacity(shipCapacity);
 		}
-		memset(shipTargetBerth,0,sizeof shipTargetBerth);
-
+		memset(shipTargetBerth,-1,sizeof shipTargetBerth);			//初始化船目标泊位数组
+		memset(goodsTargetBerth, 0, sizeof goodsTargetBerth);		//初始化货物目标泊位数组
 
 		getStarBerth();     //获取类内运输能力高的泊位
 
@@ -87,6 +87,8 @@ namespace IO {
 			robot[i].setStatus(status);
 			robot[i].setCarry(carry);
 			if(frameId==1) robot[i].setBerthId(bestBerth[x][y].first);//TODO 后续得优化
+
+			//robot[i].setClassId(berth[bestBerth[x][y].first].getClassId());//初始化分配类
 			robotMap[x][y] = 1;
 		}
 
